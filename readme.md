@@ -98,6 +98,7 @@ Example output:
 ## TODO
 
 - [ ] add support for creating directly from repo url
+- [ ] we need a clever way to include images in the artifacts, maybe base64 encode them directly to the markdown file, but that could chew thru tokens at prompt time? Suggestions?
 
 ## Contributing
 
