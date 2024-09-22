@@ -2,8 +2,6 @@
 
 ![logo](code-mapper.svg)
 
-<!-- TOC -->
-
 - [`code-mapper`](#code-mapper)
   - [Overview](#overview)
   - [Features](#features)
@@ -18,11 +16,6 @@
   - [License](#license)
   - [Acknowledgments](#acknowledgments)
   - [Version History](#version-history)
-
-<!-- /TOC -->History](#version-history)
-
-<!-- /TOC -->
-<!-- /TOC -->
 
 ## Overview
 
