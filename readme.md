@@ -1,6 +1,6 @@
 # `code-mapper`
 
-![logo](code-mapper.svg)
+![logo](codemapper.svg)
 
 - [`code-mapper`](#code-mapper)
   - [Overview](#overview)
@@ -61,7 +61,7 @@ See audio explainers for this project:
 Run the script from the command line, providing the path to the directory you want to analyze:
 
 ```python
-python directory_markdown_generator.py <path_to_directory> [--include-ignored]
+python codemapper.py <path_to_directory> [--include-ignored]
 ```
 
 ### Options

@@ -19,7 +19,7 @@ Key features:
 • Provides an option to include files normally ignored by .gitignore
 
 Usage:
-    python directory_markdown_generator.py <path_to_directory> [--include-ignored]
+    python codemapper.py <path_to_directory> [--include-ignored]
 
 Output:
     Creates a markdown file named '<directory_name>_structure.md' in the current directory
