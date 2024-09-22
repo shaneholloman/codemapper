@@ -13,11 +13,13 @@ Previously known as `directory-structure-markdown-generator`
     - [Options](#options)
   - [Output](#output)
   - [Use Cases](#use-cases)
+  - [TODO](#todo)
   - [Contributing](#contributing)
   - [License](#license)
   - [Acknowledgments](#acknowledgments)
   - [Version History](#version-history)
 
+<!-- /TOC -->
 <!-- /TOC -->
 
 ## Overview
@@ -92,6 +94,10 @@ Example output:
 - Facilitate code reviews by providing a comprehensive overview
 - Aid in onboarding new team members to a project
 - Assist AI systems in analyzing and understanding codebases
+
+## TODO
+
+- [ ] add support for creating directly from repo from url
 
 ## Contributing
 
