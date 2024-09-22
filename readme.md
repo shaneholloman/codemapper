@@ -1,10 +1,10 @@
-# Code Mapper
+# `code-mapper`
 
-Previously known as `directory-structure-markdown-generator`
+![logo](code-mapper.svg)
 
 <!-- TOC -->
 
-- [Code Mapper](#code-mapper)
+- [`code-mapper`](#code-mapper)
   - [Overview](#overview)
   - [Features](#features)
   - [Requirements](#requirements)
@@ -18,6 +18,8 @@ Previously known as `directory-structure-markdown-generator`
   - [License](#license)
   - [Acknowledgments](#acknowledgments)
   - [Version History](#version-history)
+
+<!-- /TOC -->History](#version-history)
 
 <!-- /TOC -->
 <!-- /TOC -->
