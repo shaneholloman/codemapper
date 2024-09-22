@@ -97,7 +97,7 @@ Example output:
 
 ## TODO
 
-- [ ] add support for creating directly from repo from url
+- [ ] add support for creating directly from repo url
 
 ## Contributing
 
