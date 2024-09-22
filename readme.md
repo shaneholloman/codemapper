@@ -1,8 +1,8 @@
-# `code-mapper`
+# `codemapper`
 
 ![logo](codemapper.svg)
 
-- [`code-mapper`](#code-mapper)
+- [`codemapper`](#codemapper)
   - [Overview](#overview)
   - [Features](#features)
   - [Requirements](#requirements)
