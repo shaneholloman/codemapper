@@ -7,6 +7,8 @@
   - [Features](#features)
   - [Requirements](#requirements)
   - [Installation](#installation)
+    - [From PyPI](#from-pypi)
+    - [From Source](#from-source)
   - [Usage](#usage)
     - [Options](#options)
   - [Output](#output)
@@ -48,6 +50,16 @@ See audio explainers for this project:
 
 ## Installation
 
+### From PyPI
+
+You can install CodeMapper directly from PyPI using pip:
+
+```sh
+pip install codemapper
+```
+
+### From Source
+
 1. Clone this repository:
 
     ```sh
@@ -65,7 +77,7 @@ See audio explainers for this project:
 Run the script from the command line, providing the path to the directory or GitHub repository URL you want to analyze:
 
 ```sh
-python codemapper.py <path_to_directory_or_github_url> [--include-ignored]
+codemapper <path_to_directory_or_github_url> [--include-ignored]
 ```
 
 ### Options
@@ -85,7 +97,7 @@ The script generates a Markdown file named `<directory_name>codemap.md` in the '
 Example use and output:
 
 ```python
-python '/home/shadmin/git/codemapper/codemapper.py' <https://github.com/shaneholloman/ansible-role-apache
+codemapper https://github.com/shaneholloman/ansible-role-apache
 ```
 
 [Example output see here](_example/ansible-role-apache_codemap.md)
@@ -128,27 +140,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
     - File type and size information is displayed for large and binary files
   - Removed option to include large file contents as it's not practical for binary files
   - Simplified command-line options by removing flags related to large file handling
+  - Added PyPI installation support
 
-- 3.1.2 (2024-09-23):
-  - Restored important formatting functionality in generate_markdown_document function
-  - Ensures proper spacing between file contents and correct placement of the concluding message
-
-- 3.1.1 (2024-09-23):
-  - Fixed unused variable issue in generate_markdown_document function
-  - Improved code quality without changing functionality
-
-- 3.1.0 (2024-09-23):
-  - Added support for GitHub repositories
-  - Implemented large file handling (now default in 3.2.0)
-
-- 3.0.0 (2024-09-23):
-  - Major refactor
-  - Added '_mapped' output directory for generated markdown files
-  - Improved error handling and user feedback
-
-- 2.5.0 (2024-09-10):
-  - Initial version
-  - Basic functionality for local directory mapping
+[For full version history, see [changelog.md](changelog.md)]
 
 ---
 
