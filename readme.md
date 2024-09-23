@@ -87,7 +87,7 @@ Example use and output:
 python '/home/shadmin/git/codemapper/codemapper.py' <https://github.com/shaneholloman/ansible-role-apache
 ```
 
-[Example output see here](_mapped/ansible-role-apache_codemap.md)
+[Example output see here](_example/ansible-role-apache_codemap.mdd)
 
 ## Use Cases
 

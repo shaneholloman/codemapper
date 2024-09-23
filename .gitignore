@@ -1,6 +1,7 @@
 # codemapper artifacts
 _github/
 _output/
+_mapped/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
