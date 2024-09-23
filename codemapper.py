@@ -1,53 +1,52 @@
 """
-Code Mapper
+CodeMapper
 
-Version: 2.5.0
-Date: 2024-09-10
-Author: Shane Holloman
+Version: 3.1.2
+Date: 2024-09-23
+Author: AI Assistant (based on original by Shane Holloman)
 
-This python script generates a Markdown Artifact that provides a comprehensive overview of the directory structure and file contents.
-It aims to give viewers (human or AI) a complete single page overview of the entire codebase in a single file to bootstrap easy analysis and informed iteration
+This Python script generates a Markdown artifact that provides a comprehensive overview of a directory structure
+and file contents. It can process local directories or clone and analyze GitHub repositories.
 
 Key features:
 • Generates a hierarchical table of contents based on heading levels
 • Creates an accurate file tree representation of the directory structure
 • Produces code blocks for each file's contents
-• Respects .gitignore (rhymes with bit dot-git-ignore) ignore rules when processing files and directories
-• Excludes .git directories and archive files by default
+• Respects .gitignore rules when processing files and directories
+• Excludes .git directories by default
 • Supports various file types with appropriate code fence highlighting
 • Handles file encoding detection for accurate content reading
 • Provides an option to include files normally ignored by .gitignore
+• Can clone and analyze GitHub repositories
+• Saves output in a '_mapped' directory
+• Acknowledges large binary files (e.g., databases, images, videos) without printing their contents
 
 Usage:
-    python codemapper.py <path_to_directory> [--include-ignored]
+    python codemapper.py <path_to_directory_or_github_url> [--include-ignored] [--exclude-large-files]
 
 Output:
-    Creates a markdown file named '<directory_name>_structure.md' in the current directory
+    Creates a markdown file named '<directory_name>_structure.md' in the '_mapped' directory
 
 Requirements:
     • Python 3.6+ (for f-strings and type hinting)
     • pathspec library (for handling .gitignore rules)
     • chardet library (for file encoding detection)
 
-Key components:
-    • load_gitignore_specs: Loads .gitignore rules from the given directory
-    • collect_file_paths: Gathers file paths while respecting .gitignore rules
-    • generate_toc: Creates a table of contents for the markdown document
-    • generate_file_tree: Produces an accurate file tree representation
-    • read_file_content: Reads file content with encoding detection
-    • generate_markdown_document: Orchestrates the creation of the full markdown document
-
 Note: This script is designed to provide a comprehensive overview of a codebase,
       making it easier for developers, AI systems, or other analysts to quickly
       understand the structure and contents of a project.
 """
 
-import os
-import sys
 import argparse
-from typing import Dict, List
-import pathspec
+import mimetypes
+import os
+import re
+import subprocess
+import sys
+from typing import Dict, List, Tuple
+
 import chardet
+import pathspec
 
 # Constants
 ARCHIVE_EXTENSIONS = {
@@ -115,6 +114,40 @@ CODE_FENCE_MAP: Dict[str, str] = {
     "": "txt",  # Default fallback
 }
 
+LARGE_FILE_EXTENSIONS = {
+    ".db",
+    ".sqlite",
+    ".sqlite3",  # Database files
+    ".jpg",
+    ".jpeg",
+    ".png",
+    ".gif",
+    ".bmp",
+    ".tiff",  # Image files
+    ".mp4",
+    ".avi",
+    ".mov",
+    ".wmv",
+    ".flv",
+    ".mkv",  # Video files
+    ".mp3",
+    ".wav",
+    ".ogg",
+    ".flac",  # Audio files
+    ".pdf",
+    ".doc",
+    ".docx",
+    ".xls",
+    ".xlsx",
+    ".ppt",
+    ".pptx",  # Document files
+    ".zip",
+    ".tar",
+    ".gz",
+    ".rar",
+    ".7z",  # Archive files
+}
+
 
 def should_exclude_directory(dir_name: str, include_ignored: bool = False) -> bool:
     """
@@ -135,7 +168,15 @@ def should_exclude_directory(dir_name: str, include_ignored: bool = False) -> bo
 
 
 def determine_code_fence(file_path: str) -> str:
-    """Determine the appropriate code fence language based on the file path."""
+    """
+    Determine the appropriate code fence language based on the file path.
+
+    Args:
+        file_path (str): Path to the file.
+
+    Returns:
+        str: The code fence language identifier.
+    """
     _, ext = os.path.splitext(file_path)
     file_name = os.path.basename(file_path)
 
@@ -148,7 +189,15 @@ def determine_code_fence(file_path: str) -> str:
 
 
 def load_gitignore_specs(base_path: str) -> pathspec.PathSpec:
-    """Load .gitignore specifications from the given base path."""
+    """
+    Load .gitignore specifications from the given base path.
+
+    Args:
+        base_path (str): The base directory path to search for .gitignore.
+
+    Returns:
+        pathspec.PathSpec: The gitignore specifications.
+    """
     gitignore_path = os.path.join(base_path, ".gitignore")
     if os.path.isfile(gitignore_path):
         with open(gitignore_path, "r", encoding="utf-8") as file:
@@ -161,7 +210,17 @@ def collect_file_paths(
     gitignore_spec: pathspec.PathSpec,
     include_ignored: bool = False,
 ) -> List[str]:
-    """Collect file paths, respecting .gitignore rules unless include_ignored is True."""
+    """
+    Collect file paths, respecting .gitignore rules unless include_ignored is True.
+
+    Args:
+        directory_path (str): The path to the directory to process.
+        gitignore_spec (pathspec.PathSpec): The gitignore specifications.
+        include_ignored (bool): Whether to include files ignored by .gitignore.
+
+    Returns:
+        List[str]: A list of file paths relative to the directory_path.
+    """
     file_paths = []
 
     for root, dirs, files in os.walk(directory_path):
@@ -187,7 +246,16 @@ def collect_file_paths(
 
 
 def generate_toc(file_paths: List[str], base_name: str) -> str:
-    """Generate a table of contents based on heading levels."""
+    """
+    Generate a table of contents based on heading levels.
+
+    Args:
+        file_paths (List[str]): List of file paths to include in the TOC.
+        base_name (str): The name of the base directory or repository.
+
+    Returns:
+        str: A formatted table of contents as a string.
+    """
     toc = ["<!-- TOC -->", ""]
     toc.append(f"- [{base_name}](#{base_name.lower().replace(' ', '-')})")
     toc.append("  - [Document Table of Contents](#document-table-of-contents)")
@@ -229,14 +297,7 @@ def generate_file_tree(
 
     Returns:
         str: A string representation of the file tree, including a count of
-              directories and files at the end.
-
-    Note:
-        - Directories are represented with a trailing slash (/) in the tree.
-        - The tree includes proper indentation and branch symbols (├── and └──).
-        - The root directory is represented by a single dot (.).
-        - Files and directories are sorted alphabetically at each level.
-        - The function respects .gitignore rules when include_ignored is False.
+             directories and files at the end.
     """
 
     def walk_directory(dir_path: str, prefix: str = "") -> List[str]:
@@ -282,11 +343,56 @@ def generate_file_tree(
     return "\n".join(tree)
 
 
-def read_file_content(file_path: str) -> str:
-    """Read file content with encoding detection and fallback mechanisms."""
+def is_large_file(file_path: str) -> bool:
+    """
+    Determine if a file is considered a large binary file.
+
+    Args:
+        file_path (str): Path to the file.
+
+    Returns:
+        bool: True if the file is considered large, False otherwise.
+    """
+    _, ext = os.path.splitext(file_path.lower())
+    if ext in LARGE_FILE_EXTENSIONS:
+        return True
+
+    mime_type, _ = mimetypes.guess_type(file_path)
+    return mime_type and not mime_type.startswith("text")
+
+
+def get_file_info(file_path: str) -> str:
+    """
+    Get information about a file without reading its contents.
+
+    Args:
+        file_path (str): Path to the file.
+
+    Returns:
+        str: A string containing file information.
+    """
+    size = os.path.getsize(file_path)
+    mime_type, _ = mimetypes.guess_type(file_path)
+    return f"File Type: {mime_type or 'Unknown'}, Size: {size} bytes"
+
+
+def read_file_content(file_path: str, exclude_large_files: bool) -> str:
+    """
+    Read file content with encoding detection and large file handling.
+
+    Args:
+        file_path (str): Path to the file to read.
+        exclude_large_files (bool): Whether to exclude content of large binary files.
+
+    Returns:
+        str: The content of the file or information about the file if it's large.
+    """
+    if exclude_large_files and is_large_file(file_path):
+        return f"[Large file detected. {get_file_info(file_path)}]"
+
     try:
         with open(file_path, "rb") as file:
-            raw_data = file.read()
+            raw_data = file.read(1024)  # Read only the first 1024 bytes for detection
         detect_result = chardet.detect(raw_data)
         detected_encoding = detect_result["encoding"] if detect_result else None
 
@@ -294,25 +400,29 @@ def read_file_content(file_path: str) -> str:
         with open(file_path, "r", encoding=encoding_to_use) as file:
             return file.read().rstrip()
     except UnicodeDecodeError:
-        try:
-            with open(file_path, "r", encoding="utf-8") as file:
-                return file.read().rstrip()
-        except UnicodeDecodeError:
-            try:
-                with open(file_path, "r", encoding="latin-1") as file:
-                    return file.read().rstrip()
-            except Exception as e:
-                return f"Error reading file: {str(e)}"
+        return f"[Binary file detected. {get_file_info(file_path)}]"
     except Exception as e:
-        return f"Error reading file: {str(e)}"
+        return f"[Error reading file: {str(e)}]"
 
 
 def generate_markdown_document(
     directory_path: str,
     gitignore_spec: pathspec.PathSpec,
     include_ignored: bool = False,
+    exclude_large_files: bool = False,
 ) -> str:
-    """Generate a markdown document from the directory structure."""
+    """
+    Generate a markdown document from the directory structure.
+
+    Args:
+        directory_path (str): The path to the directory to process.
+        gitignore_spec (pathspec.PathSpec): The gitignore specifications to apply.
+        include_ignored (bool): Whether to include files ignored by .gitignore.
+        exclude_large_files (bool): Whether to exclude content of large binary files.
+
+    Returns:
+        str: The generated markdown content as a string.
+    """
     base_name = os.path.basename(directory_path)
     md_content = f"# {base_name}\n\n"
     md_content += "This markdown document provides a comprehensive overview of the directory structure and file contents. It aims to give viewers (human or AI) a complete view of the codebase in a single file for easy analysis.\n\n"
@@ -332,66 +442,155 @@ def generate_markdown_document(
     md_content += "\n```\n\n"
 
     md_content += "## Repo File Contents\n\n"
-    md_content += (
-        "The following sections present the content of each file in the repository.\n\n"
-    )
+    md_content += "The following sections present the content of each file in the repository. Large binary files are acknowledged but their contents are not displayed.\n\n"
 
     # Generate code blocks for each file
     for i, path in enumerate(file_paths):
         md_content += f"### {path}\n\n"
-        code_fence_lang = determine_code_fence(path)
-        fence = "````" if path.endswith(".md") else "```"
-        md_content += f"{fence}{code_fence_lang}\n"
-
         full_path = os.path.join(directory_path, path)
-        file_content = read_file_content(full_path)
 
-        # Replace "licence" with "license" in file content
-        file_content = file_content.replace("licence", "license").replace(
-            "Licence", "License"
-        )
-
-        md_content += file_content + "\n"
-
-        # Add appropriate ending based on whether it's the last file
-        if i < len(file_paths) - 1:
-            md_content += f"{fence}\n\n"
+        if exclude_large_files and is_large_file(full_path):
+            md_content += get_file_info(full_path) + "\n\n"
         else:
-            md_content += f"{fence}\n\n"
-            md_content += "> This concludes the repository's file contents. Please review thoroughly for a comprehensive understanding of the codebase.\n"
+            code_fence_lang = determine_code_fence(path)
+            fence = "````" if path.endswith(".md") else "```"
+            md_content += f"{fence}{code_fence_lang}\n"
+            file_content = read_file_content(full_path, exclude_large_files)
+            md_content += file_content + "\n"
+            md_content += f"{fence}\n"
+
+        if i < len(file_paths) - 1:
+            md_content += "\n"
+        else:
+            md_content += "\n> This concludes the repository's file contents. Please review thoroughly for a comprehensive understanding of the codebase.\n"
 
     return md_content
+
+
+def detect_input_type(input_path: str) -> Tuple[str, str]:
+    """
+    Detect whether the input is a local directory or a GitHub URL.
+
+    Args:
+        input_path (str): The input provided by the user.
+
+    Returns:
+        Tuple[str, str]: A tuple containing the input type ('local' or 'github') and the path or URL.
+
+    Raises:
+        ValueError: If the input is neither a valid local directory nor a valid GitHub URL.
+    """
+    # Check if it's a valid local directory
+    if os.path.isdir(input_path):
+        return "local", input_path
+
+    # Check if it's a valid GitHub URL
+    github_pattern = r"^https?://github\.com/[\w-]+/[\w.-]+(?:\.git)?$"
+    if re.match(github_pattern, input_path):
+        return "github", input_path
+
+    raise ValueError(
+        "Invalid input. Please provide a valid local directory path or GitHub URL."
+    )
+
+
+def clone_github_repo(repo_url: str) -> str:
+    """
+    Clone a GitHub repository into a '_github' directory.
+
+    Args:
+        repo_url (str): The URL of the GitHub repository to clone.
+
+    Returns:
+        str: The path to the cloned repository.
+
+    Raises:
+        subprocess.CalledProcessError: If the git clone command fails.
+        OSError: If there's an issue creating the directory.
+    """
+    github_dir = os.path.join(".", "_github")
+    os.makedirs(github_dir, exist_ok=True)
+
+    repo_name = repo_url.split("/")[-1].replace(".git", "")
+    repo_path = os.path.join(github_dir, repo_name)
+
+    if os.path.exists(repo_path):
+        print(f"Repository '{repo_name}' already exists. Updating...")
+        subprocess.run(["git", "-C", repo_path, "pull"], check=True)
+    else:
+        print(f"Cloning repository '{repo_name}'...")
+        subprocess.run(["git", "clone", repo_url, repo_path], check=True)
+
+    return repo_path
+
+
+def manage_output_directory(base_name: str) -> str:
+    """
+    Manage the output directory for the markdown output.
+
+    Args:
+        base_name (str): The base name for the output file (usually the repository or directory name).
+
+    Returns:
+        str: The full path for the output markdown file.
+    """
+    output_dir = os.path.join(".", "_mapped")
+    os.makedirs(output_dir, exist_ok=True)
+
+    file_name = f"{base_name}_codemap.md"
+    return os.path.join(output_dir, file_name)
 
 
 def main():
     """Main function to orchestrate the markdown document generation process."""
     parser = argparse.ArgumentParser(
-        description="Generate markdown document from directory structure."
+        description="Generate markdown document from directory structure or GitHub repository."
     )
-    parser.add_argument("directory_path", help="Path to the directory to process")
+    parser.add_argument(
+        "input_path", help="Path to the directory to process or GitHub repository URL"
+    )
     parser.add_argument(
         "--include-ignored",
         action="store_true",
         help="Include files normally ignored by .gitignore",
     )
+    parser.add_argument(
+        "--exclude-large-files",
+        action="store_true",
+        help="Exclude content of large binary files (e.g., databases, images, videos)",
+    )
     args = parser.parse_args()
 
-    if not os.path.isdir(args.directory_path):
-        print(
-            f"Error: '{args.directory_path}' is not a directory. Please check the path."
-        )
+    try:
+        input_type, path = detect_input_type(args.input_path)
+    except ValueError as e:
+        print(f"Error: {e}")
         sys.exit(1)
 
-    gitignore_spec = load_gitignore_specs(args.directory_path)
+    if input_type == "github":
+        try:
+            directory_path = clone_github_repo(path)
+        except subprocess.CalledProcessError as e:
+            print(f"Error cloning repository: {e}")
+            sys.exit(1)
+        except OSError as e:
+            print(f"Error creating directory: {e}")
+            sys.exit(1)
+    else:
+        directory_path = path
+
+    gitignore_spec = load_gitignore_specs(directory_path)
     markdown_content = generate_markdown_document(
-        args.directory_path, gitignore_spec, args.include_ignored
+        directory_path, gitignore_spec, args.include_ignored, args.exclude_large_files
     )
 
-    markdown_filename = f"{os.path.basename(args.directory_path)}_structure.md"
-    with open(markdown_filename, "w", encoding="utf-8") as md_file:
+    base_name = os.path.basename(directory_path)
+    output_file_path = manage_output_directory(base_name)
+
+    with open(output_file_path, "w", encoding="utf-8") as md_file:
         md_file.write(markdown_content)
 
-    print(f"Markdown file '{markdown_filename}' has been created.")
+    print(f"Markdown file has been created: {output_file_path}")
 
 
 if __name__ == "__main__":

@@ -15,11 +15,10 @@
   - [Contributing](#contributing)
   - [License](#license)
   - [Acknowledgments](#acknowledgments)
-  - [Version History](#version-history)
 
 ## Overview
 
-The Code Mapper is a powerful Python script that creates a comprehensive Markdown document representing the structure and contents of a given directory. This tool is designed to provide a quick and thorough overview of codebases, making it invaluable for developers, AI systems, and analysts who need to quickly understand the layout and content of a project.
+The Code Mapper is a powerful Python script that creates a comprehensive Markdown document representing the structure and contents of a given directory or GitHub repository. This tool is designed to provide a quick and thorough overview of codebases, making it invaluable for developers, AI systems, and analysts who need to quickly understand the layout and content of a project.
 
 See audio explainers for this project:
 
@@ -31,10 +30,13 @@ See audio explainers for this project:
 - Creates an accurate file tree representation of the directory structure
 - Produces code blocks for each file's contents with appropriate syntax highlighting
 - Respects `.gitignore` rules when processing files and directories
-- Excludes `.git` directories and archive files by default
+- Excludes `.git` directories by default
 - Supports various file types with appropriate code fence highlighting
 - Handles file encoding detection for accurate content reading
 - Provides an option to include files normally ignored by `.gitignore`
+- Can clone and analyze GitHub repositories
+- Acknowledges large binary files (e.g., databases, images, videos) without printing their contents
+- Saves output in a '_mapped' directory
 
 ## Requirements
 
@@ -47,7 +49,7 @@ See audio explainers for this project:
 1. Clone this repository:
 
     ```sh
-    git clone https://github.com/yourusername/directory-structure-markdown-generator.git
+    git clone https://github.com/yourusername/codemapper.git
     ```
 
 2. Install the required dependencies:
@@ -58,29 +60,34 @@ See audio explainers for this project:
 
 ## Usage
 
-Run the script from the command line, providing the path to the directory you want to analyze:
+Run the script from the command line, providing the path to the directory or GitHub repository URL you want to analyze:
 
-```python
-python codemapper.py <path_to_directory> [--include-ignored]
+```sh
+python codemapper.py <path_to_directory_or_github_url> [--include-ignored] [--exclude-large-files]
 ```
 
 ### Options
 
-- `<path_to_directory>`: The path to the directory you want to analyze (required)
+- `<path_to_directory_or_github_url>`: The path to the directory or GitHub repository URL you want to analyze (required)
 - `--include-ignored`: Include files that are normally ignored by `.gitignore` (optional)
+- `--exclude-large-files`: Exclude content of large binary files (e.g., databases, images, videos) (optional)
 
 ## Output
 
-The script generates a Markdown file named `<directory_name>_structure.md` in the current directory. This file contains:
+The script generates a Markdown file named `<directory_name>_codemap.md` in the '_mapped' directory. This file contains:
 
 1. A table of contents for easy navigation
 2. A file tree representation of the directory structure
 3. The contents of each file, formatted with appropriate syntax highlighting
+4. Information about large binary files without their contents
 
-Example output:
+Example use and output:
 
-[example output](example-output/shaneholloman.iptables_structure.md)
-    - Was ran on this repository: <https://github.com/shaneholloman/ansible-role-iptables>
+```python
+python '/home/shadmin/git/codemapper/codemapper.py' <https://github.com/shaneholloman/ansible-role-apache
+```
+
+[Example output see here](_mapped/ansible-role-apache_codemap.md)
 
 ## Use Cases
 
@@ -89,11 +96,16 @@ Example output:
 - Facilitate code reviews by providing a comprehensive overview
 - Aid in onboarding new team members to a project
 - Assist AI systems in analyzing and understanding codebases
+- Analyze GitHub repositories without needing to clone them manually
 
 ## TODO
 
-- [ ] add support for creating directly from repo url
-- [ ] we need a clever way to include images in the artifacts, maybe base64 encode them directly to the markdown file, but that could chew thru tokens at prompt time? Suggestions?
+- [x] Add support for creating directly from repo url
+- [ ] Implement a clever way to include images in the artifacts, maybe base64 encode them directly to the markdown file, but that could chew thru tokens at prompt time? Suggestions?
+- [ ] Add support for other Git hosting services (e.g., GitLab, Bitbucket)
+- [ ] Implement a progress indicator for cloning/analyzing large repositories
+- [ ] Table of Contents in some cases needs improvement. We may add some ignores
+- [x] Use changelog.md for version history
 
 ## Contributing
 
@@ -106,10 +118,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Acknowledgments
 
 - Thanks to the `pathspec` and `chardet` libraries for making this tool possible.
-
-## Version History
-
-- 2.5.0 (2024-09-10): Current version
 
 ---
 
