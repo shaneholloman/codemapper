@@ -1,11 +1,11 @@
 """
 CodeMapper
 
-Version: 3.2.0
 Date: 2024-09-23
 Author: AI Assistant (based on original by Shane Holloman)
 
-This Python script generates a Markdown artifact that provides a comprehensive overview of a directory structure
+This Python script generates a Markdown artifact that provides
+a comprehensive overview of a directory structure
 and file contents. It can process local directories or clone and analyze GitHub repositories.
 
 Key features:
@@ -47,6 +47,8 @@ from typing import Dict, List, Tuple
 
 import chardet
 import pathspec
+
+from . import __version__
 
 # Constants
 ARCHIVE_EXTENSIONS = {
@@ -228,9 +230,7 @@ def collect_file_paths(
             d
             for d in dirs
             if not should_exclude_directory(d, include_ignored)
-            and (
-                include_ignored or not gitignore_spec.match_file(os.path.join(root, d))
-            )
+            and (include_ignored or not gitignore_spec.match_file(os.path.join(root, d)))
         ]
 
         for filename in files:
@@ -309,9 +309,7 @@ def generate_file_tree(
             if os.path.isdir(os.path.join(dir_path, d))
             and not should_exclude_directory(d, include_ignored)
         ]
-        regular_files = [
-            f for f in contents if os.path.isfile(os.path.join(dir_path, f))
-        ]
+        regular_files = [f for f in contents if os.path.isfile(os.path.join(dir_path, f))]
 
         for idx, name in enumerate(dirs + regular_files):
             full_path = os.path.join(dir_path, name)
@@ -483,9 +481,7 @@ def detect_input_type(input_path: str) -> Tuple[str, str]:
     if re.match(github_pattern, input_path):
         return "github", input_path
 
-    raise ValueError(
-        "Invalid input. Please provide a valid local directory path or GitHub URL."
-    )
+    raise ValueError("Invalid input. Please provide a valid local directory path or GitHub URL.")
 
 
 def clone_github_repo(repo_url: str) -> str:
@@ -523,7 +519,8 @@ def manage_output_directory(base_name: str) -> str:
     Manage the output directory for the markdown output.
 
     Args:
-        base_name (str): The base name for the output file (usually the repository or directory name).
+        base_name (str): The base name for the output file
+        (usually the repository or directory name).
 
     Returns:
         str: The full path for the output markdown file.
@@ -541,14 +538,27 @@ def main():
         description="Generate markdown document from directory structure or GitHub repository."
     )
     parser.add_argument(
-        "input_path", help="Path to the directory to process or GitHub repository URL"
+        "input_path",
+        nargs="?",  # Make input_path optional
+        help="Path to the directory to process or GitHub repository URL",
     )
     parser.add_argument(
         "--include-ignored",
         action="store_true",
         help="Include files normally ignored by .gitignore",
     )
+    parser.add_argument(
+        "--version",
+        action="version",
+        version=f"CodeMapper version {__version__}",
+        help="Show the version number and exit",
+    )
     args = parser.parse_args()
+
+    # If no input_path is provided and --version wasn't used, show help and exit
+    if not args.input_path:
+        parser.print_help()
+        sys.exit(1)
 
     try:
         input_type, path = detect_input_type(args.input_path)
@@ -580,7 +590,3 @@ def main():
         md_file.write(markdown_content)
 
     print(f"Markdown file has been created: {output_file_path}")
-
-
-if __name__ == "__main__":
-    main()
