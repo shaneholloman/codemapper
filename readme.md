@@ -1,6 +1,6 @@
 # `codemapper`
 
-![logo](codemapper.svg)
+![logo](codemapper-outlined.svg)
 
 - [`codemapper`](#codemapper)
   - [Overview](#overview)
