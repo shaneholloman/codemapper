@@ -15,6 +15,7 @@
   - [Contributing](#contributing)
   - [License](#license)
   - [Acknowledgments](#acknowledgments)
+  - [Version History](#version-history)
 
 ## Overview
 
@@ -35,8 +36,9 @@ See audio explainers for this project:
 - Handles file encoding detection for accurate content reading
 - Provides an option to include files normally ignored by `.gitignore`
 - Can clone and analyze GitHub repositories
-- Acknowledges large binary files (e.g., databases, images, videos) without printing their contents
 - Saves output in a '_mapped' directory
+- Automatically acknowledges large and binary files without printing their contents
+- Displays file type and size information for large and binary files
 
 ## Requirements
 
@@ -63,23 +65,22 @@ See audio explainers for this project:
 Run the script from the command line, providing the path to the directory or GitHub repository URL you want to analyze:
 
 ```sh
-python codemapper.py <path_to_directory_or_github_url> [--include-ignored] [--exclude-large-files]
+python codemapper.py <path_to_directory_or_github_url> [--include-ignored]
 ```
 
 ### Options
 
 - `<path_to_directory_or_github_url>`: The path to the directory or GitHub repository URL you want to analyze (required)
 - `--include-ignored`: Include files that are normally ignored by `.gitignore` (optional)
-- `--exclude-large-files`: Exclude content of large binary files (e.g., databases, images, videos) (optional)
 
 ## Output
 
-The script generates a Markdown file named `<directory_name>_codemap.md` in the '_mapped' directory. This file contains:
+The script generates a Markdown file named `<directory_name>codemap.md` in the '_mapped' directory. This file contains:
 
 1. A table of contents for easy navigation
 2. A file tree representation of the directory structure
 3. The contents of each file, formatted with appropriate syntax highlighting
-4. Information about large binary files without their contents
+4. Information about large and binary files (type and size) without their contents
 
 Example use and output:
 
@@ -118,6 +119,36 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Acknowledgments
 
 - Thanks to the `pathspec` and `chardet` libraries for making this tool possible.
+
+## Version History
+
+- 3.2.0 (2024-09-23):
+  - Improved handling of large and binary files:
+    - Large and binary files are now always acknowledged without attempting to print their contents
+    - File type and size information is displayed for large and binary files
+  - Removed option to include large file contents as it's not practical for binary files
+  - Simplified command-line options by removing flags related to large file handling
+
+- 3.1.2 (2024-09-23):
+  - Restored important formatting functionality in generate_markdown_document function
+  - Ensures proper spacing between file contents and correct placement of the concluding message
+
+- 3.1.1 (2024-09-23):
+  - Fixed unused variable issue in generate_markdown_document function
+  - Improved code quality without changing functionality
+
+- 3.1.0 (2024-09-23):
+  - Added support for GitHub repositories
+  - Implemented large file handling (now default in 3.2.0)
+
+- 3.0.0 (2024-09-23):
+  - Major refactor
+  - Added '_mapped' output directory for generated markdown files
+  - Improved error handling and user feedback
+
+- 2.5.0 (2024-09-10):
+  - Initial version
+  - Basic functionality for local directory mapping
 
 ---
 

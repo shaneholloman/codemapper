@@ -1,7 +1,7 @@
 """
 CodeMapper
 
-Version: 3.1.2
+Version: 3.2.0
 Date: 2024-09-23
 Author: AI Assistant (based on original by Shane Holloman)
 
@@ -19,10 +19,10 @@ Key features:
 • Provides an option to include files normally ignored by .gitignore
 • Can clone and analyze GitHub repositories
 • Saves output in a '_mapped' directory
-• Acknowledges large binary files (e.g., databases, images, videos) without printing their contents
+• Acknowledges large and binary files without printing their contents
 
 Usage:
-    python codemapper.py <path_to_directory_or_github_url> [--include-ignored] [--exclude-large-files]
+    python codemapper.py <path_to_directory_or_github_url> [--include-ignored]
 
 Output:
     Creates a markdown file named '<directory_name>_structure.md' in the '_mapped' directory
@@ -351,7 +351,7 @@ def is_large_file(file_path: str) -> bool:
         file_path (str): Path to the file.
 
     Returns:
-        bool: True if the file is considered large, False otherwise.
+        bool: True if the file is considered large or binary, False otherwise.
     """
     _, ext = os.path.splitext(file_path.lower())
     if ext in LARGE_FILE_EXTENSIONS:
@@ -376,19 +376,18 @@ def get_file_info(file_path: str) -> str:
     return f"File Type: {mime_type or 'Unknown'}, Size: {size} bytes"
 
 
-def read_file_content(file_path: str, exclude_large_files: bool) -> str:
+def read_file_content(file_path: str) -> str:
     """
     Read file content with encoding detection and large file handling.
 
     Args:
         file_path (str): Path to the file to read.
-        exclude_large_files (bool): Whether to exclude content of large binary files.
 
     Returns:
-        str: The content of the file or information about the file if it's large.
+        str: The content of the file or information about the file if it's large or binary.
     """
-    if exclude_large_files and is_large_file(file_path):
-        return f"[Large file detected. {get_file_info(file_path)}]"
+    if is_large_file(file_path):
+        return f"[Large or binary file detected. {get_file_info(file_path)}]"
 
     try:
         with open(file_path, "rb") as file:
@@ -409,7 +408,6 @@ def generate_markdown_document(
     directory_path: str,
     gitignore_spec: pathspec.PathSpec,
     include_ignored: bool = False,
-    exclude_large_files: bool = False,
 ) -> str:
     """
     Generate a markdown document from the directory structure.
@@ -418,7 +416,6 @@ def generate_markdown_document(
         directory_path (str): The path to the directory to process.
         gitignore_spec (pathspec.PathSpec): The gitignore specifications to apply.
         include_ignored (bool): Whether to include files ignored by .gitignore.
-        exclude_large_files (bool): Whether to exclude content of large binary files.
 
     Returns:
         str: The generated markdown content as a string.
@@ -442,22 +439,19 @@ def generate_markdown_document(
     md_content += "\n```\n\n"
 
     md_content += "## Repo File Contents\n\n"
-    md_content += "The following sections present the content of each file in the repository. Large binary files are acknowledged but their contents are not displayed.\n\n"
+    md_content += "The following sections present the content of each file in the repository. Large and binary files are acknowledged but their contents are not displayed.\n\n"
 
     # Generate code blocks for each file
     for i, path in enumerate(file_paths):
         md_content += f"### {path}\n\n"
         full_path = os.path.join(directory_path, path)
 
-        if exclude_large_files and is_large_file(full_path):
-            md_content += get_file_info(full_path) + "\n\n"
-        else:
-            code_fence_lang = determine_code_fence(path)
-            fence = "````" if path.endswith(".md") else "```"
-            md_content += f"{fence}{code_fence_lang}\n"
-            file_content = read_file_content(full_path, exclude_large_files)
-            md_content += file_content + "\n"
-            md_content += f"{fence}\n"
+        code_fence_lang = determine_code_fence(path)
+        fence = "````" if path.endswith(".md") else "```"
+        md_content += f"{fence}{code_fence_lang}\n"
+        file_content = read_file_content(full_path)
+        md_content += file_content + "\n"
+        md_content += f"{fence}\n"
 
         if i < len(file_paths) - 1:
             md_content += "\n"
@@ -554,11 +548,6 @@ def main():
         action="store_true",
         help="Include files normally ignored by .gitignore",
     )
-    parser.add_argument(
-        "--exclude-large-files",
-        action="store_true",
-        help="Exclude content of large binary files (e.g., databases, images, videos)",
-    )
     args = parser.parse_args()
 
     try:
@@ -581,7 +570,7 @@ def main():
 
     gitignore_spec = load_gitignore_specs(directory_path)
     markdown_content = generate_markdown_document(
-        directory_path, gitignore_spec, args.include_ignored, args.exclude_large_files
+        directory_path, gitignore_spec, args.include_ignored
     )
 
     base_name = os.path.basename(directory_path)
