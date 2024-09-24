@@ -7,6 +7,7 @@
 - [`codemapper`](#codemapper)
   - [Overview](#overview)
   - [Features](#features)
+  - [Roadmap](#roadmap)
   - [Requirements](#requirements)
   - [Installation](#installation)
     - [From PyPI](#from-pypi)
@@ -43,6 +44,8 @@ See audio explainers for this project:
 - Saves output in a '_mapped' directory
 - Automatically acknowledges large and binary files without printing their contents
 - Displays file type and size information for large and binary files
+
+## [Roadmap](./notes/todo.md)
 
 ## Requirements
 
