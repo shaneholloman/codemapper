@@ -2,7 +2,7 @@
 
 [![Pylint](https://github.com/shaneholloman/codemapper/actions/workflows/pylint.yml/badge.svg)](https://github.com/shaneholloman/codemapper/actions/workflows/pylint.yml)
 
-![logo](codemapper-outlined.svg)
+![logo](codemapper-outlined.webp)
 
 - [`codemapper`](#codemapper)
   - [Overview](#overview)
