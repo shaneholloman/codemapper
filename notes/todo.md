@@ -46,7 +46,7 @@
 
 - [x] Implement CI for linting
 - [ ] Implement CI for automated testing
-- [ ] Implement CI fro PyPI package deployment
+- [ ] Implement CI for PyPI package deployment
 
 ## File Handling
 
