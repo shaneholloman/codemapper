@@ -1,6 +1,10 @@
 # CodeMapper TODO List
 
+- [ ] Add these tasks to the github project board
+
 ## Core Functionality
+
+(tag is `core`)
 
 - [x] Implement direct repository URL analysis
 - [ ] Expand Git hosting service support (GitLab, Bitbucket)
@@ -11,24 +15,38 @@
   - [ ] AI-powered analysis
   - [ ] Add option to update original repo with categories (for owners)
 
+## File Outputs
+
+(tag is `outputs`)
+
+- [x] Generate `*_codemap.md` for file contents and directory structure
+- [ ] Create separate `*_docmap.md` for documentation directories
+- [ ] Add repository source information to output file header
+
 ## CodeMapper Service
+
+(tag is `service`)
 
 - [ ] Create a server version of CodeMapper with API
 - [ ] Implement user authentication and authorization
 
 ## Documentation
 
+(tag is `docs`)
+
 - [x] Utilize changelog.md for version tracking
-- [ ] Create separate `*_docmap.md` for documentation directories
-- [ ] Add repository source information to output file header
 
 ## AI Integration
+
+(tag is `ai`)
 
 - [ ] Implement AI-generated alt text for images --option
 - [ ] Implement AI-generated code summarization --option
 - [ ] Explore base64 image encoding and embedding in output --option
 
 ## Output Formats
+
+(tag is `outputs`)
 
 - [x] Markdown (default)
 - [ ] JSON
@@ -38,6 +56,8 @@
 
 ## User Experience
 
+(tag is `ux`)
+
 - [ ] Develop comprehensive help command and menu
 - [ ] Enhance Table of Contents generation
   - [ ] Consider using `md_toc` library for robustness
@@ -45,10 +65,8 @@
 
 ## Developer Experience
 
+(tag is `dx`)
+
 - [x] Implement CI for linting
 - [ ] Implement CI for automated testing
 - [ ] Implement CI for PyPI package deployment
-
-## File Handling
-
-- [x] Generate `*_codemap.md` for file contents and directory structure
