@@ -29,6 +29,7 @@
 
 - [ ] Create a server version of CodeMapper with API
 - [ ] Implement user authentication and authorization
+- [ ] Ansible playbook for server deployment
 
 ## Documentation
 
