@@ -115,7 +115,7 @@ codemapper https://github.com/shaneholloman/ansible-role-apache
 
 ## TODO
 
-![codemapper todo list is here](./notes/todo.md)
+[codemapper todo list is here](./notes/todo.md)
 
 ## Contributing
 
