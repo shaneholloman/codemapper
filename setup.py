@@ -36,7 +36,7 @@ setup(
     name="codemapper",
     version=get_version(),
     author="Shane Holloman",
-    author_email="your.email@example.com",
+    author_email="shaneholloman@gmail.com",
     description="A tool to generate comprehensive Markdown artifacts "
     "of directory structures and file contents",
     long_description=long_description,
@@ -50,10 +50,9 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
-        "Programming Language :: Python :: 3.8",
-        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
     ],
     python_requires=">=3.6",
     install_requires=[

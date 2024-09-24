@@ -48,7 +48,7 @@ from typing import Dict, List, Tuple
 import chardet
 import pathspec
 
-from . import __version__
+__version__ = "1.1.0"
 
 # Constants
 ARCHIVE_EXTENSIONS = {
@@ -165,8 +165,7 @@ def should_exclude_directory(dir_name: str, include_ignored: bool = False) -> bo
     """
     if include_ignored:
         return dir_name == ".git"
-    else:
-        return dir_name in {".git", ".gitignore"}
+    return dir_name in {".git", ".gitignore"}
 
 
 def determine_code_fence(file_path: str) -> str:
@@ -356,7 +355,7 @@ def is_large_file(file_path: str) -> bool:
         return True
 
     mime_type, _ = mimetypes.guess_type(file_path)
-    return mime_type and not mime_type.startswith("text")
+    return bool(mime_type) and not mime_type.startswith("text")
 
 
 def get_file_info(file_path: str) -> str:
@@ -396,9 +395,7 @@ def read_file_content(file_path: str) -> str:
         encoding_to_use = detected_encoding or "utf-8"
         with open(file_path, "r", encoding=encoding_to_use) as file:
             return file.read().rstrip()
-    except UnicodeDecodeError:
-        return f"[Binary file detected. {get_file_info(file_path)}]"
-    except Exception as e:
+    except (IOError, UnicodeDecodeError) as e:
         return f"[Error reading file: {str(e)}]"
 
 
@@ -420,9 +417,18 @@ def generate_markdown_document(
     """
     base_name = os.path.basename(directory_path)
     md_content = f"# {base_name}\n\n"
-    md_content += "This markdown document provides a comprehensive overview of the directory structure and file contents. It aims to give viewers (human or AI) a complete view of the codebase in a single file for easy analysis.\n\n"
+    md_content += (
+        "This markdown document provides a comprehensive overview of the "
+        "directory structure and file contents. It aims to give viewers "
+        "(human or AI) a complete view of the codebase in a single file "
+        "for easy analysis.\n\n"
+    )
     md_content += "## Document Table of Contents\n\n"
-    md_content += "The table of contents below is for navigational convenience and reflects this document's structure, not the actual file structure of the repository.\n\n"
+    md_content += (
+        "The table of contents below is for navigational convenience and "
+        "reflects this document's structure, not the actual file structure "
+        "of the repository.\n\n"
+    )
 
     file_paths = collect_file_paths(directory_path, gitignore_spec, include_ignored)
 
@@ -431,13 +437,19 @@ def generate_markdown_document(
     md_content += toc + "\n\n"
 
     md_content += "## Repo File Tree\n\n"
-    md_content += "This file tree represents the actual structure of the repository. It's crucial for understanding the organization of the codebase.\n\n"
+    md_content += (
+        "This file tree represents the actual structure of the repository. "
+        "It's crucial for understanding the organization of the codebase.\n\n"
+    )
     md_content += "```tree\n"
     md_content += generate_file_tree(directory_path, gitignore_spec, include_ignored)
     md_content += "\n```\n\n"
 
     md_content += "## Repo File Contents\n\n"
-    md_content += "The following sections present the content of each file in the repository. Large and binary files are acknowledged but their contents are not displayed.\n\n"
+    md_content += (
+        "The following sections present the content of each file in the repository. "
+        "Large and binary files are acknowledged but their contents are not displayed.\n\n"
+    )
 
     # Generate code blocks for each file
     for i, path in enumerate(file_paths):
@@ -454,7 +466,11 @@ def generate_markdown_document(
         if i < len(file_paths) - 1:
             md_content += "\n"
         else:
-            md_content += "\n> This concludes the repository's file contents. Please review thoroughly for a comprehensive understanding of the codebase.\n"
+            md_content += (
+                "\n> This concludes the repository's file contents. "
+                "Please review thoroughly for a comprehensive "
+                "understanding of the codebase.\n"
+            )
 
     return md_content
 
@@ -467,7 +483,7 @@ def detect_input_type(input_path: str) -> Tuple[str, str]:
         input_path (str): The input provided by the user.
 
     Returns:
-        Tuple[str, str]: A tuple containing the input type ('local' or 'github') and the path or URL.
+        Tuple[str, str]: A tuple containing input type ('local' or 'github') and the path or URL.
 
     Raises:
         ValueError: If the input is neither a valid local directory nor a valid GitHub URL.
@@ -535,7 +551,7 @@ def manage_output_directory(base_name: str) -> str:
 def main():
     """Main function to orchestrate the markdown document generation process."""
     parser = argparse.ArgumentParser(
-        description="Generate markdown document from directory structure or GitHub repository."
+        description=("Generate markdown document from directory structure " "or GitHub repository.")
     )
     parser.add_argument(
         "input_path",
@@ -590,3 +606,7 @@ def main():
         md_file.write(markdown_content)
 
     print(f"Markdown file has been created: {output_file_path}")
+
+
+if __name__ == "__main__":
+    main()
