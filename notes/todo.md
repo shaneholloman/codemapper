@@ -14,6 +14,13 @@
   - [ ] Deterministic analysis
   - [ ] AI-powered analysis
   - [ ] Add option to update original repo with categories (for owners)
+- [ ] Create config yaml file for user preferences
+  - [ ] Git pull location
+  - [ ] CodeMaps location
+  - [ ] DocMaps location
+  - [ ] Output format default
+  - [ ] api keys for AI integration
+  - [ ] Ai services to use
 
 ## File Outputs
 
@@ -59,6 +66,14 @@
 
 (tag is `ux`)
 
+- [ ] Create PreFlight checks for CodeMapper
+  - [ ] Check for git
+  - [ ] Check for Python version
+  - [ ] Check for required libraries
+- [ ] Create function for an install advisory for first-time users
+  - [ ] Checks for git
+  - [ ] Detect your OS
+  - [ ] Give advise on how to install git based on OS
 - [ ] Develop comprehensive help command and menu
 - [ ] Enhance Table of Contents generation
   - [ ] Consider using `md_toc` library for robustness
