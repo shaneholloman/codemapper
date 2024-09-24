@@ -135,6 +135,8 @@ git pull origin main
 
 11.7. Rebuild the package:
 
+I typically delete to the old build files before rebuilding.
+
 ```bash
 python setup.py sdist bdist_wheel
 ```

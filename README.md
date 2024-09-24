@@ -115,13 +115,7 @@ codemapper https://github.com/shaneholloman/ansible-role-apache
 
 ## TODO
 
-- [x] Add support for creating directly from repo url
-- [ ] Implement a clever way to include images in the artifacts, maybe base64 encode them directly to the markdown file, but that could chew thru tokens at prompt time? Suggestions?
-- [ ] Add support for other Git hosting services (e.g., GitLab, Bitbucket)
-- [ ] Implement a progress indicator for cloning/analyzing large repositories
-- [x] Table of Contents in some cases needs improvement. We may add some ignores
-    - [ ] For TOC consider a more robust library like `md_toc` no user complaints yet
-- [x] Use changelog.md for version history
+![codemapper todo list is here](./notes/todo.md)
 
 ## Contributing
 
