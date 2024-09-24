@@ -48,7 +48,7 @@ from typing import Dict, List, Tuple
 import chardet
 import pathspec
 
-__version__ = "1.1.0"
+from . import __version__
 
 # Constants
 ARCHIVE_EXTENSIONS = {
