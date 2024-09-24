@@ -119,7 +119,8 @@ codemapper https://github.com/shaneholloman/ansible-role-apache
 - [ ] Implement a clever way to include images in the artifacts, maybe base64 encode them directly to the markdown file, but that could chew thru tokens at prompt time? Suggestions?
 - [ ] Add support for other Git hosting services (e.g., GitLab, Bitbucket)
 - [ ] Implement a progress indicator for cloning/analyzing large repositories
-- [ ] Table of Contents in some cases needs improvement. We may add some ignores
+- [x] Table of Contents in some cases needs improvement. We may add some ignores
+    - [ ] For TOC consider a more robust library like `md_toc` no user complaints yet
 - [x] Use changelog.md for version history
 
 ## Contributing
@@ -135,14 +136,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Thanks to the `pathspec` and `chardet` libraries for making this tool possible.
 
 ## Version History
-
-- 3.2.0 (2024-09-23):
-  - Improved handling of large and binary files:
-    - Large and binary files are now always acknowledged without attempting to print their contents
-    - File type and size information is displayed for large and binary files
-  - Removed option to include large file contents as it's not practical for binary files
-  - Simplified command-line options by removing flags related to large file handling
-  - Added PyPI installation support
 
 [For full version history, see [changelog.md](changelog.md)]
 

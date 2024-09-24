@@ -2,6 +2,31 @@
 
 ## Version History
 
+- 3.3.0 (2024-09-24):
+  - Improved Table of Contents (TOC) generation:
+    - Fixed issue with double dots appearing for hidden files and directories
+    - Standardized path separators to forward slashes for cross-platform consistency
+    - Corrected handling of file paths with backslashes on Windows systems
+  - Enhanced path normalization in file collection process:
+    - Ensured consistent use of forward slashes in file paths across all platforms
+  - Refined TOC link generation:
+    - Removed unwanted '%' characters from TOC links
+    - Improved handling of special characters in file and directory names
+  - Updated `generate_toc` function for better accuracy and readability:
+    - Preserved original path structure, including single leading dots for hidden items
+    - Eliminated redundant dot addition for already dot-prefixed paths
+  - Optimized `collect_file_paths` function:
+    - Implemented consistent path normalization to forward slashes
+    - Improved cross-platform compatibility in file path handling
+
+- 3.2.0 (2024-09-23):
+  - Improved handling of large and binary files:
+    - Large and binary files are now always acknowledged without attempting to print their contents
+    - File type and size information is displayed for large and binary files
+  - Removed option to include large file contents as it's not practical for binary files
+  - Simplified command-line options by removing flags related to large file handling
+  - Added PyPI installation support
+
 - 3.2.0 (2024-09-23):
   - Improved handling of large and binary files:
     - Large and binary files are now always acknowledged without attempting to print their contents

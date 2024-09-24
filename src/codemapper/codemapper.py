@@ -239,7 +239,9 @@ def collect_file_paths(
             file_path = os.path.join(root, filename)
             if include_ignored or not gitignore_spec.match_file(file_path):
                 rel_path = os.path.relpath(file_path, start=directory_path)
-                file_paths.append(rel_path)
+                # Normalize path separators to forward slashes
+                normalized_path = rel_path.replace(os.sep, "/")
+                file_paths.append(normalized_path)
 
     return file_paths
 
@@ -267,8 +269,16 @@ def generate_toc(file_paths: List[str], base_name: str) -> str:
     )
 
     for path in sorted_paths:
-        link = path.lower().replace(".", "").replace("/", "")
-        toc.append(f"    - [{path}](#{link})")
+        # Normalize path separators to forward slashes
+        normalized_path = path.replace(os.sep, "/")
+
+        # Create the link by removing dots, slashes, and backslashes
+        link = normalized_path.lower().replace(".", "").replace("/", "")
+
+        # Use the normalized path as the heading, without adding an extra dot
+        heading = normalized_path
+
+        toc.append(f"    - [{heading}](#{link})")
 
     toc.append("")
     toc.append("<!-- /TOC -->")
