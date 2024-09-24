@@ -11,6 +11,11 @@
   - [ ] AI-powered analysis
   - [ ] Add option to update original repo with categories (for owners)
 
+## CodeMapper Service
+
+- [ ] Create a server version of CodeMapper with API
+- [ ] Implement user authentication and authorization
+
 ## Documentation
 
 - [x] Utilize changelog.md for version tracking
