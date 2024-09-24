@@ -42,6 +42,12 @@
   - [ ] Consider using `md_toc` library for robustness
 - [ ] EPIC: Introduce Mermaid flow chart option for code execution flow visualization
 
+## Developer Experience
+
+- [x] Implement CI for linting
+- [ ] Implement CI for automated testing
+- [ ] Implement CI fro PyPI package deployment
+
 ## File Handling
 
 - [x] Generate `*_codemap.md` for file contents and directory structure
