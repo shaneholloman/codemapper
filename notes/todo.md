@@ -24,8 +24,9 @@
 
 ## AI Integration
 
-- [ ] Implement AI-generated alt text for images
-- [ ] Explore base64 image encoding and embedding
+- [ ] Implement AI-generated alt text for images --option
+- [ ] Implement AI-generated code summarization --option
+- [ ] Explore base64 image encoding and embedding in output --option
 
 ## Output Formats
 
