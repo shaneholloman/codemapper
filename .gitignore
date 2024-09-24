@@ -3,6 +3,7 @@ _github/
 _output/
 _mapped/
 private/
+scripts/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
