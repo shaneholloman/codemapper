@@ -24,7 +24,7 @@
 
 ## Overview
 
-The Code Mapper is a powerful Python script that creates a comprehensive Markdown document representing the structure and contents of a given directory or GitHub repository. This tool is designed to provide a quick and thorough overview of codebases, making it invaluable for developers, AI systems, and analysts who need to quickly understand the layout and content of a project.
+The CodeMapper is a powerful Python script that creates a comprehensive Markdown document representing the structure and contents of a given directory or GitHub repository. This tool is designed to provide a quick and thorough overview of codebases, making it invaluable for developers, AI systems, and analysts who need to quickly understand the layout and content of a project.
 
 See audio explainers for this project:
 
