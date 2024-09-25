@@ -1,10 +1,10 @@
-# `codemapper`
+# CodeMapper
 
 [![Pylint](https://github.com/shaneholloman/codemapper/actions/workflows/pylint.yml/badge.svg)](https://github.com/shaneholloman/codemapper/actions/workflows/pylint.yml)
 [![TODO](https://img.shields.io/badge/✔%20RoadMap-44-blue)](notes/todo.md)
 ![logo](codemapper-outlined.webp)
 
-- [`codemapper`](#codemapper)
+- [CodeMapper](#codemapper)
   - [Overview](#overview)
   - [Features](#features)
   - [Roadmap](#roadmap)
