@@ -24,11 +24,16 @@ tag is: [`core`](https://github.com/users/shaneholloman/projects/9/views/7)
 
 ## File Outputs
 
-tag is: [`files`](https://github.com/users/shaneholloman/projects/9/views/7)
+tag is: [`outputs`](https://github.com/users/shaneholloman/projects/9/views/7)
 
 - [x] Generate `*_codemap.md` for file contents and directory structure
 - [ ] Create separate `*_docmap.md` for documentation directories
 - [ ] Add repository source information to output file header
+- [x] Markdown (default)
+  - [ ] JSON
+  - [ ] YAML
+  - [ ] reStructuredText
+  - [ ] AsciiDoc
 
 ## CodeMapper Service
 
@@ -51,16 +56,6 @@ tag is: [`ai`](https://github.com/users/shaneholloman/projects/9/views/7)
 - [ ] Implement AI-generated alt text for images --option
 - [ ] Implement AI-generated code summarization --option
 - [ ] Explore base64 image encoding and embedding in output --option
-
-## Output Formats
-
-tag is: [`outputs`](https://github.com/users/shaneholloman/projects/9/views/7)
-
-- [x] Markdown (default)
-- [ ] JSON
-- [ ] YAML
-- [ ] reStructuredText
-- [ ] AsciiDoc
 
 ## User Experience
 
