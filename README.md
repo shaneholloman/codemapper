@@ -110,7 +110,7 @@ codemapper https://github.com/shaneholloman/ansible-role-apache
 ## Use Cases
 
 - Quickly understand the structure of new or unfamiliar projects
-- Generate documentation for your codebase your Ai prompts
+- Generate documentation for your code-based Ai prompts
 - Facilitate code reviews by providing a comprehensive one page overview
 - Assist AI systems in analyzing and understanding codebases
 - Analyze GitHub repositories without needing to clone them manually
