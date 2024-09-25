@@ -4,7 +4,7 @@
 
 ## Core Functionality
 
-(tag is `core`)
+tag is: [`core`](https://github.com/users/shaneholloman/projects/9/views/7)
 
 - [x] Implement direct repository URL analysis
 - [ ] Expand Git hosting service support (GitLab, Bitbucket)
@@ -24,7 +24,7 @@
 
 ## File Outputs
 
-(tag is `outputs`)
+tag is: [`files`](https://github.com/users/shaneholloman/projects/9/views/7)
 
 - [x] Generate `*_codemap.md` for file contents and directory structure
 - [ ] Create separate `*_docmap.md` for documentation directories
@@ -32,7 +32,7 @@
 
 ## CodeMapper Service
 
-(tag is `service`)
+tag is: [`service`](https://github.com/users/shaneholloman/projects/9/views/7)
 
 - [ ] Create a server version of CodeMapper with API
 - [ ] Implement user authentication and authorization
@@ -40,13 +40,13 @@
 
 ## Documentation
 
-(tag is `docs`)
+tag is: [`docs`](https://github.com/users/shaneholloman/projects/9/views/7)
 
 - [x] Utilize changelog.md for version tracking
 
 ## AI Integration
 
-(tag is `ai`)
+tag is: [`ai`](https://github.com/users/shaneholloman/projects/9/views/7)
 
 - [ ] Implement AI-generated alt text for images --option
 - [ ] Implement AI-generated code summarization --option
@@ -54,7 +54,7 @@
 
 ## Output Formats
 
-(tag is `outputs`)
+tag is: [`outputs`](https://github.com/users/shaneholloman/projects/9/views/7)
 
 - [x] Markdown (default)
 - [ ] JSON
@@ -64,7 +64,7 @@
 
 ## User Experience
 
-(tag is `ux`)
+tag is: [`ux`](https://github.com/users/shaneholloman/projects/9/views/7)
 
 - [ ] Create PreFlight checks for CodeMapper
   - [ ] Check for git
@@ -81,7 +81,7 @@
 
 ## Developer Experience
 
-(tag is `dx`)
+tag is: [`dev`](https://github.com/users/shaneholloman/projects/9/views/7)
 
 - [x] Implement CI for linting
 - [ ] Implement CI for automated testing
