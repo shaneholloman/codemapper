@@ -1,5 +1,7 @@
 # ansible-role-apache
 
+> CodeMap Source: GitHub repository: <https://github.com/shaneholloman/ansible-role-apache>
+
 This markdown document provides a comprehensive overview of the directory structure and file contents. It aims to give viewers (human or AI) a complete view of the codebase in a single file for easy analysis.
 
 ## Document Table of Contents
@@ -103,7 +105,7 @@ This file tree represents the actual structure of the repository. It's crucial f
 
 ## Repo File Contents
 
-The following sections present the content of each file in the repository. Large binary files are acknowledged but their contents are not displayed.
+The following sections present the content of each file in the repository. Large and binary files are acknowledged but their contents are not displayed.
 
 ### .yamllint
 
@@ -138,7 +140,7 @@ ignore: |
 ### README.md
 
 ````markdown
-[Binary file detected. File Type: text/markdown, Size: 8379 bytes]
+[Error reading file: 'ascii' codec can't decode byte 0xe2 in position 6963: ordinal not in range(128)]
 ````
 
 ### .ansible-lint
