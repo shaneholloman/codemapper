@@ -272,11 +272,25 @@ def generate_toc(file_paths: List[str], base_name: str) -> str:
         # Normalize path separators to forward slashes
         normalized_path = path.replace(os.sep, "/")
 
-        # Create the link by removing dots, slashes, and backslashes
-        link = normalized_path.lower().replace(".", "").replace("/", "")
+        # Handle __init__.py files specially
+        if normalized_path.endswith("__init__.py"):
+            link = (
+                normalized_path.lower()
+                .replace("__init__.py", "init.py")
+                .replace(".", "")
+                .replace("/", "")
+            )
+            heading = normalized_path.replace("__init__.py", "init.py")
+        else:
+            # Create the link by removing dots and slashes, but keep underscores
+            link = normalized_path.lower().replace(".", "").replace("/", "")
 
-        # Use the normalized path as the heading, without adding an extra dot
-        heading = normalized_path
+            # Replace double underscores with a single underscore in the link
+            while "__" in link:
+                link = link.replace("__", "_")
+
+            # Escape underscores in the heading
+            heading = normalized_path.replace("_", "\\_")
 
         toc.append(f"    - [{heading}](#{link})")
 
