@@ -18,14 +18,14 @@ Key features:
 • Handles file encoding detection for accurate content reading
 • Provides an option to include files normally ignored by .gitignore
 • Can clone and analyze GitHub repositories
-• Saves output in a '_mapped' directory
+• Saves output in a '_codemaps' directory
 • Acknowledges large and binary files without printing their contents
 
 Usage:
     python codemapper.py <path_to_directory_or_github_url> [--include-ignored]
 
 Output:
-    Creates a markdown file named '<directory_name>_structure.md' in the '_mapped' directory
+    Creates a markdown file named '<directory_name>_structure.md' in the '_codemaps' directory
 
 Requirements:
     • Python 3.6+ (for f-strings and type hinting)
@@ -551,7 +551,7 @@ def manage_output_directory(base_name: str) -> str:
     Returns:
         str: The full path for the output markdown file.
     """
-    output_dir = os.path.join(".", "_mapped")
+    output_dir = os.path.join(".", "_codemaps")
     os.makedirs(output_dir, exist_ok=True)
 
     file_name = f"{base_name}_codemap.md"

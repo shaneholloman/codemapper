@@ -48,7 +48,7 @@
 
 - 3.0.0 (2024-09-23):
   - Major refactor
-  - Added '_mapped' output directory for generated markdown files
+  - Added '_codemaps' output directory for generated markdown files
   - Improved error handling and user feedback
 
 - 2.5.0 (2024-09-10):

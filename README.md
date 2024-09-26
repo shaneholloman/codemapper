@@ -41,7 +41,7 @@ See audio explainers for this project:
 - Handles file encoding detection for accurate content reading
 - Provides an option to include files normally ignored by `.gitignore`
 - Can clone and analyze GitHub repositories
-- Saves output in a '_mapped' directory
+- Saves output in a '_codemaps' directory
 - Automatically acknowledges large and binary files without printing their contents
 - Displays file type and size information for large and binary files
 
@@ -92,7 +92,7 @@ codemapper <path_to_directory_or_github_url> [--include-ignored]
 
 ## Output
 
-The script generates a Markdown file named `<directory_name>codemap.md` in the '_mapped' directory. This file contains:
+The script generates a Markdown file named `<directory_name>codemap.md` in the '_codemaps' directory. This file contains:
 
 1. A table of contents for easy navigation
 2. A file tree representation of the directory structure
