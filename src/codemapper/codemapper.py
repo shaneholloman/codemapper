@@ -409,10 +409,27 @@ def read_file_content(file_path: str) -> str:
         return f"[Error reading file: {str(e)}]"
 
 
+def capture_source(input_path: str) -> str:
+    """
+    Capture the source of the pulled repo, whether it's a local directory or a GitHub URL.
+
+    Args:
+        input_path (str): The input path or URL provided by the user.
+
+    Returns:
+        str: A string describing the source of the repo, encapsulated appropriately.
+    """
+    if os.path.isdir(input_path):
+        return f"Local directory: `{os.path.abspath(input_path)}`"
+    else:
+        return f"GitHub repository: <{input_path}>"
+
+
 def generate_markdown_document(
     directory_path: str,
     gitignore_spec: pathspec.PathSpec,
     include_ignored: bool = False,
+    source: str = "",
 ) -> str:
     """
     Generate a markdown document from the directory structure.
@@ -421,12 +438,14 @@ def generate_markdown_document(
         directory_path (str): The path to the directory to process.
         gitignore_spec (pathspec.PathSpec): The gitignore specifications to apply.
         include_ignored (bool): Whether to include files ignored by .gitignore.
+        source (str): The source of the repo (local directory or GitHub URL).
 
     Returns:
         str: The generated markdown content as a string.
     """
     base_name = os.path.basename(directory_path)
     md_content = f"# {base_name}\n\n"
+    md_content += f"> CodeMap Source: {source}\n\n"
     md_content += (
         "This markdown document provides a comprehensive overview of the "
         "directory structure and file contents. It aims to give viewers "
@@ -592,6 +611,8 @@ def main():
         print(f"Error: {e}")
         sys.exit(1)
 
+    source = capture_source(args.input_path)
+
     if input_type == "github":
         try:
             directory_path = clone_github_repo(path)
@@ -606,7 +627,7 @@ def main():
 
     gitignore_spec = load_gitignore_specs(directory_path)
     markdown_content = generate_markdown_document(
-        directory_path, gitignore_spec, args.include_ignored
+        directory_path, gitignore_spec, args.include_ignored, source
     )
 
     base_name = os.path.basename(directory_path)
