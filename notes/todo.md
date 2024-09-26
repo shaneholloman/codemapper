@@ -34,6 +34,7 @@ tag is: [`outputs`](https://github.com/users/shaneholloman/projects/9/views/7)
   - [ ] YAML
   - [ ] reStructuredText
   - [ ] AsciiDoc
+- [ ] Go to top of page link in markdown output next to each heading
 
 ## CodeMapper Service
 
