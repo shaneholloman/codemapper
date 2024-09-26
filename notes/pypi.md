@@ -1,101 +1,109 @@
-# Complete Step-by-Step Guide: Publishing CodeMapper to PyPI
+# Publishing CodeMapper to PyPI
 
-This guide provides a detailed, step-by-step process for converting the CodeMapper repository for PyPI publication and the entire PyPI publication process, including branching strategies.
+How to prepare the CodeMapper project for publication on PyPI, including testing, building the package, publishing to PyPI, and updating the package.
 
 ## Table of Contents
 
-- [Complete Step-by-Step Guide: Publishing CodeMapper to PyPI](#complete-step-by-step-guide-publishing-codemapper-to-pypi)
+- [Publishing CodeMapper to PyPI](#publishing-codemapper-to-pypi)
   - [Table of Contents](#table-of-contents)
-  - [7. Local Testing](#7-local-testing)
-  - [8. Building the Package](#8-building-the-package)
-  - [9. Publishing to PyPI](#9-publishing-to-pypi)
-  - [10. Post-Publication Steps](#10-post-publication-steps)
-  - [11. Updating the Package](#11-updating-the-package)
-  - [12. Troubleshooting](#12-troubleshooting)
+  - [Local Testing](#local-testing)
+  - [Building the Package](#building-the-package)
+  - [Publishing to PyPI](#publishing-to-pypi)
+  - [Post-Publication Steps](#post-publication-steps)
+  - [Updating the Package](#updating-the-package)
+  - [Troubleshooting](#troubleshooting)
 
-## 7. Local Testing
+## Local Testing
 
-7.1. Create a virtual environment:
+Sometime you just want to run the script locally to test it before publishing it to PyPI. Here's how you can do that:
+
+Easy and fast way:
+
+```sh
+python -m codemapper.codemapper https://github.com/shaneholloman/claude-sync
+```
+
+Create a virtual environment:
 
 ```bash
 python -m venv venv
 source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
 ```
 
-7.2. Install the package locally:
+Install the package locally:
 
 ```bash
 pip install -e .
 ```
 
-7.3. Test the package:
+Test the package:
 
 ```bash
 codemapper /path/to/test/directory
 ```
 
-7.4. If any issues arise, fix them and repeat steps 7.2 and 7.3
+If any issues arise, fix them and repeat steps 7.2 and 7.3
 
-## 8. Building the Package
+## Building the Package
 
-8.1. Install build tools:
+Install build tools:
 
 ```bash
 pip install --upgrade setuptools wheel twine
 ```
 
-8.2. Build the package:
+Build the package:
 
 ```bash
 python setup.py sdist bdist_wheel
 ```
 
-## 9. Publishing to PyPI
+## Publishing to PyPI
 
-9.1. Upload the package to PyPI:
+Upload the package to PyPI:
 
 ```bash
 python -m twine upload dist/*
 ```
 
-9.2. Enter your PyPI credentials when prompted.
+Enter your PyPI credentials when prompted.
 
-9.3. Verify the package is available on PyPI by visiting <https://pypi.org/project/codemapper/>
+Verify the package is available on PyPI by visiting <https://pypi.org/project/codemapper/>
 
-## 10. Post-Publication Steps
+## Post-Publication Steps
 
-10.1. Commit your changes:
+Commit your changes:
 
 ```bash
 git add .
 git commit -m "Prepare CodeMapper for PyPI publication"
 ```
 
-10.2. Push the branch to GitHub:
+Push the branch to GitHub:
 
 ```bash
 git push -u origin pypi-prep
 ```
 
-10.3. Create a pull request on GitHub:
+Create a pull request on GitHub:
 
 - Go to your repository on GitHub
 - Click "Compare & pull request"
 - Review the changes and create the pull request
 
-10.4. Merge the pull request:
+Merge the pull request:
 
 - After review, click "Merge pull request"
 - Confirm the merge
 
-10.5. Switch back to the main branch and pull changes:
+Switch back to the main branch and pull changes:
 
 ```bash
 git checkout main
 git pull origin main
 ```
 
-10.6. Create a new release on GitHub:
+Create a new release on GitHub:
 
 - Go to your repository on GitHub
 - Click "Releases" > "Create a new release"
@@ -103,37 +111,37 @@ git pull origin main
 - Release title: CodeMapper 3.2.1
 - Describe the release and click "Publish release"
 
-## 11. Updating the Package
+## Updating the Package
 
 When you need to update the package:
 
-11.1. Create a new branch for the update:
+Create a new branch for the update:
 
 ```bash
 git checkout -b update-vX.X.X
 ```
 
-11.2. Make necessary changes to your code.
+Make necessary changes to your code.
 
-11.3. Update the version number in `setup.py` and `src/codemapper/__init__.py`.
+Update the version number in `setup.py` and `src/codemapper/__init__.py`.
 
-11.4. Commit the changes:
+Commit the changes:
 
 ```bash
 git add .
 git commit -m "Update to version X.X.X"
 ```
 
-11.5. Push the branch and create a pull request as in steps 10.2-10.4.
+Push the branch and create a pull request as in steps 10.2-10.4.
 
-11.6. After merging, checkout and pull the main branch:
+After merging, checkout and pull the main branch:
 
 ```bash
 git checkout main
 git pull origin main
 ```
 
-11.7. Rebuild the package:
+Rebuild the package:
 
 I typically delete to the old build files before rebuilding.
 
@@ -141,15 +149,20 @@ I typically delete to the old build files before rebuilding.
 python setup.py sdist bdist_wheel
 ```
 
-11.8. Upload the new version:
+Upload the new version:
 
 ```bash
 python -m twine upload dist/*
 ```
 
-11.9. Create a new release on GitHub as in step 10.6.
+```sh
+# pip install the latest version
+pip install --upgrade codemapper
+```
 
-## 12. Troubleshooting
+Create a new release on GitHub as in step 10.6.
+
+## Troubleshooting
 
 - **FileNotFoundError: [Errno 2] No such file or directory: 'README.md'**:
   - Ensure README.md is in the same directory as setup.py.
