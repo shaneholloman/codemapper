@@ -20,7 +20,7 @@ Sometime you just want to run the script locally to test it before publishing it
 Easy and fast way:
 
 ```sh
-python -m codemapper.codemapper https://github.com/shaneholloman/claude-sync
+python -m src.codemapper.codemapper https://github.com/shaneholloman/claude-sync
 ```
 
 Create a virtual environment:
