@@ -435,8 +435,7 @@ def capture_source(input_path: str) -> str:
     """
     if os.path.isdir(input_path):
         return f"Local directory: `{os.path.abspath(input_path)}`"
-    else:
-        return f"GitHub repository: <{input_path}>"
+    return f"GitHub repository: <{input_path}>"
 
 
 def generate_markdown_document(
