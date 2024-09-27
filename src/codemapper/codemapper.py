@@ -443,6 +443,7 @@ def generate_markdown_document(
     gitignore_spec: pathspec.PathSpec,
     include_ignored: bool = False,
     source: str = "",
+    base_name: str = "",
 ) -> str:
     """
     Generate a markdown document from the directory structure.
@@ -452,11 +453,11 @@ def generate_markdown_document(
         gitignore_spec (pathspec.PathSpec): The gitignore specifications to apply.
         include_ignored (bool): Whether to include files ignored by .gitignore.
         source (str): The source of the repo (local directory or GitHub URL).
+        base_name (str): The base name to use for the title of the markdown document.
 
     Returns:
         str: The generated markdown content as a string.
     """
-    base_name = os.path.basename(directory_path)
     md_content = f"# {base_name}\n\n"
     md_content += f"> CodeMap Source: {source}\n\n"
     md_content += (
@@ -572,19 +573,24 @@ def clone_github_repo(repo_url: str) -> str:
     return repo_path
 
 
-def manage_output_directory(base_name: str) -> str:
+def manage_output_directory(base_name: str, input_path: str) -> str:
     """
     Manage the output directory for the markdown output.
 
     Args:
         base_name (str): The base name for the output file
         (usually the repository or directory name).
+        input_path (str): The original input path provided by the user.
 
     Returns:
         str: The full path for the output markdown file.
     """
     output_dir = os.path.join(".", "_codemaps")
     os.makedirs(output_dir, exist_ok=True)
+
+    # If input_path is a relative path, use its basename
+    if not os.path.isabs(input_path) and not input_path.startswith(('http://', 'https://')):
+        base_name = os.path.basename(os.path.abspath(input_path))
 
     file_name = f"{base_name}_codemap.md"
     return os.path.join(output_dir, file_name)
@@ -638,13 +644,18 @@ def main():
     else:
         directory_path = path
 
+    # Determine the base_name for the title
+    if not os.path.isabs(args.input_path) and not args.input_path.startswith(('http://', 'https://')):
+        base_name = os.path.basename(os.path.abspath(args.input_path))
+    else:
+        base_name = os.path.basename(directory_path)
+
     gitignore_spec = load_gitignore_specs(directory_path)
     markdown_content = generate_markdown_document(
-        directory_path, gitignore_spec, args.include_ignored, source
+        directory_path, gitignore_spec, args.include_ignored, source, base_name
     )
 
-    base_name = os.path.basename(directory_path)
-    output_file_path = manage_output_directory(base_name)
+    output_file_path = manage_output_directory(base_name, args.input_path)
 
     with open(output_file_path, "w", encoding="utf-8") as md_file:
         md_file.write(markdown_content)
