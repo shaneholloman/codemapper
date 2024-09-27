@@ -71,8 +71,10 @@ tag is: [`ux`](https://github.com/users/shaneholloman/projects/9/views/7)
   - [ ] Detect your OS
   - [ ] Give advise on how to install git based on OS
 - [ ] Develop comprehensive help command and menu
+- [ ] Add builtin aliases for codemapper [cm, map] can be additionally defined in config
 - [ ] Enhance Table of Contents generation
   - [ ] Consider using `md_toc` library for robustness
+- [ ] Implement a warning and alt method for huge repository processing
 - [ ] EPIC: Introduce Mermaid flow chart option for code execution flow visualization
 
 ## Developer Experience
