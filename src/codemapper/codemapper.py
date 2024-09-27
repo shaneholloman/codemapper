@@ -645,7 +645,8 @@ def main():
         directory_path = path
 
     # Determine the base_name for the title
-    if not os.path.isabs(args.input_path) and not args.input_path.startswith(('http://', 'https://')):
+    if not os.path.isabs(args.input_path) and \
+       not args.input_path.startswith(('http://', 'https://')):
         base_name = os.path.basename(os.path.abspath(args.input_path))
     else:
         base_name = os.path.basename(directory_path)
