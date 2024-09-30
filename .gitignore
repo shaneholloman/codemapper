@@ -4,6 +4,7 @@ _output/
 _codemaps/
 private/
 scripts/
+wip/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
