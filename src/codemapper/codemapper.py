@@ -426,10 +426,21 @@ def read_file_content(file_path: str) -> str:
         detect_result = chardet.detect(raw_data)
         detected_encoding = detect_result["encoding"] if detect_result else None
 
-        encoding_to_use = detected_encoding or "utf-8"
-        with open(file_path, "r", encoding=encoding_to_use) as file:
-            return file.read().rstrip()
-    except (IOError, UnicodeDecodeError) as e:
+        encodings_to_try = [detected_encoding, "utf-8", "latin-1"]
+
+        for encoding in encodings_to_try:
+            if encoding:
+                try:
+                    with open(file_path, "r", encoding=encoding) as file:
+                        return file.read().rstrip()
+                except UnicodeDecodeError:
+                    continue
+
+        return (
+            f"[Error: Unable to decode file with detected encoding "
+            f"({detected_encoding}), UTF-8, or Latin-1]"
+        )
+    except IOError as e:
         return f"[Error reading file: {str(e)}]"
 
 
