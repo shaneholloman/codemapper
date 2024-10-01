@@ -385,11 +385,28 @@ def is_large_file(file_path: str) -> bool:
         bool: True if the file is considered large or binary, False otherwise.
     """
     _, ext = os.path.splitext(file_path.lower())
+    file_name = os.path.basename(file_path)
+
+    # Check if it's in LARGE_FILE_EXTENSIONS
     if ext in LARGE_FILE_EXTENSIONS:
         return True
 
+    # Check if it's in CODE_FENCE_MAP
+    if ext in CODE_FENCE_MAP or file_name in CODE_FENCE_MAP:
+        return False
+
+    # Fallback to MIME type check
     mime_type, _ = mimetypes.guess_type(file_path)
-    return bool(mime_type) and not mime_type.startswith("text")
+    if mime_type:
+        # List of MIME types that are considered text-based
+        text_mime_types = [
+            "text/", "application/json", "application/javascript", "application/xml",
+            "application/x-httpd-php", "application/x-sh", "application/x-csh"
+        ]
+        return not any(mime_type.startswith(text_type) for text_type in text_mime_types)
+
+    # If MIME type couldn't be determined, assume it's not a large file
+    return False
 
 
 def get_file_info(file_path: str) -> str:
