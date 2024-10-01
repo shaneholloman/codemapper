@@ -77,6 +77,8 @@ CODE_FENCE_MAP: Dict[str, str] = {
     ".go": "go",
     ".groovy": "groovy",
     ".h": "cpp",
+    ".hbs": "handlebars",
+    ".hcl": "hcl",
     ".hpp": "cpp",
     ".html": "html",
     ".ini": "ini",
@@ -91,6 +93,8 @@ CODE_FENCE_MAP: Dict[str, str] = {
     ".md": "markdown",
     ".php": "php",
     ".pl": "perl",
+    ".pkl": "pickle",
+    ".proto": "protobuf",
     ".ps1": "powershell",
     ".py": "python",
     ".r": "r",
@@ -117,37 +121,43 @@ CODE_FENCE_MAP: Dict[str, str] = {
 }
 
 LARGE_FILE_EXTENSIONS = {
+    # Database files
     ".db",
     ".sqlite",
-    ".sqlite3",  # Database files
+    ".sqlite3",
+    # Image files
     ".jpg",
     ".jpeg",
     ".png",
     ".gif",
     ".bmp",
-    ".tiff",  # Image files
+    ".tiff",
+    # Video files
     ".mp4",
     ".avi",
     ".mov",
     ".wmv",
     ".flv",
-    ".mkv",  # Video files
+    ".mkv",
+    # Audio files
     ".mp3",
     ".wav",
     ".ogg",
-    ".flac",  # Audio files
+    ".flac",
+    # Document files
     ".pdf",
     ".doc",
     ".docx",
     ".xls",
     ".xlsx",
     ".ppt",
-    ".pptx",  # Document files
+    ".pptx",
+    # Archive files
     ".zip",
     ".tar",
     ".gz",
     ".rar",
-    ".7z",  # Archive files
+    ".7z",
 }
 
 
@@ -320,7 +330,7 @@ def generate_file_tree(
 
     Returns:
         str: A string representation of the file tree, including a count of
-             directories and files at the end.
+            directories and files at the end.
     """
 
     def walk_directory(dir_path: str, prefix: str = "") -> List[str]:
