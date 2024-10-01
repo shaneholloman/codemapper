@@ -6,6 +6,6 @@ This package provides functionality to analyze local directories or GitHub repos
 creating detailed Markdown documentation of their structure and contents.
 """
 
-__version__ = "3.5.2"
+__version__ = "3.5.3"
 
 # Any other necessary imports or package-level code can go here
