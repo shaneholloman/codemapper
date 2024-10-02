@@ -61,6 +61,9 @@ ARCHIVE_EXTENSIONS = {
     ".xz",
     ".tgz",
     ".tbz2",
+    ".tar.gz",
+    ".tar.bz2",
+    # TODO: implement wildcard support for archive files, example: *.tar.*
 }
 
 CODE_FENCE_MAP: Dict[str, str] = {
@@ -125,6 +128,12 @@ LARGE_FILE_EXTENSIONS = {
     ".db",
     ".sqlite",
     ".sqlite3",
+    ".dbf",
+    ".mdb",
+    ".accdb",
+    ".sql",
+    ".psql",
+    ".dmp",
     # Image files
     ".jpg",
     ".jpeg",
@@ -132,6 +141,13 @@ LARGE_FILE_EXTENSIONS = {
     ".gif",
     ".bmp",
     ".tiff",
+    ".ico",
+    ".svg",
+    ".webp",
+    ".eps",
+    ".raw",
+    ".cr2",
+    ".nef",
     # Video files
     ".mp4",
     ".avi",
@@ -139,6 +155,9 @@ LARGE_FILE_EXTENSIONS = {
     ".wmv",
     ".flv",
     ".mkv",
+    ".webm",
+    ".vob",
+    ".ogv",
     # Audio files
     ".mp3",
     ".wav",
@@ -152,12 +171,41 @@ LARGE_FILE_EXTENSIONS = {
     ".xlsx",
     ".ppt",
     ".pptx",
+    ".odt",
     # Archive files
     ".zip",
     ".tar",
     ".gz",
     ".rar",
     ".7z",
+    ".bz2",
+    ".xz",
+    ".tgz",
+    ".tbz2",
+    # Executable files
+    ".exe",
+    ".msi",
+    ".apk",
+    ".app",
+    ".dmg",
+    ".iso",
+    ".jar",
+    ".deb",
+    ".rpm",
+    # Font files
+    ".ttf",
+    ".otf",
+    ".woff",
+    ".woff2",
+    ".eot",
+    ".fon",
+    # Binary files
+    ".bin",
+    ".dll",
+    ".so",
+    ".dylib",
+    ".dat",
+    ".sav",
 }
 
 
@@ -400,8 +448,13 @@ def is_large_file(file_path: str) -> bool:
     if mime_type:
         # List of MIME types that are considered text-based
         text_mime_types = [
-            "text/", "application/json", "application/javascript", "application/xml",
-            "application/x-httpd-php", "application/x-sh", "application/x-csh"
+            "text/",
+            "application/json",
+            "application/javascript",
+            "application/xml",
+            "application/x-httpd-php",
+            "application/x-sh",
+            "application/x-csh",
         ]
         return not any(mime_type.startswith(text_type) for text_type in text_mime_types)
 
@@ -627,7 +680,7 @@ def manage_output_directory(base_name: str, input_path: str) -> str:
     os.makedirs(output_dir, exist_ok=True)
 
     # If input_path is a relative path, use its basename
-    if not os.path.isabs(input_path) and not input_path.startswith(('http://', 'https://')):
+    if not os.path.isabs(input_path) and not input_path.startswith(("http://", "https://")):
         base_name = os.path.basename(os.path.abspath(input_path))
 
     file_name = f"{base_name}_codemap.md"
@@ -683,8 +736,9 @@ def main():
         directory_path = path
 
     # Determine the base_name for the title
-    if not os.path.isabs(args.input_path) and \
-       not args.input_path.startswith(('http://', 'https://')):
+    if not os.path.isabs(args.input_path) and not args.input_path.startswith(
+        ("http://", "https://")
+    ):
         base_name = os.path.basename(os.path.abspath(args.input_path))
     else:
         base_name = os.path.basename(directory_path)
