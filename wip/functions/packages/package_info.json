@@ -1,0 +1,2177 @@
+{
+  "Brotli": {
+    "category": "Libraries",
+    "description": "Python bindings for the Brotli compression library",
+    "version": "1.0.9"
+  },
+  "CacheControl": {
+    "category": "WWW/HTTP",
+    "description": "httplib2 caching for requests",
+    "version": "0.14.0"
+  },
+  "ConfigArgParse": {
+    "category": "Uncategorized",
+    "description": "A drop-in replacement for argparse that allows options to also be set via config files and/or environment variables.",
+    "version": "1.7"
+  },
+  "Deprecated": {
+    "category": "Libraries :: Python Modules",
+    "description": "Python @deprecated decorator to deprecate old python classes, functions or methods.",
+    "version": "1.2.14"
+  },
+  "GitPython": {
+    "category": "Uncategorized",
+    "description": "GitPython is a Python library used to interact with Git repositories",
+    "version": "3.1.40"
+  },
+  "Jinja2": {
+    "category": "WWW/HTTP :: Dynamic Content",
+    "description": "A very fast and expressive template engine.",
+    "version": "3.1.2"
+  },
+  "Mako": {
+    "category": "WWW/HTTP :: Dynamic Content",
+    "description": "A super-fast templating language that borrows the best ideas from the existing templating languages.",
+    "version": "1.3.5"
+  },
+  "Markdown": {
+    "category": "Email :: Filters",
+    "description": "Python implementation of John Gruber's Markdown.",
+    "version": "3.5.2"
+  },
+  "MarkupSafe": {
+    "category": "WWW/HTTP :: Dynamic Content",
+    "description": "Safely add untrusted strings to HTML/XML markup.",
+    "version": "2.1.3"
+  },
+  "Pillow": {
+    "category": "Graphics",
+    "description": "Python Imaging Library (Fork)",
+    "version": "10.1.0"
+  },
+  "PyGithub": {
+    "category": "Software Development",
+    "description": "Use the full Github API v3",
+    "version": "2.3.0"
+  },
+  "PyJWT": {
+    "category": "Utilities",
+    "description": "JSON Web Token implementation in Python",
+    "version": "2.8.0"
+  },
+  "PyMuPDF": {
+    "category": "Utilities",
+    "description": "A high performance Python library for data extraction, analysis, conversion & manipulation of PDF (and other) documents.",
+    "version": "1.24.10"
+  },
+  "PyMuPDFb": {
+    "category": "Utilities",
+    "description": "MuPDF shared libraries for PyMuPDF.",
+    "version": "1.24.10"
+  },
+  "PyNaCl": {
+    "category": "Uncategorized",
+    "description": "Python binding to the Networking and Cryptography (NaCl) library",
+    "version": "1.5.0"
+  },
+  "PyPDF2": {
+    "category": "Libraries :: Python Modules",
+    "description": "A pure-python PDF library capable of splitting, merging, cropping, and transforming PDF files",
+    "version": "3.0.1"
+  },
+  "PyPika": {
+    "category": "Libraries :: Python Modules",
+    "description": "A SQL query builder API for Python",
+    "version": "0.48.9"
+  },
+  "PySimpleGUI": {
+    "category": "Graphics",
+    "description": "Python GUIs for Humans! PySimpleGUI is the top-rated Python application development environment. Launched in 2018 and actively developed, maintained, and supported in 2024. Transforms tkinter, Qt, WxPython, and Remi into a simple, intuitive, and fun experience for both hobbyists and expert users.",
+    "version": "5.0.6"
+  },
+  "PySocks": {
+    "category": "Uncategorized",
+    "description": "A Python SOCKS client module. See https://github.com/Anorov/PySocks for more information.",
+    "version": "1.7.1"
+  },
+  "PyYAML": {
+    "category": "Libraries :: Python Modules",
+    "description": "YAML parser and emitter for Python",
+    "version": "6.0.1"
+  },
+  "Pygments": {
+    "category": "Filters",
+    "description": "Pygments is a syntax highlighting package written in Python.",
+    "version": "2.17.2"
+  },
+  "SQLAlchemy": {
+    "category": "Front-Ends",
+    "description": "Database Abstraction Library",
+    "version": "2.0.31"
+  },
+  "agentops": {
+    "category": "Uncategorized",
+    "description": "Observability and DevTool Platform for AI Agents",
+    "version": "0.3.12"
+  },
+  "aiohappyeyeballs": {
+    "category": "Libraries",
+    "description": "Happy Eyeballs for asyncio",
+    "version": "2.4.0"
+  },
+  "aiohttp": {
+    "category": "WWW/HTTP",
+    "description": "Async http client/server framework (asyncio)",
+    "version": "3.10.5"
+  },
+  "aiohttp-client-cache": {
+    "category": "Libraries :: Python Modules",
+    "description": "Persistent cache for aiohttp requests",
+    "version": "0.11.1"
+  },
+  "aiosignal": {
+    "category": "Uncategorized",
+    "description": "aiosignal: a list of registered asynchronous callbacks",
+    "version": "1.3.1"
+  },
+  "aiosqlite": {
+    "category": "Libraries",
+    "description": "asyncio bridge to the standard sqlite3 module",
+    "version": "0.20.0"
+  },
+  "alembic": {
+    "category": "Front-Ends",
+    "description": "A database migration tool for SQLAlchemy.",
+    "version": "1.13.2"
+  },
+  "annotated-types": {
+    "category": "Libraries :: Python Modules",
+    "description": "Reusable constraint types to use with typing.Annotated",
+    "version": "0.6.0"
+  },
+  "ansible-compat": {
+    "category": "Systems Administration",
+    "description": "Ansible compatibility goodies",
+    "version": "4.1.10"
+  },
+  "ansible-core": {
+    "category": "Installation/Setup",
+    "description": "Radically simple IT automation",
+    "version": "2.15.5"
+  },
+  "ansicon": {
+    "category": "Utilities",
+    "description": "Python wrapper for loading Jason Hood's ANSICON",
+    "version": "1.89.0"
+  },
+  "anyio": {
+    "category": "Uncategorized",
+    "description": "High level compatibility layer for multiple asynchronous event loop implementations",
+    "version": "3.7.1"
+  },
+  "appdirs": {
+    "category": "Libraries :: Python Modules",
+    "description": "A small Python module for determining appropriate platform-specific dirs, e.g. a \"user data dir\".",
+    "version": "1.4.4"
+  },
+  "archspec": {
+    "category": "Uncategorized",
+    "description": "A library to query system architecture",
+    "version": "0.2.1"
+  },
+  "argcomplete": {
+    "category": "Software Development",
+    "description": "Bash tab completion for argparse",
+    "version": "3.2.2"
+  },
+  "asgiref": {
+    "category": "WWW/HTTP",
+    "description": "ASGI specs, helper code, and adapters",
+    "version": "3.8.1"
+  },
+  "astor": {
+    "category": "Code Generators",
+    "description": "Read/rewrite/write Python ASTs",
+    "version": "0.8.1"
+  },
+  "asttokens": {
+    "category": "Libraries :: Python Modules",
+    "description": "Annotate AST trees with source code positions",
+    "version": "2.4.1"
+  },
+  "async-timeout": {
+    "category": "Libraries",
+    "description": "Timeout context manager for asyncio programs",
+    "version": "4.0.3"
+  },
+  "attrs": {
+    "category": "Uncategorized",
+    "description": "Classes Without Boilerplate",
+    "version": "23.1.0"
+  },
+  "auth0-python": {
+    "category": "Uncategorized",
+    "description": "",
+    "version": "4.7.2"
+  },
+  "backoff": {
+    "category": "WWW/HTTP",
+    "description": "Function decoration for backoff and retry",
+    "version": "2.2.1"
+  },
+  "backports.tarfile": {
+    "category": "Uncategorized",
+    "description": "Backport of CPython tarfile module",
+    "version": "1.2.0"
+  },
+  "bcrypt": {
+    "category": "Uncategorized",
+    "description": "Modern password hashing for your software and your servers",
+    "version": "4.2.0"
+  },
+  "beautifulsoup4": {
+    "category": "Libraries :: Python Modules",
+    "description": "Screen-scraping library",
+    "version": "4.12.3"
+  },
+  "blessed": {
+    "category": "Libraries",
+    "description": "Easy, practical library for making terminal apps, by providing an elegant, well-documented interface to Colors, Keyboard input, and screen Positioning capabilities.",
+    "version": "1.20.0"
+  },
+  "boltons": {
+    "category": "Utilities",
+    "description": "When they're not builtins, they're boltons.",
+    "version": "23.0.0"
+  },
+  "boto3": {
+    "category": "Uncategorized",
+    "description": "The AWS SDK for Python",
+    "version": "1.35.24"
+  },
+  "botocore": {
+    "category": "Uncategorized",
+    "description": "Low-level, data-driven core of boto 3.",
+    "version": "1.35.24"
+  },
+  "bracex": {
+    "category": "Libraries :: Python Modules",
+    "description": "Bash style brace expander.",
+    "version": "2.4"
+  },
+  "bs4": {
+    "category": "Uncategorized",
+    "description": "Dummy package for Beautiful Soup (beautifulsoup4)",
+    "version": "0.0.2"
+  },
+  "build": {
+    "category": "Uncategorized",
+    "description": "A simple, correct Python build frontend",
+    "version": "1.2.2"
+  },
+  "cachetools": {
+    "category": "Libraries :: Python Modules",
+    "description": "Extensible memoizing collections and decorators",
+    "version": "5.5.0"
+  },
+  "cattrs": {
+    "category": "Uncategorized",
+    "description": "Composable complex class support for attrs and dataclasses.",
+    "version": "24.1.2"
+  },
+  "certifi": {
+    "category": "Uncategorized",
+    "description": "Python package for providing Mozilla's CA Bundle.",
+    "version": "2024.2.2"
+  },
+  "cffi": {
+    "category": "Uncategorized",
+    "description": "Foreign Function Interface for Python calling C code.",
+    "version": "1.16.0"
+  },
+  "chardet": {
+    "category": "Libraries :: Python Modules",
+    "description": "Universal encoding detector for Python 3",
+    "version": "5.2.0"
+  },
+  "charset-normalizer": {
+    "category": "Libraries :: Python Modules",
+    "description": "The Real First Universal Charset Detector. Open, modern and actively maintained alternative to Chardet.",
+    "version": "3.3.2"
+  },
+  "chroma-hnswlib": {
+    "category": "Uncategorized",
+    "description": "Chromas fork of hnswlib",
+    "version": "0.7.3"
+  },
+  "chromadb": {
+    "category": "Uncategorized",
+    "description": "Chroma.",
+    "version": "0.4.24"
+  },
+  "cleo": {
+    "category": "Software Development",
+    "description": "Cleo allows you to create beautiful and testable command-line interfaces.",
+    "version": "2.1.0"
+  },
+  "click": {
+    "category": "Uncategorized",
+    "description": "Composable command line interface toolkit",
+    "version": "8.1.7"
+  },
+  "click-completion": {
+    "category": "Uncategorized",
+    "description": "Fish, Bash, Zsh and PowerShell completion for Click",
+    "version": "0.5.2"
+  },
+  "click-help-colors": {
+    "category": "Uncategorized",
+    "description": "Colorization of help messages in Click",
+    "version": "0.9.2"
+  },
+  "click-option-group": {
+    "category": "Libraries",
+    "description": "Option groups missing in Click",
+    "version": "0.5.6"
+  },
+  "codemapper": {
+    "category": "Uncategorized",
+    "description": "A tool to generate comprehensive Markdown artifacts of directory structures and file contents",
+    "version": "3.2.2"
+  },
+  "cohere": {
+    "category": "Libraries :: Python Modules",
+    "description": "",
+    "version": "5.9.4"
+  },
+  "colorama": {
+    "category": "Terminals",
+    "description": "Cross-platform colored terminal text.",
+    "version": "0.4.6"
+  },
+  "coloredlogs": {
+    "category": "Communications",
+    "description": "Colored terminal output for Python's logging module",
+    "version": "15.0.1"
+  },
+  "comm": {
+    "category": "Uncategorized",
+    "description": "Jupyter Python Comm implementation, for usage in ipykernel, xeus-python etc.",
+    "version": "0.2.0"
+  },
+  "conda": {
+    "category": "Uncategorized",
+    "description": "OS-agnostic, system-level binary package manager.",
+    "version": "23.11.0"
+  },
+  "conda-content-trust": {
+    "category": "Uncategorized",
+    "description": "Signing and verification tools for the conda ecosystem",
+    "version": "0.1.3"
+  },
+  "conda-libmamba-solver": {
+    "category": "Uncategorized",
+    "description": "The fast mamba solver, now in conda",
+    "version": "23.12.0"
+  },
+  "conda-package-handling": {
+    "category": "Uncategorized",
+    "description": "Create and extract conda packages of various formats.",
+    "version": "2.2.0"
+  },
+  "conda_package_streaming": {
+    "category": "Uncategorized",
+    "description": "An efficient library to read from new and old format .conda and .tar.bz2 conda packages.",
+    "version": "0.9.0"
+  },
+  "contourpy": {
+    "category": "Information Analysis",
+    "description": "Python library for calculating contours of 2D quadrilateral grids",
+    "version": "1.2.0"
+  },
+  "crashtest": {
+    "category": "Uncategorized",
+    "description": "Manage Python errors with ease",
+    "version": "0.4.1"
+  },
+  "crontab": {
+    "category": "Uncategorized",
+    "description": "Parse and use crontab schedules in Python",
+    "version": "1.0.1"
+  },
+  "cryptography": {
+    "category": "Cryptography",
+    "description": "cryptography is a package which provides cryptographic recipes and primitives to Python developers.",
+    "version": "43.0.1"
+  },
+  "cycler": {
+    "category": "Uncategorized",
+    "description": "Composable style cycles",
+    "version": "0.12.1"
+  },
+  "dataclasses-json": {
+    "category": "Uncategorized",
+    "description": "Easily serialize dataclasses to and from JSON.",
+    "version": "0.6.7"
+  },
+  "debugpy": {
+    "category": "Debuggers",
+    "description": "An implementation of the Debug Adapter Protocol for Python",
+    "version": "1.8.0"
+  },
+  "decorator": {
+    "category": "Libraries",
+    "description": "Decorators for Humans",
+    "version": "4.4.2"
+  },
+  "defusedxml": {
+    "category": "Markup :: XML",
+    "description": "XML bomb protection for Python stdlib modules",
+    "version": "0.8.0rc2"
+  },
+  "diff-match-patch": {
+    "category": "Libraries",
+    "description": "Diff Match and Patch",
+    "version": "20230430"
+  },
+  "dirtyjson": {
+    "category": "Libraries :: Python Modules",
+    "description": "JSON decoder for Python that can extract data from the muck",
+    "version": "1.0.8"
+  },
+  "diskcache": {
+    "category": "Uncategorized",
+    "description": "Disk Cache -- Disk and file backed persistent cache.",
+    "version": "5.6.3"
+  },
+  "distlib": {
+    "category": "Software Development",
+    "description": "Distribution utilities",
+    "version": "0.3.8"
+  },
+  "distro": {
+    "category": "Libraries :: Python Modules",
+    "description": "Distro - an OS platform information API",
+    "version": "1.8.0"
+  },
+  "dnspython": {
+    "category": "Name Service (DNS)",
+    "description": "DNS toolkit",
+    "version": "2.6.1"
+  },
+  "docker": {
+    "category": "Software Development",
+    "description": "A Python library for the Docker Engine API.",
+    "version": "7.1.0"
+  },
+  "docker-shell": {
+    "category": "Uncategorized",
+    "description": "Docker Interactive Shell Runner",
+    "version": "0.0.9"
+  },
+  "docstring_parser": {
+    "category": "Sphinx",
+    "description": "Parse Python docstrings in reST, Google and Numpydoc format",
+    "version": "0.16"
+  },
+  "docutils": {
+    "category": "Documentation",
+    "description": "Docutils -- Python Documentation Utilities",
+    "version": "0.21.2"
+  },
+  "dulwich": {
+    "category": "Version Control",
+    "description": "Python Git Library",
+    "version": "0.21.7"
+  },
+  "durationpy": {
+    "category": "Uncategorized",
+    "description": "Module for converting between datetime.timedelta and Go's Duration strings.",
+    "version": "0.7"
+  },
+  "email_validator": {
+    "category": "Libraries :: Python Modules",
+    "description": "A robust email address syntax and deliverability validation library.",
+    "version": "2.2.0"
+  },
+  "embedchain": {
+    "category": "Uncategorized",
+    "description": "Simplest open source retrieval (RAG) framework",
+    "version": "0.1.121"
+  },
+  "enrich": {
+    "category": "Systems Administration",
+    "description": "enrich",
+    "version": "1.2.7"
+  },
+  "executing": {
+    "category": "Uncategorized",
+    "description": "Get the currently executing AST node of a frame, and other information",
+    "version": "2.0.1"
+  },
+  "face": {
+    "category": "Utilities",
+    "description": "A command-line application framework (and CLI parser). Friendly for users, full-featured for developers.",
+    "version": "22.0.0"
+  },
+  "fastapi": {
+    "category": "Internet",
+    "description": "FastAPI framework, high performance, easy to learn, fast to code, ready for production",
+    "version": "0.111.1"
+  },
+  "fastapi-cli": {
+    "category": "Libraries :: Application Frameworks",
+    "description": "Run and manage FastAPI apps from the command line with FastAPI CLI. \ud83d\ude80",
+    "version": "0.0.5"
+  },
+  "fastavro": {
+    "category": "Libraries :: Python Modules",
+    "description": "Fast read/write of AVRO files",
+    "version": "1.9.7"
+  },
+  "fastjsonschema": {
+    "category": "Libraries :: Python Modules",
+    "description": "Fastest Python implementation of JSON schema",
+    "version": "2.20.0"
+  },
+  "ffmpeg": {
+    "category": "Uncategorized",
+    "description": "ffmpeg python package url [https://github.com/jiashaokun/ffmpeg]",
+    "version": "1.4"
+  },
+  "filelock": {
+    "category": "Internet",
+    "description": "A platform independent file lock.",
+    "version": "3.12.4"
+  },
+  "flatbuffers": {
+    "category": "Libraries :: Python Modules",
+    "description": "The FlatBuffers serialization format for Python",
+    "version": "24.3.25"
+  },
+  "fonttools": {
+    "category": "Fonts",
+    "description": "Tools to manipulate font files",
+    "version": "4.47.0"
+  },
+  "frozendict": {
+    "category": "Libraries",
+    "description": "A simple immutable dictionary",
+    "version": "2.4.4"
+  },
+  "frozenlist": {
+    "category": "Uncategorized",
+    "description": "A list-like structure which implements collections.abc.MutableSequence",
+    "version": "1.4.0"
+  },
+  "fsspec": {
+    "category": "Uncategorized",
+    "description": "File-system specification",
+    "version": "2023.9.2"
+  },
+  "ghp-import": {
+    "category": "Uncategorized",
+    "description": "Copy your docs directly to the gh-pages branch.",
+    "version": "2.1.0"
+  },
+  "git-filter-repo": {
+    "category": "Uncategorized",
+    "description": "Quickly rewrite git repository history",
+    "version": "2.45.0"
+  },
+  "git-python": {
+    "category": "Uncategorized",
+    "description": "combination and simplification of some useful git commands",
+    "version": "1.0.3"
+  },
+  "gitdb": {
+    "category": "Uncategorized",
+    "description": "Git Object Database",
+    "version": "4.0.11"
+  },
+  "glom": {
+    "category": "Utilities",
+    "description": "A declarative object transformer and formatter, for conglomerating nested data.",
+    "version": "22.1.0"
+  },
+  "google-api-core": {
+    "category": "Internet",
+    "description": "Google API client core library",
+    "version": "2.20.0"
+  },
+  "google-auth": {
+    "category": "WWW/HTTP",
+    "description": "Google Authentication Library",
+    "version": "2.35.0"
+  },
+  "google-cloud-aiplatform": {
+    "category": "Internet",
+    "description": "Vertex AI API client library",
+    "version": "1.67.1"
+  },
+  "google-cloud-bigquery": {
+    "category": "Internet",
+    "description": "Google BigQuery API client library",
+    "version": "3.25.0"
+  },
+  "google-cloud-core": {
+    "category": "Internet",
+    "description": "Google Cloud API client core library",
+    "version": "2.4.1"
+  },
+  "google-cloud-resource-manager": {
+    "category": "Internet",
+    "description": "Google Cloud Resource Manager API client library",
+    "version": "1.12.5"
+  },
+  "google-cloud-storage": {
+    "category": "Internet",
+    "description": "Google Cloud Storage API client library",
+    "version": "2.18.2"
+  },
+  "google-crc32c": {
+    "category": "Uncategorized",
+    "description": "A python wrapper of the C library 'Google CRC32C'",
+    "version": "1.6.0"
+  },
+  "google-resumable-media": {
+    "category": "Internet",
+    "description": "Utilities for Google Media Downloads and Resumable Uploads",
+    "version": "2.7.2"
+  },
+  "googleapis-common-protos": {
+    "category": "Uncategorized",
+    "description": "Common protobufs used in Google APIs",
+    "version": "1.65.0"
+  },
+  "gptcache": {
+    "category": "Uncategorized",
+    "description": "GPTCache, a powerful caching library that can be used to speed up and lower the cost of chat applications that rely on the LLM service. GPTCache works as a memcache for AIGC applications, similar to how Redis works for traditional applications.",
+    "version": "0.1.44"
+  },
+  "greenlet": {
+    "category": "Libraries :: Python Modules",
+    "description": "Lightweight in-process concurrent programming",
+    "version": "3.0.3"
+  },
+  "grep-ast": {
+    "category": "Uncategorized",
+    "description": "A tool to grep through the AST of a source file",
+    "version": "0.2.4"
+  },
+  "grpc-google-iam-v1": {
+    "category": "Internet",
+    "description": "IAM API client library",
+    "version": "0.13.1"
+  },
+  "grpcio": {
+    "category": "Uncategorized",
+    "description": "HTTP/2-based RPC framework",
+    "version": "1.65.1"
+  },
+  "grpcio-status": {
+    "category": "Uncategorized",
+    "description": "Status proto mapping for gRPC",
+    "version": "1.62.3"
+  },
+  "grpcio-tools": {
+    "category": "Uncategorized",
+    "description": "Protobuf code generator for gRPC",
+    "version": "1.62.3"
+  },
+  "h11": {
+    "category": "WWW/HTTP",
+    "description": "A pure-Python, bring-your-own-I/O implementation of HTTP/1.1",
+    "version": "0.14.0"
+  },
+  "h2": {
+    "category": "Uncategorized",
+    "description": "HTTP/2 State-Machine based protocol implementation",
+    "version": "4.1.0"
+  },
+  "hpack": {
+    "category": "Uncategorized",
+    "description": "Pure-Python HPACK header compression",
+    "version": "4.0.0"
+  },
+  "html2image": {
+    "category": "Graphics :: Graphics Conversion",
+    "description": "Package acting as a wrapper around the headless mode of existing web browsers to generate images from URLs and from HTML+CSS strings or files.",
+    "version": "2.0.4.3"
+  },
+  "html5lib": {
+    "category": "Libraries :: Python Modules",
+    "description": "HTML parser based on the WHATWG HTML specification",
+    "version": "1.1"
+  },
+  "httpcore": {
+    "category": "WWW/HTTP",
+    "description": "A minimal low-level HTTP client.",
+    "version": "1.0.2"
+  },
+  "httptools": {
+    "category": "Uncategorized",
+    "description": "A collection of framework independent HTTP protocol utils.",
+    "version": "0.6.1"
+  },
+  "httpx": {
+    "category": "WWW/HTTP",
+    "description": "The next generation HTTP client.",
+    "version": "0.27.2"
+  },
+  "httpx-sse": {
+    "category": "Uncategorized",
+    "description": "Consume Server-Sent Event (SSE) messages with HTTPX.",
+    "version": "0.4.0"
+  },
+  "huggingface-hub": {
+    "category": "Artificial Intelligence",
+    "description": "Client library to download and publish models, datasets and other repos on the huggingface.co hub",
+    "version": "0.16.4"
+  },
+  "humanfriendly": {
+    "category": "Communications",
+    "description": "Human friendly output for text interfaces using Python",
+    "version": "10.0"
+  },
+  "hyperframe": {
+    "category": "Uncategorized",
+    "description": "HTTP/2 framing layer for Python",
+    "version": "6.0.1"
+  },
+  "idna": {
+    "category": "Name Service (DNS)",
+    "description": "Internationalized Domain Names in Applications (IDNA)",
+    "version": "3.6"
+  },
+  "imageio": {
+    "category": "Uncategorized",
+    "description": "Library for reading and writing a wide range of image, video, scientific, and volumetric data formats.",
+    "version": "2.34.2"
+  },
+  "imageio-ffmpeg": {
+    "category": "Uncategorized",
+    "description": "FFMPEG wrapper for Python",
+    "version": "0.5.1"
+  },
+  "importlib-metadata": {
+    "category": "Uncategorized",
+    "description": "Read metadata from Python packages",
+    "version": "6.8.0"
+  },
+  "importlib_resources": {
+    "category": "Uncategorized",
+    "description": "Read resources from Python packages",
+    "version": "6.4.5"
+  },
+  "iniconfig": {
+    "category": "Libraries",
+    "description": "brain-dead simple config-ini parsing",
+    "version": "2.0.0"
+  },
+  "inquirer": {
+    "category": "Libraries :: Application Frameworks",
+    "description": "Collection of common interactive command line user interfaces, based on Inquirer.js",
+    "version": "3.1.3"
+  },
+  "installer": {
+    "category": "Uncategorized",
+    "description": "A library for installing Python wheels.",
+    "version": "0.7.0"
+  },
+  "instructor": {
+    "category": "Uncategorized",
+    "description": "structured outputs for llm",
+    "version": "1.3.3"
+  },
+  "intel-openmp": {
+    "category": "Libraries",
+    "description": "Intel OpenMP* Runtime Library",
+    "version": "2021.4.0"
+  },
+  "ipykernel": {
+    "category": "Uncategorized",
+    "description": "IPython Kernel for Jupyter",
+    "version": "6.26.0"
+  },
+  "ipython": {
+    "category": "Shells",
+    "description": "IPython: Productive Interactive Computing",
+    "version": "8.18.0"
+  },
+  "itsdangerous": {
+    "category": "Uncategorized",
+    "description": "Safely pass data to untrusted environments and back.",
+    "version": "2.2.0"
+  },
+  "jaraco.classes": {
+    "category": "Uncategorized",
+    "description": "Utility functions for Python class constructs",
+    "version": "3.4.0"
+  },
+  "jaraco.context": {
+    "category": "Uncategorized",
+    "description": "Useful decorators and context managers",
+    "version": "5.3.0"
+  },
+  "jaraco.functools": {
+    "category": "Uncategorized",
+    "description": "Functools like those found in stdlib",
+    "version": "4.0.2"
+  },
+  "jedi": {
+    "category": "Libraries :: Python Modules",
+    "description": "An autocompletion tool for Python that can be used for text editors.",
+    "version": "0.19.1"
+  },
+  "jinxed": {
+    "category": "Terminals",
+    "description": "Jinxed Terminal Library",
+    "version": "1.2.0"
+  },
+  "jiter": {
+    "category": "JSON",
+    "description": "Fast iterable JSON parser.",
+    "version": "0.4.2"
+  },
+  "jmespath": {
+    "category": "Uncategorized",
+    "description": "JSON Matching Expressions",
+    "version": "1.0.1"
+  },
+  "joblib": {
+    "category": "Scientific/Engineering",
+    "description": "Lightweight pipelining with Python functions",
+    "version": "1.4.2"
+  },
+  "json_repair": {
+    "category": "Uncategorized",
+    "description": "A package to repair broken json strings",
+    "version": "0.25.3"
+  },
+  "jsonpatch": {
+    "category": "Libraries",
+    "description": "Apply JSON-Patches (RFC 6902) ",
+    "version": "1.33"
+  },
+  "jsonpickle": {
+    "category": "Libraries :: Python Modules",
+    "description": "Python library for serializing any arbitrary object graph into JSON",
+    "version": "3.0.2"
+  },
+  "jsonpointer": {
+    "category": "Libraries",
+    "description": "Identify specific nodes in a JSON document (RFC 6901) ",
+    "version": "2.1"
+  },
+  "jsonref": {
+    "category": "Uncategorized",
+    "description": "jsonref is a library for automatic dereferencing of JSON Reference objects for Python.",
+    "version": "1.1.0"
+  },
+  "jsonschema": {
+    "category": "JSON",
+    "description": "An implementation of JSON Schema validation for Python",
+    "version": "4.23.0"
+  },
+  "jsonschema-specifications": {
+    "category": "JSON :: JSON Schema",
+    "description": "The JSON Schema meta-schemas and vocabularies, exposed as a Registry",
+    "version": "2023.11.2"
+  },
+  "jupyter_client": {
+    "category": "Uncategorized",
+    "description": "Jupyter protocol implementation and client libraries",
+    "version": "8.6.0"
+  },
+  "jupyter_core": {
+    "category": "Uncategorized",
+    "description": "Jupyter core package. A base package on which Jupyter projects rely.",
+    "version": "5.5.0"
+  },
+  "keyring": {
+    "category": "Uncategorized",
+    "description": "Store and access your passwords safely.",
+    "version": "24.3.1"
+  },
+  "kiwisolver": {
+    "category": "Uncategorized",
+    "description": "A fast implementation of the Cassowary constraint solver",
+    "version": "1.4.5"
+  },
+  "kubernetes": {
+    "category": "Utilities",
+    "description": "Kubernetes python client",
+    "version": "31.0.0"
+  },
+  "langchain": {
+    "category": "Uncategorized",
+    "description": "Building applications with LLMs through composability",
+    "version": "0.2.16"
+  },
+  "langchain-cohere": {
+    "category": "Uncategorized",
+    "description": "An integration package connecting Cohere and LangChain",
+    "version": "0.1.9"
+  },
+  "langchain-community": {
+    "category": "Uncategorized",
+    "description": "Community contributed LangChain integrations.",
+    "version": "0.2.17"
+  },
+  "langchain-core": {
+    "category": "Uncategorized",
+    "description": "Building applications with LLMs through composability",
+    "version": "0.2.41"
+  },
+  "langchain-experimental": {
+    "category": "Uncategorized",
+    "description": "Building applications with LLMs through composability",
+    "version": "0.0.65"
+  },
+  "langchain-openai": {
+    "category": "Uncategorized",
+    "description": "An integration package connecting OpenAI and LangChain",
+    "version": "0.1.25"
+  },
+  "langchain-text-splitters": {
+    "category": "Uncategorized",
+    "description": "LangChain text splitting utilities",
+    "version": "0.2.4"
+  },
+  "langsmith": {
+    "category": "Uncategorized",
+    "description": "Client library to connect to the LangSmith LLM Tracing and Evaluation Platform.",
+    "version": "0.1.125"
+  },
+  "libmambapy": {
+    "category": "Uncategorized",
+    "description": "Python bindings of libmamba",
+    "version": "1.5.3"
+  },
+  "litellm": {
+    "category": "Uncategorized",
+    "description": "Library to easily interface with LLM API providers",
+    "version": "1.47.1"
+  },
+  "llama-cloud": {
+    "category": "Uncategorized",
+    "description": "",
+    "version": "0.0.9"
+  },
+  "llama-index": {
+    "category": "Artificial Intelligence",
+    "description": "Interface between LLMs and your data",
+    "version": "0.10.56"
+  },
+  "llama-index-agent-openai": {
+    "category": "Uncategorized",
+    "description": "llama-index agent openai integration",
+    "version": "0.2.9"
+  },
+  "llama-index-cli": {
+    "category": "Uncategorized",
+    "description": "llama-index cli",
+    "version": "0.1.12"
+  },
+  "llama-index-core": {
+    "category": "Artificial Intelligence",
+    "description": "Interface between LLMs and your data",
+    "version": "0.10.56"
+  },
+  "llama-index-embeddings-openai": {
+    "category": "Uncategorized",
+    "description": "llama-index embeddings openai integration",
+    "version": "0.1.11"
+  },
+  "llama-index-indices-managed-llama-cloud": {
+    "category": "Uncategorized",
+    "description": "llama-index indices llama-cloud integration",
+    "version": "0.2.5"
+  },
+  "llama-index-legacy": {
+    "category": "Artificial Intelligence",
+    "description": "Interface between LLMs and your data",
+    "version": "0.9.48"
+  },
+  "llama-index-llms-openai": {
+    "category": "Uncategorized",
+    "description": "llama-index llms openai integration",
+    "version": "0.1.26"
+  },
+  "llama-index-multi-modal-llms-openai": {
+    "category": "Uncategorized",
+    "description": "llama-index multi-modal-llms openai integration",
+    "version": "0.1.8"
+  },
+  "llama-index-program-openai": {
+    "category": "Uncategorized",
+    "description": "llama-index program openai integration",
+    "version": "0.1.6"
+  },
+  "llama-index-question-gen-openai": {
+    "category": "Uncategorized",
+    "description": "llama-index question_gen openai integration",
+    "version": "0.1.3"
+  },
+  "llama-index-readers-file": {
+    "category": "Uncategorized",
+    "description": "llama-index readers file integration",
+    "version": "0.1.30"
+  },
+  "llama-index-readers-llama-parse": {
+    "category": "Uncategorized",
+    "description": "llama-index readers llama-parse integration",
+    "version": "0.1.6"
+  },
+  "llama-parse": {
+    "category": "Uncategorized",
+    "description": "Parse files into RAG-Optimized formats.",
+    "version": "0.4.9"
+  },
+  "llvmlite": {
+    "category": "Code Generators",
+    "description": "lightweight wrapper around basic LLVM functionality",
+    "version": "0.43.0"
+  },
+  "lxml": {
+    "category": "Markup :: HTML",
+    "description": "Powerful and Pythonic XML processing library combining libxml2/libxslt with the ElementTree API.",
+    "version": "5.3.0"
+  },
+  "markdown-it-py": {
+    "category": "Libraries :: Python Modules",
+    "description": "Python port of markdown-it. Markdown parsing, done right!",
+    "version": "3.0.0"
+  },
+  "marshmallow": {
+    "category": "Uncategorized",
+    "description": "A lightweight library for converting complex datatypes to and from native Python datatypes.",
+    "version": "3.21.3"
+  },
+  "matplotlib": {
+    "category": "Visualization",
+    "description": "Python plotting package",
+    "version": "3.8.2"
+  },
+  "matplotlib-inline": {
+    "category": "Uncategorized",
+    "description": "Inline Matplotlib backend for Jupyter",
+    "version": "0.1.6"
+  },
+  "mdurl": {
+    "category": "Libraries :: Python Modules",
+    "description": "Markdown URL utilities",
+    "version": "0.1.2"
+  },
+  "mem0ai": {
+    "category": "Uncategorized",
+    "description": "Long-term memory for AI Agents",
+    "version": "0.0.20"
+  },
+  "menuinst": {
+    "category": "Uncategorized",
+    "description": "cross platform install of menu items",
+    "version": "1.4.19"
+  },
+  "mergedeep": {
+    "category": "Uncategorized",
+    "description": "A deep merge function for \ud83d\udc0d.",
+    "version": "1.3.4"
+  },
+  "mkdocs": {
+    "category": "Documentation",
+    "description": "Project documentation with Markdown.",
+    "version": "1.5.3"
+  },
+  "mkdocs-callouts": {
+    "category": "Documentation",
+    "description": "A simple plugin that converts Obsidian style callouts and converts them into mkdocs supported 'admonitions' (a.k.a. callouts).",
+    "version": "1.10.0"
+  },
+  "mkl": {
+    "category": "Libraries",
+    "description": "Intel\u00ae oneAPI Math Kernel Library",
+    "version": "2021.4.0"
+  },
+  "mmh3": {
+    "category": "Libraries",
+    "description": "Python extension for MurmurHash (MurmurHash3), a set of fast and robust hash functions.",
+    "version": "5.0.0"
+  },
+  "molecule": {
+    "category": "Systems Administration",
+    "description": "Molecule aids in the development and testing of Ansible roles",
+    "version": "6.0.2"
+  },
+  "monotonic": {
+    "category": "Libraries :: Python Modules",
+    "description": "An implementation of time.monotonic() for Python 2 & < 3.3",
+    "version": "1.6"
+  },
+  "more-itertools": {
+    "category": "Libraries",
+    "description": "More routines for operating on iterables, beyond itertools",
+    "version": "10.3.0"
+  },
+  "moviepy": {
+    "category": "Multimedia",
+    "description": "Video editing with Python",
+    "version": "1.0.3"
+  },
+  "mpmath": {
+    "category": "Mathematics",
+    "description": "Python library for arbitrary-precision floating-point arithmetic",
+    "version": "1.3.0"
+  },
+  "msgpack": {
+    "category": "Uncategorized",
+    "description": "MessagePack serializer",
+    "version": "1.1.0"
+  },
+  "multidict": {
+    "category": "Uncategorized",
+    "description": "multidict implementation",
+    "version": "6.0.4"
+  },
+  "multitasking": {
+    "category": "Libraries",
+    "description": "Non-blocking Python methods using decorators",
+    "version": "0.0.11"
+  },
+  "mypy": {
+    "category": "Software Development",
+    "description": "Optional static typing for Python",
+    "version": "1.11.1"
+  },
+  "mypy-extensions": {
+    "category": "Software Development",
+    "description": "Type system extensions for programs checked with the mypy type checker.",
+    "version": "1.0.0"
+  },
+  "nest-asyncio": {
+    "category": "Uncategorized",
+    "description": "Patch asyncio to allow nested event loops",
+    "version": "1.5.8"
+  },
+  "networkx": {
+    "category": "Libraries :: Python Modules",
+    "description": "Python package for creating and manipulating graphs and networks",
+    "version": "3.2.1"
+  },
+  "nh3": {
+    "category": "Uncategorized",
+    "description": "Python bindings to the ammonia HTML sanitization library.",
+    "version": "0.2.18"
+  },
+  "nltk": {
+    "category": "Scientific/Engineering",
+    "description": "Natural Language Toolkit",
+    "version": "3.8.1"
+  },
+  "numba": {
+    "category": "Compilers",
+    "description": "compiling Python code using LLVM",
+    "version": "0.60.0"
+  },
+  "numpy": {
+    "category": "Software Development",
+    "description": "Fundamental package for array computing in Python",
+    "version": "1.26.2"
+  },
+  "oauthlib": {
+    "category": "Libraries :: Python Modules",
+    "description": "A generic, spec-compliant, thorough implementation of the OAuth request-signing logic",
+    "version": "3.2.2"
+  },
+  "ollama": {
+    "category": "Uncategorized",
+    "description": "The official Python client for Ollama.",
+    "version": "0.3.3"
+  },
+  "onnxruntime": {
+    "category": "Scientific/Engineering",
+    "description": "ONNX Runtime is a runtime accelerator for Machine Learning models",
+    "version": "1.19.2"
+  },
+  "openai": {
+    "category": "Libraries :: Python Modules",
+    "description": "The official Python library for the openai API",
+    "version": "1.47.0"
+  },
+  "openai-whisper": {
+    "category": "Uncategorized",
+    "description": "Robust Speech Recognition via Large-Scale Weak Supervision",
+    "version": "20231117"
+  },
+  "openbb": {
+    "category": "Uncategorized",
+    "description": "Investment research for everyone, anywhere.",
+    "version": "4.3.2"
+  },
+  "openbb-benzinga": {
+    "category": "Uncategorized",
+    "description": "Benzinga extension for OpenBB",
+    "version": "1.3.2"
+  },
+  "openbb-bls": {
+    "category": "Uncategorized",
+    "description": "The Bureau of Labor Statistics' (BLS) Public Data Application Programming Interface (API) gives the public access to economic data from all BLS programs. It is the Bureau's hope that talented developers and programmers will use the BLS Public Data API to create original, inventive applications with published BLS data.",
+    "version": "1.0.0"
+  },
+  "openbb-cftc": {
+    "category": "Uncategorized",
+    "description": "The mission of the Commodity Futures Trading Commission (CFTC) is to promote the integrity, resilience, and vibrancy of the U.S. derivatives markets through sound regulation.",
+    "version": "1.0.0"
+  },
+  "openbb-commodity": {
+    "category": "Uncategorized",
+    "description": "Commodity extension for OpenBB",
+    "version": "1.2.2"
+  },
+  "openbb-core": {
+    "category": "Uncategorized",
+    "description": "OpenBB package with core functionality.",
+    "version": "1.3.2"
+  },
+  "openbb-crypto": {
+    "category": "Uncategorized",
+    "description": "Crypto extension for OpenBB",
+    "version": "1.3.2"
+  },
+  "openbb-currency": {
+    "category": "Uncategorized",
+    "description": "Currency extension for OpenBB",
+    "version": "1.3.2"
+  },
+  "openbb-derivatives": {
+    "category": "Uncategorized",
+    "description": "Derivatives extension for OpenBB",
+    "version": "1.3.2"
+  },
+  "openbb-econdb": {
+    "category": "Uncategorized",
+    "description": "EconDB extension for OpenBB",
+    "version": "1.2.2"
+  },
+  "openbb-economy": {
+    "category": "Uncategorized",
+    "description": "Economy extension for OpenBB",
+    "version": "1.3.2"
+  },
+  "openbb-equity": {
+    "category": "Uncategorized",
+    "description": "Equity extension for OpenBB",
+    "version": "1.3.2"
+  },
+  "openbb-etf": {
+    "category": "Uncategorized",
+    "description": "ETF extension for OpenBB",
+    "version": "1.3.2"
+  },
+  "openbb-federal-reserve": {
+    "category": "Uncategorized",
+    "description": "US Federal Reserve Data Extension for OpenBB",
+    "version": "1.3.2"
+  },
+  "openbb-fixedincome": {
+    "category": "Uncategorized",
+    "description": "Fixed income extension for OpenBB",
+    "version": "1.3.2"
+  },
+  "openbb-fmp": {
+    "category": "Uncategorized",
+    "description": "FMP extension for OpenBB",
+    "version": "1.3.2"
+  },
+  "openbb-fred": {
+    "category": "Uncategorized",
+    "description": "FRED extension for OpenBB",
+    "version": "1.3.2"
+  },
+  "openbb-index": {
+    "category": "Uncategorized",
+    "description": "Index extension for OpenBB",
+    "version": "1.3.2"
+  },
+  "openbb-intrinio": {
+    "category": "Uncategorized",
+    "description": "Intrinio extension for OpenBB",
+    "version": "1.3.2"
+  },
+  "openbb-news": {
+    "category": "Uncategorized",
+    "description": "News extension for OpenBB",
+    "version": "1.3.2"
+  },
+  "openbb-oecd": {
+    "category": "Uncategorized",
+    "description": "OECD extension for OpenBB",
+    "version": "1.3.2"
+  },
+  "openbb-polygon": {
+    "category": "Uncategorized",
+    "description": "Polygon extension for OpenBB",
+    "version": "1.3.2"
+  },
+  "openbb-regulators": {
+    "category": "Uncategorized",
+    "description": "Markets and Agency Regulators extension for OpenBB",
+    "version": "1.3.2"
+  },
+  "openbb-sec": {
+    "category": "Uncategorized",
+    "description": "SEC extension for OpenBB",
+    "version": "1.3.2"
+  },
+  "openbb-tiingo": {
+    "category": "Uncategorized",
+    "description": "Tiingo extension for OpenBB",
+    "version": "1.3.2"
+  },
+  "openbb-tradingeconomics": {
+    "category": "Uncategorized",
+    "description": "Trading Economics extension for OpenBB",
+    "version": "1.3.2"
+  },
+  "openbb-yfinance": {
+    "category": "Uncategorized",
+    "description": "yfinance extension for OpenBB",
+    "version": "1.3.3"
+  },
+  "opentelemetry-api": {
+    "category": "Uncategorized",
+    "description": "OpenTelemetry Python API",
+    "version": "1.27.0"
+  },
+  "opentelemetry-exporter-otlp-proto-common": {
+    "category": "Uncategorized",
+    "description": "OpenTelemetry Protobuf encoding",
+    "version": "1.27.0"
+  },
+  "opentelemetry-exporter-otlp-proto-grpc": {
+    "category": "Uncategorized",
+    "description": "OpenTelemetry Collector Protobuf over gRPC Exporter",
+    "version": "1.27.0"
+  },
+  "opentelemetry-exporter-otlp-proto-http": {
+    "category": "Uncategorized",
+    "description": "OpenTelemetry Collector Protobuf over HTTP Exporter",
+    "version": "1.27.0"
+  },
+  "opentelemetry-instrumentation": {
+    "category": "Uncategorized",
+    "description": "Instrumentation Tools & Auto Instrumentation for OpenTelemetry Python",
+    "version": "0.48b0"
+  },
+  "opentelemetry-instrumentation-asgi": {
+    "category": "Uncategorized",
+    "description": "ASGI instrumentation for OpenTelemetry",
+    "version": "0.48b0"
+  },
+  "opentelemetry-instrumentation-fastapi": {
+    "category": "Uncategorized",
+    "description": "OpenTelemetry FastAPI Instrumentation",
+    "version": "0.48b0"
+  },
+  "opentelemetry-proto": {
+    "category": "Uncategorized",
+    "description": "OpenTelemetry Python Proto",
+    "version": "1.27.0"
+  },
+  "opentelemetry-sdk": {
+    "category": "Uncategorized",
+    "description": "OpenTelemetry Python SDK",
+    "version": "1.27.0"
+  },
+  "opentelemetry-semantic-conventions": {
+    "category": "Uncategorized",
+    "description": "OpenTelemetry Semantic Conventions",
+    "version": "0.48b0"
+  },
+  "opentelemetry-util-http": {
+    "category": "Uncategorized",
+    "description": "Web util for OpenTelemetry",
+    "version": "0.48b0"
+  },
+  "orjson": {
+    "category": "Uncategorized",
+    "description": "Fast, correct Python JSON library supporting dataclasses, datetimes, and numpy",
+    "version": "3.10.7"
+  },
+  "overrides": {
+    "category": "Uncategorized",
+    "description": "A decorator to automatically detect mismatch when overriding a method.",
+    "version": "7.7.0"
+  },
+  "packaging": {
+    "category": "Uncategorized",
+    "description": "Core utilities for Python packages",
+    "version": "23.2"
+  },
+  "pandas": {
+    "category": "Scientific/Engineering",
+    "description": "Powerful data structures for data analysis, time series, and statistics",
+    "version": "2.2.2"
+  },
+  "parameterized": {
+    "category": "Uncategorized",
+    "description": "Parameterized testing with any Python test framework",
+    "version": "0.9.0"
+  },
+  "paramiko": {
+    "category": "Internet",
+    "description": "SSH2 protocol library",
+    "version": "3.4.0"
+  },
+  "parso": {
+    "category": "Libraries :: Python Modules",
+    "description": "A Python Parser",
+    "version": "0.8.3"
+  },
+  "pathlib": {
+    "category": "Libraries",
+    "description": "Object-oriented filesystem paths",
+    "version": "1.0.1"
+  },
+  "pathspec": {
+    "category": "Libraries :: Python Modules",
+    "description": "Utility library for gitignore style pattern matching of file paths.",
+    "version": "0.12.1"
+  },
+  "pdf2image": {
+    "category": "Uncategorized",
+    "description": "A wrapper around the pdftoppm and pdftocairo command line tools to convert PDF to a PIL Image list.",
+    "version": "1.17.0"
+  },
+  "pdfminer.six": {
+    "category": "Text Processing",
+    "description": "PDF parser and analyzer",
+    "version": "20231228"
+  },
+  "pdfplumber": {
+    "category": "Uncategorized",
+    "description": "Plumb a PDF for detailed information about each char, rectangle, and line.",
+    "version": "0.11.4"
+  },
+  "peewee": {
+    "category": "Database",
+    "description": "a little orm",
+    "version": "3.16.3"
+  },
+  "pexpect": {
+    "category": "Software Development",
+    "description": "Pexpect allows easy control of interactive console applications.",
+    "version": "4.9.0"
+  },
+  "pikepdf": {
+    "category": "Graphics",
+    "description": "Read and write PDFs with Python, powered by qpdf",
+    "version": "9.2.1"
+  },
+  "pip": {
+    "category": "Build Tools",
+    "description": "The PyPA recommended tool for installing Python packages.",
+    "version": "23.3.1"
+  },
+  "pipx": {
+    "category": "Uncategorized",
+    "description": "Install and Run Python Applications in Isolated Environments",
+    "version": "1.4.3"
+  },
+  "pkginfo": {
+    "category": "Libraries :: Python Modules",
+    "description": "Query metadata from sdists / bdists / installed packages.",
+    "version": "1.10.0"
+  },
+  "platformdirs": {
+    "category": "Libraries :: Python Modules",
+    "description": "A small Python package for determining appropriate platform-specific dirs, e.g. a \"user data dir\".",
+    "version": "4.0.0"
+  },
+  "pluggy": {
+    "category": "Testing",
+    "description": "plugin and hook calling mechanisms for python",
+    "version": "1.5.0"
+  },
+  "poetry": {
+    "category": "Build Tools",
+    "description": "Python dependency management and packaging made easy.",
+    "version": "1.8.3"
+  },
+  "poetry-core": {
+    "category": "Build Tools",
+    "description": "Poetry PEP 517 Build Backend",
+    "version": "1.9.0"
+  },
+  "poetry-plugin-export": {
+    "category": "Uncategorized",
+    "description": "Poetry plugin to export the dependencies to various formats",
+    "version": "1.8.0"
+  },
+  "portalocker": {
+    "category": "Testing",
+    "description": "Wraps the portalocker recipe for easy usage",
+    "version": "2.10.1"
+  },
+  "posthog": {
+    "category": "Uncategorized",
+    "description": "Integrate PostHog into any python application.",
+    "version": "3.6.6"
+  },
+  "proglog": {
+    "category": "Uncategorized",
+    "description": "Log and progress bar manager for console, notebooks, web...",
+    "version": "0.1.10"
+  },
+  "prompt-toolkit": {
+    "category": "Software Development",
+    "description": "Library for building powerful interactive command lines in Python",
+    "version": "3.0.41"
+  },
+  "proto-plus": {
+    "category": "Code Generators",
+    "description": "Beautiful, Pythonic protocol buffers.",
+    "version": "1.24.0"
+  },
+  "protobuf": {
+    "category": "Uncategorized",
+    "description": "No description found",
+    "version": "4.25.5"
+  },
+  "psgfiglet": {
+    "category": "Graphics",
+    "description": "Create Figlets using a PySimpleGUI GUI and pyfiglet. A PySimpleGUI Demo Program.",
+    "version": "5.0.0"
+  },
+  "psutil": {
+    "category": "Libraries :: Python Modules",
+    "description": "Cross-platform lib for process and system monitoring in Python.",
+    "version": "5.9.8"
+  },
+  "ptyprocess": {
+    "category": "Terminals",
+    "description": "Run a subprocess in a pseudo terminal",
+    "version": "0.7.0"
+  },
+  "pulsar-client": {
+    "category": "Uncategorized",
+    "description": "Apache Pulsar Python client library",
+    "version": "3.5.0"
+  },
+  "pure-eval": {
+    "category": "Uncategorized",
+    "description": "Safely evaluate AST nodes without side effects",
+    "version": "0.2.2"
+  },
+  "pyOpenSSL": {
+    "category": "Cryptography",
+    "description": "Python wrapper module around the OpenSSL library",
+    "version": "23.2.0"
+  },
+  "pyasn1": {
+    "category": "Communications",
+    "description": "Pure-Python implementation of ASN.1 types and DER/BER/CER codecs (X.208)",
+    "version": "0.6.0"
+  },
+  "pyasn1_modules": {
+    "category": "Communications",
+    "description": "A collection of ASN.1-based protocols modules",
+    "version": "0.4.1"
+  },
+  "pycosat": {
+    "category": "Utilities",
+    "description": "bindings to picosat (a SAT solver)",
+    "version": "0.6.6"
+  },
+  "pycparser": {
+    "category": "Uncategorized",
+    "description": "C parser in Python",
+    "version": "2.21"
+  },
+  "pydantic": {
+    "category": "Internet",
+    "description": "Data validation using Python type hints",
+    "version": "2.9.1"
+  },
+  "pydantic_core": {
+    "category": "Uncategorized",
+    "description": "Core functionality for Pydantic validation and serialization",
+    "version": "2.23.3"
+  },
+  "pydub": {
+    "category": "Sound/Audio",
+    "description": "Manipulate audio with an simple and easy high level interface",
+    "version": "0.25.1"
+  },
+  "pyfiglet": {
+    "category": "Text Processing",
+    "description": "Pure-python FIGlet implementation",
+    "version": "1.0.2"
+  },
+  "pyparsing": {
+    "category": "Compilers",
+    "description": "pyparsing module - Classes and methods to define and execute parsing grammars",
+    "version": "3.1.1"
+  },
+  "pypdf": {
+    "category": "Libraries :: Python Modules",
+    "description": "A pure-python PDF library capable of splitting, merging, cropping, and transforming PDF files",
+    "version": "4.3.0"
+  },
+  "pypdfium2": {
+    "category": "Graphics",
+    "description": "Python bindings to PDFium",
+    "version": "4.30.0"
+  },
+  "pyproject_hooks": {
+    "category": "Uncategorized",
+    "description": "Wrappers to call pyproject.toml-based build backend hooks.",
+    "version": "1.1.0"
+  },
+  "pyreadline3": {
+    "category": "Uncategorized",
+    "description": "A python implementation of GNU readline.",
+    "version": "3.4.1"
+  },
+  "pysbd": {
+    "category": "Scientific/Engineering",
+    "description": "pysbd (Python Sentence Boundary Disambiguation) is a rule-based sentence boundary detection that works out-of-the-box across many languages.",
+    "version": "0.3.4"
+  },
+  "pytesseract": {
+    "category": "Uncategorized",
+    "description": "Python-tesseract is a python wrapper for Google's Tesseract-OCR",
+    "version": "0.3.13"
+  },
+  "pytest": {
+    "category": "Libraries",
+    "description": "pytest: simple powerful testing with Python",
+    "version": "8.3.2"
+  },
+  "python-crontab": {
+    "category": "Uncategorized",
+    "description": "Python Crontab API",
+    "version": "3.2.0"
+  },
+  "python-dateutil": {
+    "category": "Libraries",
+    "description": "Extensions to the standard Python datetime module",
+    "version": "2.8.2"
+  },
+  "python-decouple": {
+    "category": "Libraries",
+    "description": "Strict separation of settings from code.",
+    "version": "3.8"
+  },
+  "python-dotenv": {
+    "category": "Systems Administration",
+    "description": "Read key-value pairs from a .env file and set them as environment variables",
+    "version": "1.0.0"
+  },
+  "python-editor": {
+    "category": "Libraries",
+    "description": "Programmatically open an editor, capture the result.",
+    "version": "1.0.4"
+  },
+  "python-lsp-jsonrpc": {
+    "category": "Uncategorized",
+    "description": "JSON RPC 2.0 server library",
+    "version": "1.0.0"
+  },
+  "python-multipart": {
+    "category": "Libraries :: Python Modules",
+    "description": "A streaming multipart parser for Python",
+    "version": "0.0.7"
+  },
+  "pytube": {
+    "category": "Internet",
+    "description": "Python 3 library for downloading YouTube Videos.",
+    "version": "15.0.0"
+  },
+  "pytz": {
+    "category": "Libraries :: Python Modules",
+    "description": "World timezone definitions, modern and historical",
+    "version": "2024.1"
+  },
+  "pyvis": {
+    "category": "Uncategorized",
+    "description": "A Python network graph visualization library",
+    "version": "0.3.2"
+  },
+  "pywin32": {
+    "category": "Uncategorized",
+    "description": "Python for Window Extensions",
+    "version": "306"
+  },
+  "pywin32-ctypes": {
+    "category": "Uncategorized",
+    "description": "A (partial) reimplementation of pywin32 using ctypes/cffi",
+    "version": "0.2.2"
+  },
+  "pyyaml_env_tag": {
+    "category": "Libraries :: Python Modules",
+    "description": "A custom YAML tag for referencing environment variables in YAML files. ",
+    "version": "0.1"
+  },
+  "pyzmq": {
+    "category": "Networking",
+    "description": "Python bindings for 0MQ",
+    "version": "25.1.1"
+  },
+  "qdrant-client": {
+    "category": "Uncategorized",
+    "description": "Client library for the Qdrant vector search engine",
+    "version": "1.10.1"
+  },
+  "questionary": {
+    "category": "Libraries",
+    "description": "Python library to build pretty command line user prompts \u2b50\ufe0f",
+    "version": "2.0.1"
+  },
+  "rapidfuzz": {
+    "category": "Uncategorized",
+    "description": "rapid fuzzy string matching",
+    "version": "3.9.7"
+  },
+  "readchar": {
+    "category": "Software Development",
+    "description": "Library to easily read single chars and key strokes",
+    "version": "4.0.5"
+  },
+  "readme_renderer": {
+    "category": "Uncategorized",
+    "description": "readme_renderer is a library for rendering readme descriptions for Warehouse",
+    "version": "44.0"
+  },
+  "referencing": {
+    "category": "JSON",
+    "description": "JSON Referencing + Python",
+    "version": "0.31.1"
+  },
+  "regex": {
+    "category": "Information Analysis",
+    "description": "Alternative regular expression module, to replace re.",
+    "version": "2024.9.11"
+  },
+  "requests": {
+    "category": "WWW/HTTP",
+    "description": "Python HTTP for Humans.",
+    "version": "2.32.3"
+  },
+  "requests-cache": {
+    "category": "Libraries :: Python Modules",
+    "description": "A persistent cache for python requests",
+    "version": "1.2.1"
+  },
+  "requests-oauthlib": {
+    "category": "Uncategorized",
+    "description": "OAuthlib authentication support for Requests.",
+    "version": "2.0.0"
+  },
+  "requests-toolbelt": {
+    "category": "Uncategorized",
+    "description": "A utility belt for advanced users of python-requests",
+    "version": "1.0.0"
+  },
+  "resolvelib": {
+    "category": "Libraries :: Python Modules",
+    "description": "Resolve abstract dependencies into concrete ones",
+    "version": "1.0.1"
+  },
+  "rfc3986": {
+    "category": "Uncategorized",
+    "description": "Validating URI References per RFC 3986",
+    "version": "2.0.0"
+  },
+  "rich": {
+    "category": "Uncategorized",
+    "description": "Render rich text, tables, progress bars, syntax highlighting, markdown and more to the terminal",
+    "version": "13.7.0"
+  },
+  "rpds-py": {
+    "category": "Uncategorized",
+    "description": "Python bindings to Rust's persistent data structures (rpds)",
+    "version": "0.13.2"
+  },
+  "rsa": {
+    "category": "Cryptography",
+    "description": "Pure-Python RSA implementation",
+    "version": "4.9"
+  },
+  "ruamel.yaml": {
+    "category": "Libraries :: Python Modules",
+    "description": "ruamel.yaml is a YAML parser/emitter that supports roundtrip preservation of comments, seq/map flow style, and map key order",
+    "version": "0.17.21"
+  },
+  "ruff": {
+    "category": "Libraries :: Python Modules",
+    "description": "An extremely fast Python linter and code formatter, written in Rust.",
+    "version": "0.6.8"
+  },
+  "s3transfer": {
+    "category": "Uncategorized",
+    "description": "An Amazon S3 Transfer Manager",
+    "version": "0.10.2"
+  },
+  "schema": {
+    "category": "Utilities",
+    "description": "Simple data validation library",
+    "version": "0.7.7"
+  },
+  "scipy": {
+    "category": "Libraries",
+    "description": "Fundamental algorithms for scientific computing in Python",
+    "version": "1.11.4"
+  },
+  "scp": {
+    "category": "Internet",
+    "description": "scp module for paramiko",
+    "version": "0.15.0"
+  },
+  "semgrep": {
+    "category": "Security",
+    "description": "Lightweight static analysis for many languages. Find bug variants with patterns that look like source code.",
+    "version": "1.43.0"
+  },
+  "setuptools": {
+    "category": "Libraries :: Python Modules",
+    "description": "Easily download, build, install, upgrade, and uninstall Python packages",
+    "version": "73.0.1"
+  },
+  "shapely": {
+    "category": "GIS",
+    "description": "Manipulation and analysis of geometric objects",
+    "version": "2.0.6"
+  },
+  "shellingham": {
+    "category": "Libraries :: Python Modules",
+    "description": "Tool to Detect Surrounding Shell",
+    "version": "1.5.4"
+  },
+  "six": {
+    "category": "Libraries",
+    "description": "Python 2 and 3 compatibility utilities",
+    "version": "1.16.0"
+  },
+  "smmap": {
+    "category": "Uncategorized",
+    "description": "A pure Python implementation of a sliding window memory map manager",
+    "version": "5.0.1"
+  },
+  "sniffio": {
+    "category": "Uncategorized",
+    "description": "Sniff out which async library your code is running under",
+    "version": "1.3.0"
+  },
+  "sounddevice": {
+    "category": "Sound/Audio",
+    "description": "Play and Record Sound with Python",
+    "version": "0.4.6"
+  },
+  "soundfile": {
+    "category": "Sound/Audio",
+    "description": "An audio library based on libsndfile, CFFI and NumPy",
+    "version": "0.12.1"
+  },
+  "soupsieve": {
+    "category": "WWW/HTTP :: Dynamic Content",
+    "description": "A modern CSS selector implementation for Beautiful Soup.",
+    "version": "2.5"
+  },
+  "spellcaster": {
+    "category": "Uncategorized",
+    "description": "An open-source tool that leverages AI agents to enhance the quality of your codebase by scanning repositories for grammar, spelling, and code example errors in documentation files.",
+    "version": "0.0.7"
+  },
+  "sseclient-py": {
+    "category": "Uncategorized",
+    "description": "SSE client for Python",
+    "version": "1.8.0"
+  },
+  "stack-data": {
+    "category": "Debuggers",
+    "description": "Extract data from python stack frames and tracebacks for informative displays",
+    "version": "0.6.3"
+  },
+  "starlette": {
+    "category": "WWW/HTTP",
+    "description": "The little ASGI library that shines.",
+    "version": "0.37.2"
+  },
+  "stashapp-tools": {
+    "category": "Uncategorized",
+    "description": "A python library for interfacing with a stashapp's API",
+    "version": "0.2.40"
+  },
+  "striprtf": {
+    "category": "Uncategorized",
+    "description": "A simple library to convert rtf to text",
+    "version": "0.0.26"
+  },
+  "subprocess-tee": {
+    "category": "Systems Administration",
+    "description": "subprocess-tee",
+    "version": "0.4.1"
+  },
+  "sympy": {
+    "category": "Scientific/Engineering",
+    "description": "Computer algebra system (CAS) in Python",
+    "version": "1.13.1"
+  },
+  "tabulate": {
+    "category": "Libraries",
+    "description": "Pretty-print tabular data",
+    "version": "0.9.0"
+  },
+  "tbb": {
+    "category": "Libraries",
+    "description": "Intel\u00ae oneAPI Threading Building Blocks",
+    "version": "2021.13.0"
+  },
+  "tenacity": {
+    "category": "Utilities",
+    "description": "Retry code until it succeeds",
+    "version": "8.5.0"
+  },
+  "termcolor": {
+    "category": "Terminals",
+    "description": "ANSI color formatting for output in terminal",
+    "version": "2.4.0"
+  },
+  "tiktoken": {
+    "category": "Uncategorized",
+    "description": "tiktoken is a fast BPE tokeniser for use with OpenAI's models",
+    "version": "0.7.0"
+  },
+  "tokencost": {
+    "category": "Uncategorized",
+    "description": "To calculate token and translated USD cost of string and message calls to OpenAI, for example when used by AI agents",
+    "version": "0.1.12"
+  },
+  "tokenizers": {
+    "category": "Artificial Intelligence",
+    "description": "No description found",
+    "version": "0.20.0"
+  },
+  "tokentrim": {
+    "category": "Uncategorized",
+    "description": "Easily trim 'messages' arrays for use with GPTs.",
+    "version": "0.1.13"
+  },
+  "toml": {
+    "category": "Uncategorized",
+    "description": "Python Library for Tom's Obvious, Minimal Language",
+    "version": "0.10.2"
+  },
+  "tomli": {
+    "category": "Libraries :: Python Modules",
+    "description": "A lil' TOML parser",
+    "version": "2.0.1"
+  },
+  "tomlkit": {
+    "category": "Uncategorized",
+    "description": "Style preserving TOML library",
+    "version": "0.13.2"
+  },
+  "torch": {
+    "category": "Scientific/Engineering",
+    "description": "Tensors and Dynamic neural networks in Python with strong GPU acceleration",
+    "version": "2.3.1"
+  },
+  "tornado": {
+    "category": "Uncategorized",
+    "description": "Tornado is a Python web framework and asynchronous networking library, originally developed at FriendFeed.",
+    "version": "6.3.3"
+  },
+  "tqdm": {
+    "category": "Desktop Environment",
+    "description": "Fast, Extensible Progress Meter",
+    "version": "4.66.5"
+  },
+  "traitlets": {
+    "category": "Uncategorized",
+    "description": "Traitlets Python configuration system",
+    "version": "5.13.0"
+  },
+  "tree-sitter": {
+    "category": "Compilers",
+    "description": "Python bindings for the Tree-Sitter parsing library",
+    "version": "0.20.4"
+  },
+  "tree-sitter-languages": {
+    "category": "Uncategorized",
+    "description": "Binary Python wheels for all tree sitter languages.",
+    "version": "1.8.0"
+  },
+  "trove-classifiers": {
+    "category": "Uncategorized",
+    "description": "Canonical source for classifiers on PyPI (pypi.org).",
+    "version": "2024.9.12"
+  },
+  "truststore": {
+    "category": "Uncategorized",
+    "description": "Verify certificates using native system trust stores",
+    "version": "0.8.0"
+  },
+  "twine": {
+    "category": "Uncategorized",
+    "description": "Collection of utilities for publishing packages on PyPI",
+    "version": "5.1.1"
+  },
+  "typer": {
+    "category": "Libraries :: Application Frameworks",
+    "description": "Typer, build great CLIs. Easy to code. Based on Python type hints.",
+    "version": "0.12.5"
+  },
+  "types-requests": {
+    "category": "Uncategorized",
+    "description": "Typing stubs for requests",
+    "version": "2.32.0.20240914"
+  },
+  "typing-inspect": {
+    "category": "Software Development",
+    "description": "Runtime inspection utilities for typing module.",
+    "version": "0.9.0"
+  },
+  "typing_extensions": {
+    "category": "Software Development",
+    "description": "Backported and Experimental Type Hints for Python 3.8+",
+    "version": "4.12.2"
+  },
+  "tzdata": {
+    "category": "Uncategorized",
+    "description": "Provider of IANA time zone data",
+    "version": "2024.1"
+  },
+  "ujson": {
+    "category": "Uncategorized",
+    "description": "Ultra fast JSON encoder and decoder for Python",
+    "version": "5.8.0"
+  },
+  "url-normalize": {
+    "category": "Uncategorized",
+    "description": "URL normalization for Python",
+    "version": "1.4.3"
+  },
+  "urllib3": {
+    "category": "WWW/HTTP",
+    "description": "HTTP library with thread-safe connection pooling, file post, and more.",
+    "version": "2.1.0"
+  },
+  "userpath": {
+    "category": "Uncategorized",
+    "description": "Cross-platform tool for adding locations to the user PATH",
+    "version": "1.9.1"
+  },
+  "uuid7": {
+    "category": "Uncategorized",
+    "description": "UUID version 7, generating time-sorted UUIDs with 200ns time resolution and 48 bits of randomness",
+    "version": "0.1.0"
+  },
+  "uvicorn": {
+    "category": "WWW/HTTP",
+    "description": "The lightning-fast ASGI server.",
+    "version": "0.24.0.post1"
+  },
+  "virtualenv": {
+    "category": "Libraries",
+    "description": "Virtual Python Environment builder",
+    "version": "20.26.5"
+  },
+  "watchdog": {
+    "category": "Libraries",
+    "description": "Filesystem events monitoring",
+    "version": "4.0.1"
+  },
+  "watchfiles": {
+    "category": "Libraries :: Python Modules",
+    "description": "Simple, modern and high performance file watching and code reload in python.",
+    "version": "0.24.0"
+  },
+  "wcmatch": {
+    "category": "Libraries :: Python Modules",
+    "description": "Wildcard/glob file name matcher.",
+    "version": "8.5"
+  },
+  "wcwidth": {
+    "category": "Libraries",
+    "description": "Measures the displayed width of unicode strings in a terminal",
+    "version": "0.2.12"
+  },
+  "webencodings": {
+    "category": "WWW/HTTP",
+    "description": "Character encoding aliases for legacy web content",
+    "version": "0.5.1"
+  },
+  "websocket-client": {
+    "category": "Internet",
+    "description": "WebSocket client for Python with low level API options",
+    "version": "1.6.4"
+  },
+  "websockets": {
+    "category": "Uncategorized",
+    "description": "An implementation of the WebSocket Protocol (RFC 6455 & 7692)",
+    "version": "12.0"
+  },
+  "wget": {
+    "category": "Libraries :: Python Modules",
+    "description": "pure python download utility",
+    "version": "3.2"
+  },
+  "wheel": {
+    "category": "Archiving :: Packaging",
+    "description": "A built-package format for Python",
+    "version": "0.41.2"
+  },
+  "whisper": {
+    "category": "Uncategorized",
+    "description": "Fixed size round-robin style database",
+    "version": "1.1.10"
+  },
+  "win-inet-pton": {
+    "category": "Utilities",
+    "description": "Native inet_pton and inet_ntop implementation for Python on Windows (with ctypes).",
+    "version": "1.1.0"
+  },
+  "wrapt": {
+    "category": "Uncategorized",
+    "description": "Module for decorators, wrappers and monkey patching.",
+    "version": "1.16.0"
+  },
+  "xmltodict": {
+    "category": "Markup :: XML",
+    "description": "Makes working with XML feel like you are working with JSON",
+    "version": "0.13.0"
+  },
+  "yamllint": {
+    "category": "Software Development",
+    "description": "A linter for YAML files.",
+    "version": "1.32.0"
+  },
+  "yarl": {
+    "category": "WWW/HTTP",
+    "description": "Yet another URL library",
+    "version": "1.9.2"
+  },
+  "yaspin": {
+    "category": "Software Development",
+    "description": "Yet Another Terminal Spinner",
+    "version": "3.0.2"
+  },
+  "yfinance": {
+    "category": "Financial",
+    "description": "Download market data from Yahoo! Finance API",
+    "version": "0.2.43"
+  },
+  "zipp": {
+    "category": "Uncategorized",
+    "description": "Backport of pathlib-compatible object wrapper for zip files",
+    "version": "3.17.0"
+  },
+  "zstandard": {
+    "category": "Uncategorized",
+    "description": "Zstandard bindings for Python",
+    "version": "0.19.0"
+  }
+}
