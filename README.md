@@ -23,7 +23,7 @@
 
 ## Overview
 
-CodeMapper is a powerful Python tool designed to generate comprehensive Markdown representations of codebases. It bridges the gap between human developers and AI systems by providing a clear, structured view of project architectures and their complete contents. Whether you're working with local directories or GitHub repositories, CodeMapper creates a single, navigable document that encapsulates the full structure and content of a project.
+CodeMapper is a powerful Python tool designed to generate comprehensive Markdown (pdf, xml, and json outputs are on the way) representations of codebases. It bridges the gap between human developers and AI systems by providing a clear, structured view of project architectures and their complete contents. Whether you're working with local directories or GitHub repositories, CodeMapper creates a single, navigable document that encapsulates the full structure and content of a project.
 
 This tool is invaluable for rapid codebase comprehension, whether you're a developer onboarding to a new project or an AI system analyzing code structure.
 
