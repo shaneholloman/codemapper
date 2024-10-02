@@ -2,6 +2,24 @@
 
 ## Version History
 
+- 3.6.0 (2024-10-01):
+  - Added MIT License to the repository
+  - Updated README to include upcoming output formats for CodeMapper
+  - Added requirements.txt and updated README for CodeMapper enhancements
+  - Rigorously reconciled our readme and function docstrings with each other and with the code itself
+  - [View Full Changelog](https://github.com/shaneholloman/codemapper/compare/v3.5.3...v3.6.0)
+
+- 3.5.3 (2024-10-01):
+  - Improved large file handling and simplified command-line options
+  - [View Full Changelog](https://github.com/shaneholloman/codemapper/compare/v3.5.0...v3.5.3)
+
+- 3.5.0 (2024-09-27):
+  - Enhanced Table of Contents (TOC) generation and path normalization
+  - Improved handling of large and binary files
+  - Simplified command-line options
+  - Added PyPI installation support
+  - [View Full Changelog](https://github.com/shaneholloman/codemapper/compare/v3.4.5...v3.5.0)
+
 - 3.3.0 (2024-09-24):
   - Improved Table of Contents (TOC) generation:
     - Fixed issue with double dots appearing for hidden files and directories
@@ -26,13 +44,6 @@
   - Removed option to include large file contents as it's not practical for binary files
   - Simplified command-line options by removing flags related to large file handling
   - Added PyPI installation support
-
-- 3.2.0 (2024-09-23):
-  - Improved handling of large and binary files:
-    - Large and binary files are now always acknowledged without attempting to print their contents
-    - File type and size information is displayed for large and binary files
-  - Removed option to include large file contents as it's not practical for binary files
-  - Simplified command-line options by removing flags related to large file handling
 
 - 3.1.2 (2024-09-23):
   - Restored important formatting functionality in generate_markdown_document function
