@@ -1,40 +1,49 @@
 """
-CodeMapper
+CodeMapper: Comprehensive Codebase Visualization for Humans and AI
 
-Date: 2024-09-23
-Author: AI Assistant (based on original by Shane Holloman)
+Date: 2024 Oct 02
+Author: Shane Holloman with AI Assistance
 
-This Python script generates a Markdown artifact that provides
-a comprehensive overview of a directory structure
-and file contents. It can process local directories or clone and analyze GitHub repositories.
+CodeMapper is a powerful Python tool designed to generate detailed Markdown
+representations of entire codebases. It serves as an efficient bridge between
+human developers and AI systems by providing a clear, structured view of
+project architectures and their complete contents.
 
-Key features:
-• Generates a hierarchical table of contents based on heading levels
-• Creates an accurate file tree representation of the directory structure
-• Produces code blocks for each file's contents
-• Respects .gitignore rules when processing files and directories
-• Excludes .git directories by default
-• Supports various file types with appropriate code fence highlighting
-• Handles file encoding detection for accurate content reading
-• Provides an option to include files normally ignored by .gitignore
-• Can clone and analyze GitHub repositories
-• Saves output in a '_codemaps' directory
-• Acknowledges large and binary files without printing their contents
+This tool excels at processing both local directories and GitHub repositories,
+creating a single, navigable document that captures the full structure and
+content of a project. It's a valuable asset for rapid codebase comprehension,
+whether you're a developer onboarding to a new project or an AI system
+analyzing code structure.
+
+Key Features:
+• Comprehensive Output: Generates content optimized for both human readers and AI analysis
+• Intelligent Content Processing: Respects .gitignore rules and handles various file types
+• Complete Structure Representation:
+  - Creates an accurate, hierarchical file tree
+  - Generates a detailed table of contents for easy navigation
+• Code-Aware Analysis:
+  - Applies appropriate syntax highlighting for different file types
+  - Efficiently handles large or binary files without bloating the output
+• Flexible Input Handling: Works with local directories and GitHub repositories
+• Encoding Detection: Ensures accurate content reading across various file encodings
+• Customizable Ignore Rules: Option to include files normally ignored by .gitignore
+• Organized Output Management: Stores generated documents in a '_codemaps' directory
 
 Usage:
     python codemapper.py <path_to_directory_or_github_url> [--include-ignored]
 
 Output:
-    Creates a markdown file named '<directory_name>_structure.md' in the '_codemaps' directory
+    Creates a markdown file named '<directory_name>_codemap.md' in the '_codemaps' directory
 
 Requirements:
     • Python 3.6+ (for f-strings and type hinting)
     • pathspec library (for handling .gitignore rules)
     • chardet library (for file encoding detection)
 
-Note: This script is designed to provide a comprehensive overview of a codebase,
-      making it easier for developers, AI systems, or other analysts to quickly
-      understand the structure and contents of a project.
+CodeMapper aims to enhance code comprehension and analysis by providing a
+complete and structured view of any codebase. It serves as an effective tool
+for both human developers and AI systems to quickly grasp the full structure
+and content of software projects.
 """
 
 import argparse
@@ -63,7 +72,7 @@ ARCHIVE_EXTENSIONS = {
     ".tbz2",
     ".tar.gz",
     ".tar.bz2",
-    # TODO: implement wildcard support for archive files, example: *.tar.*
+    # implement wildcard support for archive files, example: *.tar.*
 }
 
 CODE_FENCE_MAP: Dict[str, str] = {
@@ -251,11 +260,15 @@ def load_gitignore_specs(base_path: str) -> pathspec.PathSpec:
     """
     Load .gitignore specifications from the given base path.
 
+    This function reads the .gitignore file in the specified directory and creates
+    a PathSpec object that can be used to match files against the gitignore rules.
+
     Args:
         base_path (str): The base directory path to search for .gitignore.
 
     Returns:
-        pathspec.PathSpec: The gitignore specifications.
+        pathspec.PathSpec: The gitignore specifications as a PathSpec object.
+        If no .gitignore file is found, returns an empty PathSpec.
     """
     gitignore_path = os.path.join(base_path, ".gitignore")
     if os.path.isfile(gitignore_path):
@@ -272,13 +285,18 @@ def collect_file_paths(
     """
     Collect file paths, respecting .gitignore rules unless include_ignored is True.
 
+    This function walks through the directory structure, collecting file paths while
+    applying gitignore rules. It excludes certain directories by default and can
+    optionally include files that would normally be ignored by .gitignore.
+
     Args:
         directory_path (str): The path to the directory to process.
-        gitignore_spec (pathspec.PathSpec): The gitignore specifications.
+        gitignore_spec (pathspec.PathSpec): The gitignore specifications to apply.
         include_ignored (bool): Whether to include files ignored by .gitignore.
 
     Returns:
-        List[str]: A list of file paths relative to the directory_path.
+        List[str]: A list of file paths relative to the directory_path, normalized
+        to use forward slashes.
     """
     file_paths = []
 
@@ -308,12 +326,17 @@ def generate_toc(file_paths: List[str], base_name: str) -> str:
     """
     Generate a table of contents based on heading levels.
 
+    This function creates a hierarchical table of contents for the Markdown document,
+    including entries for the base directory or repository, document sections, and
+    all files in the project.
+
     Args:
         file_paths (List[str]): List of file paths to include in the TOC.
         base_name (str): The name of the base directory or repository.
 
     Returns:
-        str: A formatted table of contents as a string.
+        str: A formatted table of contents as a string, with proper Markdown syntax
+        for nested lists and links.
     """
     toc = ["<!-- TOC -->", ""]
     toc.append(f"- [{base_name}](#{base_name.lower().replace(' ', '-')})")
@@ -426,6 +449,9 @@ def is_large_file(file_path: str) -> bool:
     """
     Determine if a file is considered a large binary file.
 
+    This function checks the file extension against a predefined list of large file
+    extensions, known code file types, and falls back to MIME type checking if necessary.
+
     Args:
         file_path (str): Path to the file.
 
@@ -466,11 +492,14 @@ def get_file_info(file_path: str) -> str:
     """
     Get information about a file without reading its contents.
 
+    This function retrieves basic metadata about a file, including its size and
+    MIME type, without actually reading the file contents.
+
     Args:
         file_path (str): Path to the file.
 
     Returns:
-        str: A string containing file information.
+        str: A string containing file information, including file type and size in bytes.
     """
     size = os.path.getsize(file_path)
     mime_type, _ = mimetypes.guess_type(file_path)
@@ -481,11 +510,16 @@ def read_file_content(file_path: str) -> str:
     """
     Read file content with encoding detection and large file handling.
 
+    This function attempts to read the content of a file, detecting its encoding
+    and handling large or binary files appropriately. It uses multiple encoding
+    attempts to ensure proper reading of the file content.
+
     Args:
         file_path (str): Path to the file to read.
 
     Returns:
-        str: The content of the file or information about the file if it's large or binary.
+        str: The content of the file if successfully read, or information about
+        the file if it's large or binary. In case of errors, returns an error message.
     """
     if is_large_file(file_path):
         return f"[Large or binary file detected. {get_file_info(file_path)}]"
@@ -539,6 +573,11 @@ def generate_markdown_document(
     """
     Generate a markdown document from the directory structure.
 
+    This function creates a comprehensive Markdown document that includes a table
+    of contents, file tree representation, and the contents of each file in the
+    specified directory or repository. It respects .gitignore rules and handles
+    large or binary files appropriately.
+
     Args:
         directory_path (str): The path to the directory to process.
         gitignore_spec (pathspec.PathSpec): The gitignore specifications to apply.
@@ -547,7 +586,8 @@ def generate_markdown_document(
         base_name (str): The base name to use for the title of the markdown document.
 
     Returns:
-        str: The generated markdown content as a string.
+        str: The generated markdown content as a string, including all sections
+        and file contents.
     """
     md_content = f"# {base_name}\n\n"
     md_content += f"> CodeMap Source: {source}\n\n"
@@ -638,6 +678,9 @@ def clone_github_repo(repo_url: str) -> str:
     """
     Clone a GitHub repository into a '_github' directory.
 
+    This function clones a GitHub repository to a local directory. If the repository
+    already exists locally, it updates the existing clone instead of creating a new one.
+
     Args:
         repo_url (str): The URL of the GitHub repository to clone.
 
@@ -645,7 +688,7 @@ def clone_github_repo(repo_url: str) -> str:
         str: The path to the cloned repository.
 
     Raises:
-        subprocess.CalledProcessError: If the git clone command fails.
+        subprocess.CalledProcessError: If the git clone or pull command fails.
         OSError: If there's an issue creating the directory.
     """
     github_dir = os.path.join(".", "_github")
@@ -668,9 +711,12 @@ def manage_output_directory(base_name: str, input_path: str) -> str:
     """
     Manage the output directory for the markdown output.
 
+    This function creates a '_codemaps' directory if it doesn't exist and determines
+    the appropriate output file name based on the input path or repository name.
+
     Args:
-        base_name (str): The base name for the output file
-        (usually the repository or directory name).
+        base_name (str): The base name for the output file (usually the repository
+                         or directory name).
         input_path (str): The original input path provided by the user.
 
     Returns:
@@ -688,7 +734,14 @@ def manage_output_directory(base_name: str, input_path: str) -> str:
 
 
 def main():
-    """Main function to orchestrate the markdown document generation process."""
+    """
+    Main function to orchestrate the markdown document generation process.
+
+    This function parses command-line arguments, detects the input type (local
+    directory or GitHub repository), generates the markdown document, and saves
+    it to the appropriate output file. It handles various error conditions and
+    provides user feedback.
+    """
     parser = argparse.ArgumentParser(
         description=("Generate markdown document from directory structure " "or GitHub repository.")
     )
