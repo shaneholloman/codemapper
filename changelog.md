@@ -2,6 +2,12 @@
 
 ## Version History
 
+- 3.7.0 (2024-10-02):
+  - Added setuptools to dependencies in pylint workflow
+  - Updated pylint workflow trigger to include manual dispatch
+  - Updated Python versions in pylint workflow to support 3.10, 3.11, and 3.12
+  - [View Full Changelog](https://github.com/shaneholloman/codemapper/compare/v3.6.0...v3.7.0)
+
 - 3.6.0 (2024-10-01):
   - Added MIT License to the repository
   - Updated README to include upcoming output formats for CodeMapper
