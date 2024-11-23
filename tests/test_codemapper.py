@@ -1,8 +1,6 @@
 """Unit tests for CodeMapper functionality."""
 
-import os
 import tempfile
-import subprocess
 from pathlib import Path
 
 import pytest
