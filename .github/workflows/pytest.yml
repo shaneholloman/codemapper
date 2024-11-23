@@ -35,4 +35,4 @@ jobs:
         env:
           PYTHONPATH: src
         run: |
-          pytest -v tests/test_codemapper.py
+          pytest -v tests/test_codemapper.py || (cat ./_codemaps/codemapper_codemap.md && exit 1)
