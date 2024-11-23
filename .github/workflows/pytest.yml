@@ -24,7 +24,11 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install setuptools chardet pathspec pytest
+          pip install -r requirements.txt
+          pip install pytest
+
+      - name: Install codemapper
+        run: |
           pip install .
 
       - name: Run tests
