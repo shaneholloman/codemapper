@@ -61,6 +61,9 @@ To test the `codemapper` directly from the source directory:
 2. Build the package:
 
     ```sh
+    # before doing ensure
+    # 1. update version in pyproject.toml
+    # 2. update changelog.md
     python -m build
     ```
 
