@@ -2,6 +2,16 @@
 
 ## Version History
 
+- 3.8.0 (2024-11-23):
+  - refactor: Split codebase into modular structure
+    - Split main functionality into separate modules:
+      - main.py: Entry point and CLI handling
+      - utils.py: Core functionality and helper functions
+      - config.py: Configuration constants and settings
+    - Improved code organization and maintainability
+    - Fixed linting issues and long lines
+  - [View Full Changelog](https://github.com/shaneholloman/codemapper/compare/v3.7.0...v3.8.0)
+
 - 3.7.0 (2024-10-02):
   - Added setuptools to dependencies in pylint workflow
   - Updated pylint workflow trigger to include manual dispatch
@@ -71,3 +81,9 @@
 - 2.5.0 (2024-09-10):
   - Initial version
   - Basic functionality for local directory mapping
+<!-- TOC -->
+
+- [Changelog](#changelog)
+  - [Version History](#version-history)
+
+<!-- /TOC -->

@@ -1,85 +1,92 @@
 # Publishing CodeMapper to PyPI
 
-How to prepare the CodeMapper project for publication on PyPI, including testing, building the package, publishing to PyPI, and updating the package.
+Instructions to prepare and publish the CodeMapper project to PyPI using `pyproject.toml`.
 
 ## Table of Contents
 
 - [Publishing CodeMapper to PyPI](#publishing-codemapper-to-pypi)
   - [Table of Contents](#table-of-contents)
   - [Local Testing](#local-testing)
+  - [Testing from Source Directory](#testing-from-source-directory)
   - [Building the Package](#building-the-package)
   - [Troubleshooting](#troubleshooting)
 
 ## Local Testing
 
-Sometime you just want to run the script locally to test it before publishing it to PyPI. Here's how you can do that:
+To test the package locally before publishing to PyPI:
 
-Easy and fast way:
+1. Create a virtual environment:
 
-```sh
-python -m src.codemapper.codemapper https://github.com/shaneholloman/claude-sync
-```
+    ```sh
+    python -m venv venv
+    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+    ```
 
-Create a virtual environment:
+2. Install the package locally:
 
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
-```
+    ```sh
+    pip install -e .
+    ```
 
-Install the package locally:
+3. Test the package:
 
-```bash
-pip install -e .
-```
+    ```sh
+    codemapper /path/to/test/directory_or_GITHUB-REPO-URL
+    ```
 
-Test the package:
+## Testing from Source Directory
 
-```bash
-codemapper /path/to/test/directory or URL
-```
+To test the `codemapper` directly from the source directory:
 
-If any issues arise, fix them and repeat steps 7.2 and 7.3
+1. Set the `PYTHONPATH` to the `src` directory and run the `codemapper` module:
+
+    ```sh
+    PYTHONPATH=src python -m codemapper.main <path_to_directory_or_github_url>
+    ```
+
+2. Example to run `codemapper` in the current directory:
+
+    ```sh
+    set PYTHONPATH=src && python -m codemapper.main .
+    ```
 
 ## Building the Package
 
-Install build tools:
+1. Install build tools:
 
-```bash
-pip install --upgrade setuptools wheel twine build installer
-```
+    ```sh
+    pip install --upgrade setuptools wheel build twine
+    ```
 
-Rebuild the package:
+2. Build the package:
 
-I typically delete to the old build files before rebuilding.
+    ```sh
+    python -m build
+    ```
 
-```bash
-python -m build
-```
+    This will generate distribution files in the `dist` directory.
 
-Upload the new version:
+3. Upload the package to PyPI:
 
-```bash
-# have you pypi credentials ready
-python -m twine upload dist/*
-```
+    ```sh
+    python -m twine upload dist/*
+    ```
 
-```sh
-# pip install the latest version
-pip install --upgrade codemapper
-```
+4. Update the package:
 
-Create a new release on GitHub as in step 10.6.
+    ```sh
+    pip install --upgrade codemapper
+    ```
 
 ## Troubleshooting
 
 - **FileNotFoundError: [Errno 2] No such file or directory: 'README.md'**:
-  - Ensure README.md is in the same directory as setup.py.
+  - Ensure `README.md` is in the same directory as `pyproject.toml`.
   - Check your current working directory.
 
 - **HTTPError: 400 Client Error: File already exists**:
   - You cannot overwrite an existing version on PyPI.
-  - Increment the version number and try again.
+  - Increment the version number in `pyproject.toml` and try again.
 
 - **ImportError: No module named 'codemapper'**:
   - Ensure the package is installed correctly: `pip install -e .`
@@ -88,7 +95,6 @@ Create a new release on GitHub as in step 10.6.
 - **Permission denied when uploading to PyPI**:
   - Verify your PyPI credentials.
   - Ensure you have the necessary permissions to upload the package.
-  - Check if your 2FA token is correct (if 2FA is enabled).
 
 - **Package not found on PyPI after upload**:
   - Wait a few minutes, as it can take some time for the package to appear.

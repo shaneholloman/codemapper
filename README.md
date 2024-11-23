@@ -60,7 +60,7 @@ For audio explanations of this project, see:
 
 ### From PyPI
 
-Install CodeMapper directly from PyPI using pip:
+Install CodeMapper directly from PyPI:
 
 ```sh
 pip install codemapper
@@ -74,12 +74,22 @@ pip install codemapper
     git clone https://github.com/shaneholloman/codemapper.git
     ```
 
-2. Navigate to the cloned directory and install the required dependencies:
+2. Navigate to the cloned directory and install the package:
 
     ```sh
     cd codemapper
-    pip install -r requirements.txt
+    pip install .
     ```
+
+## Building the Package
+
+To build the package using `pyproject.toml`:
+
+```sh
+python -m build
+```
+
+This will create distribution files in the `dist` directory.
 
 ## Usage
 
