@@ -1,5 +1,7 @@
 """Unit tests for CodeMapper functionality."""
 
+import os
+import subprocess
 import tempfile
 from pathlib import Path
 
@@ -122,20 +124,20 @@ def test_read_nonexistent_file():
 if __name__ == "__main__":
     pytest.main([__file__])
 
-# def test_run_codemapper_from_source():
-#     """Test running codemapper from the source directory."""
-#     result = subprocess.run(
-#         ["python", "-m", "codemapper.main", "."],
-#         env={"PYTHONPATH": "src"},
-#         capture_output=True,
-#         text=True,
-#         check=True
-#     )
-#     print("STDOUT:", result.stdout)
-#     print("STDERR:", result.stderr)
-#     assert result.returncode == 0
-#     assert "Markdown file has been created" in result.stdout
-#     assert os.path.exists("./_codemaps/codemapper_codemap.md")
+def test_run_codemapper_from_source():
+    """Test running codemapper from the source directory."""
+    result = subprocess.run(
+        ["python", "-m", "codemapper.main", "."],
+        env={"PYTHONPATH": "src"},
+        capture_output=True,
+        text=True,
+        check=True
+    )
+    print("STDOUT:", result.stdout)
+    print("STDERR:", result.stderr)
+    assert result.returncode == 0
+    assert "Markdown file has been created" in result.stdout
+    assert os.path.exists("./_codemaps/codemapper_codemap.md")
 
-# if __name__ == "__main__":
-#     pytest.main([__file__])
+if __name__ == "__main__":
+    pytest.main([__file__])

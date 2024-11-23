@@ -35,4 +35,4 @@ jobs:
         env:
           PYTHONPATH: src
         run: |
-          pytest -v tests/test_codemapper.py
+          pytest -v tests/test_github_codemapper.py
