@@ -31,22 +31,8 @@ jobs:
         run: |
           pip install .
 
-      - name: Create necessary directories
-        run: |
-          mkdir -p _codemaps
-
       - name: Run tests
         env:
           PYTHONPATH: src
         run: |
-          pytest -v tests/test_codemapper.py || (cat ./_codemaps/codemapper_codemap.md && exit 1)
-
-      - name: Debugging
-        if: failure()
-        run: |
-          echo "Listing files in the current directory:"
-          ls -la
-          echo "Listing files in the _codemaps directory:"
-          ls -la _codemaps
-          echo "Displaying the contents of the generated markdown file:"
-          cat ./_codemaps/codemapper_codemap.md || echo "Markdown file not found"
+          pytest -v tests/test_codemapper.py
