@@ -1,5 +1,15 @@
-
 """Configuration and constants for CodeMapper."""
+
+# Standard documentation directory names to check
+DOC_DIRECTORIES = {
+    "docs",
+    "wiki",
+    "documentation",
+}
+
+# Output file suffixes
+CODEMAP_SUFFIX = "_codemap.md"
+DOCMAP_SUFFIX = "_docmap.md"
 
 ARCHIVE_EXTENSIONS = {
     ".zip", ".tar", ".gz", ".rar", ".7z", ".bz2", ".xz",

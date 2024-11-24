@@ -4,10 +4,12 @@ import os
 import re
 import subprocess
 import mimetypes
-from typing import List, Tuple  # Removed unused Dict
+from typing import List, Tuple  # Add back Tuple, remove unused Optional
 
 import chardet
 import pathspec
+
+from .config import CODEMAP_SUFFIX  # At top level import
 
 from .config import (
     ARCHIVE_EXTENSIONS,
@@ -342,8 +344,18 @@ def clone_github_repo(repo_url: str) -> str:
     return repo_path
 
 
-def manage_output_directory(base_name: str, input_path: str) -> str:
-    """Manage the output directory for the markdown output."""
+def manage_output_directory(base_name: str, input_path: str, suffix: str = CODEMAP_SUFFIX) -> str:
+    """
+    Manage the output directory for the markdown output.
+
+    Args:
+        base_name (str): Base name for the output file
+        input_path (str): Original input path (used for relative path handling)
+        suffix (str): Suffix for the output file. Defaults to CODEMAP_SUFFIX.
+
+    Returns:
+        str: Path to the output file
+    """
     output_dir = os.path.join(".", "_codemaps")
     os.makedirs(output_dir, exist_ok=True)
 
@@ -351,5 +363,5 @@ def manage_output_directory(base_name: str, input_path: str) -> str:
     if not os.path.isabs(input_path) and not input_path.startswith(("http://", "https://")):
         base_name = os.path.basename(os.path.abspath(input_path))
 
-    file_name = f"{base_name}_codemap.md"
+    file_name = f"{base_name}{suffix}"
     return os.path.join(output_dir, file_name)

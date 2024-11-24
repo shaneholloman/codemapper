@@ -24,6 +24,9 @@ To test the package locally before publishing to PyPI:
 
 2. Install the package locally:
 
+   > [!IMPORTANT]
+   > This will install the package in editable mode, allowing you to make changes to the source code and test them immediately. That also means, if you change the source code and want to test those changes from the source, you will need to re-run this command!
+
     ```sh
     pip install -e .
     ```

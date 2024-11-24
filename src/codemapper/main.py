@@ -6,18 +6,20 @@ Main execution module for CodeMapper tool.
 
 import argparse
 import os
-import subprocess  # Added missing import
+import subprocess
 import sys
 
 from . import __version__
+from .config import CODEMAP_SUFFIX, DOCMAP_SUFFIX
 from .utils import (
     load_gitignore_specs,
     generate_markdown_document,
     detect_input_type,
     clone_github_repo,
     manage_output_directory,
-    capture_source,  # Added missing import
+    capture_source,
 )
+from .docmap import generate_docmap_content
 
 def main():
     """Main function to orchestrate the markdown document generation process."""
@@ -39,6 +41,15 @@ def main():
         action="version",
         version=f"CodeMapper version {__version__}",
         help="Show the version number and exit",
+    )
+    parser.add_argument(
+        "--docs",
+        action="store_true",
+        help="Generate documentation map instead of code map"
+    )
+    parser.add_argument(
+        "--docs-dir",
+        help="Specify custom documentation directory path",
     )
     args = parser.parse_args()
 
@@ -74,11 +85,17 @@ def main():
         base_name = os.path.basename(directory_path)
 
     gitignore_spec = load_gitignore_specs(directory_path)
-    markdown_content = generate_markdown_document(
-        directory_path, gitignore_spec, args.include_ignored, source, base_name
-    )
 
-    output_file_path = manage_output_directory(base_name, args.input_path)
+    if args.docs:
+        markdown_content = generate_docmap_content(
+            directory_path, gitignore_spec, args.include_ignored, source, base_name, args.docs_dir
+        )
+        output_file_path = manage_output_directory(base_name, args.input_path, DOCMAP_SUFFIX)
+    else:
+        markdown_content = generate_markdown_document(
+            directory_path, gitignore_spec, args.include_ignored, source, base_name
+        )
+        output_file_path = manage_output_directory(base_name, args.input_path, CODEMAP_SUFFIX)
 
     with open(output_file_path, "w", encoding="utf-8") as md_file:
         md_file.write(markdown_content)
