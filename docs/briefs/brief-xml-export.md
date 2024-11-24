@@ -49,6 +49,7 @@ This brief outlines the implementation plan for adding XML export capability to 
     <repository>
         <metadata>
             <name>repository-name</name>
+            <source>dir-path-or-url</source>
             <description>Repository contents for LLM context</description>
             <fetch_date>YYYY-MM-DDThh:mm:ss.SSSZ</fetch_date>
             <branch>main</branch>
