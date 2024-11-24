@@ -126,9 +126,9 @@ def generate_docmap_content(config: DocMapConfig) -> str:
         md_content.extend([
             "## Project README\n",
             "The following section contains the main project README content:\n",
-            "```markdown",
+            "````markdown",
             readme_content,
-            "```\n"
+            "````\n"
         ])
 
     # Find and process documentation directory
@@ -154,9 +154,9 @@ def generate_docmap_content(config: DocMapConfig) -> str:
                 is_markdown = path.endswith('.md')
                 md_content.extend([
                     f"#### {path}\n",
-                    "```markdown" if is_markdown else "```",
+                    "````markdown" if is_markdown else "```",
                     content,
-                    "```\n"
+                    "````\n" if is_markdown else "```\n"
                 ])
 
     # If neither README nor doc directory found, include a note

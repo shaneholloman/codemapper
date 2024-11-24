@@ -2,6 +2,22 @@
 
 ## Version History
 
+- 3.9.0 (2024-11-24):
+  - feature: Add DocMap functionality for documentation mapping
+    - Added new CLI options:
+      - --docs flag to generate documentation maps
+      - --docs-dir option for custom documentation directory paths
+    - Generates repository-name_docmap.md with focus on documentation
+    - Automatically includes root README.md content
+    - Scans standard doc directories (docs, doc, documentation)
+  - refactor: Implement DocMapConfig dataclass for parameter handling
+    - Added new docmap.py module for documentation functionality
+    - Introduced DocMapConfig for improved parameter organization
+    - Added documentation directory constants in config.py
+    - Enhanced error handling for missing documentation
+    - Achieved perfect pylint score (10.00/10)
+  - [View Full Changelog](https://github.com/shaneholloman/codemapper/compare/v3.8.0...v4.0.1)
+
 - 3.8.0 (2024-11-23):
   - refactor: Split codebase into modular structure
     - Split main functionality into separate modules:
