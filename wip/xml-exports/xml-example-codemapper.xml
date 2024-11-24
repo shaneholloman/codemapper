@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<llm_context>
+<codemap>
   <repository>
     <metadata>
       <name>shaneholloman/codemapper</name>
@@ -6428,4 +6428,4 @@
       </directory>
     </contents>
   </repository>
-</llm_context>
+</codemap>
