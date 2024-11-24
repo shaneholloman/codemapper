@@ -27,7 +27,7 @@ tag is: [`core`](https://github.com/users/shaneholloman/projects/9/views/7)
 tag is: [`outputs`](https://github.com/users/shaneholloman/projects/9/views/7)
 
 - [x] Generate `*_codemap.md` for file contents and directory structure
-- [ ] Create separate `*_docmap.md` for documentation directories
+- [x] Create separate `*_docmap.md` for documentation directories
 - [x] Add repository source information to output file header
 - [x] Markdown (default)
   - [ ] JSON
