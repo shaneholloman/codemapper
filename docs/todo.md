@@ -30,9 +30,10 @@ tag is: [`outputs`](https://github.com/users/shaneholloman/projects/9/views/7)
 - [x] Create separate `*_docmap.md` for documentation directories
 - [x] Add repository source information to output file header
 - [x] Markdown (default)
+  - [ ] XML
   - [ ] JSON
   - [ ] YAML
-  - [ ] reStructuredText
+  - [ ] RST
   - [ ] AsciiDoc
 - [ ] Go to top of page link in markdown output next to each heading
 
