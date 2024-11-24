@@ -144,7 +144,7 @@ CodeMapper generates two main types of outputs:
 
 CodeMapper is actively developing focused on:
 
-[ToDos](private/todo.md)
+[ToDos](docs/todo.md)
 
 - Expanded format support (JSON, YAML, reStructuredText)
 - Enhanced AI integration capabilities
