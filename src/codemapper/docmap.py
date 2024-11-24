@@ -12,9 +12,12 @@ README.md files to create a complete documentation overview.
 
 import os
 import logging
+# Add dataclasses import for our new DocMapConfig
+from dataclasses import dataclass
 from typing import Optional
 
-import pathspec  # Import pathspec library explicitly
+# Need pathspec for type hinting
+import pathspec
 
 from .config import DOC_DIRECTORIES
 from .utils import (
@@ -24,6 +27,32 @@ from .utils import (
 )
 
 logger = logging.getLogger(__name__)
+
+# This is our new configuration class
+# @dataclass is a decorator that automatically adds special methods to the class
+# This makes it easier to create and use classes that are mainly used to hold data
+@dataclass
+class DocMapConfig:
+    """Configuration class for document mapping generation.
+
+    This class holds all the parameters needed for generating a documentation map.
+    Using a class like this helps us organize related data and makes the code
+    easier to maintain.
+
+    Attributes:
+        directory_path (str): The path to the directory being mapped
+        gitignore_spec (pathspec.PathSpec): Gitignore specifications to follow
+        include_ignored (bool): Whether to include ignored files, defaults to False
+        source (str): Source information string, defaults to empty string
+        base_name (str): Base name for documentation, defaults to empty string
+        doc_dir (Optional[str]): Custom documentation directory, defaults to None
+    """
+    directory_path: str
+    gitignore_spec: pathspec.PathSpec
+    include_ignored: bool = False
+    source: str = ""
+    base_name: str = ""
+    doc_dir: Optional[str] = None
 
 def find_documentation_directory(base_path: str, custom_dir: Optional[str] = None) -> Optional[str]:
     """
@@ -67,30 +96,24 @@ def process_readme(base_path: str) -> Optional[str]:
     logger.info("No README.md file found")
     return None
 
-def generate_docmap_content(
-    directory_path: str,
-    gitignore_spec: pathspec.PathSpec,
-    include_ignored: bool = False,
-    source: str = "",
-    base_name: str = "",
-    doc_dir: Optional[str] = None
-) -> str:
+# Updated to use the new DocMapConfig class
+def generate_docmap_content(config: DocMapConfig) -> str:
     """
     Generate documentation mapping markdown content.
 
+    Instead of taking multiple parameters, this function now takes a single
+    DocMapConfig object that contains all the necessary configuration values.
+    This makes the function cleaner and easier to maintain.
+
     Args:
-        directory_path (str): Base directory path
-        gitignore_spec (pathspec.PathSpec): Gitignore specifications
-        include_ignored (bool, optional): Whether to include ignored files. Defaults to False.
-        source (str, optional): Source information string. Defaults to "".
-        base_name (str, optional): Base name for the documentation. Defaults to "".
-        doc_dir (Optional[str], optional): Custom documentation directory. Defaults to None.
+        config (DocMapConfig): Configuration object containing all parameters
 
     Returns:
         str: Generated markdown content for documentation mapping
     """
-    md_content = [f"# {base_name} Documentation", ""]
-    md_content.append(f"> DocMap Source: {source}\n")
+    # Start building the markdown content
+    md_content = [f"# {config.base_name} Documentation", ""]
+    md_content.append(f"> DocMap Source: {config.source}\n")
     md_content.append(
         "This markdown document provides a comprehensive overview of the documentation "
         "files and structure. It aims to give viewers (human or AI) a complete view "
@@ -98,31 +121,31 @@ def generate_docmap_content(
     )
 
     # Process README first
-    readme_content = process_readme(directory_path)
+    readme_content = process_readme(config.directory_path)
     if readme_content:
         md_content.extend([
             "## Project README\n",
             "The following section contains the main project README content:\n",
-            "````markdown",
+            "```markdown",
             readme_content,
-            "````\n"
+            "```\n"
         ])
 
     # Find and process documentation directory
-    doc_path = find_documentation_directory(directory_path, doc_dir)
+    doc_path = find_documentation_directory(config.directory_path, config.doc_dir)
     if doc_path:
-        relative_doc_path = os.path.relpath(doc_path, directory_path)
+        relative_doc_path = os.path.relpath(doc_path, config.directory_path)
         md_content.extend([
             f"## Documentation Directory: {relative_doc_path}\n",
             "### Directory Structure\n",
             "```tree"
         ])
 
-        tree_content = generate_file_tree(doc_path, gitignore_spec, include_ignored)
+        tree_content = generate_file_tree(doc_path, config.gitignore_spec, config.include_ignored)
         md_content.extend([tree_content, "```\n"])
 
         # Collect and process documentation files
-        file_paths = collect_file_paths(doc_path, gitignore_spec, include_ignored)
+        file_paths = collect_file_paths(doc_path, config.gitignore_spec, config.include_ignored)
         if file_paths:
             md_content.append("### Documentation Contents\n")
             for path in file_paths:
@@ -131,9 +154,9 @@ def generate_docmap_content(
                 is_markdown = path.endswith('.md')
                 md_content.extend([
                     f"#### {path}\n",
-                    "````markdown" if is_markdown else "```",
+                    "```markdown" if is_markdown else "```",
                     content,
-                    "````\n" if is_markdown else "```\n"
+                    "```\n"
                 ])
 
     # If neither README nor doc directory found, include a note

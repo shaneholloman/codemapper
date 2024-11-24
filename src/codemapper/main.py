@@ -19,7 +19,8 @@ from .utils import (
     manage_output_directory,
     capture_source,
 )
-from .docmap import generate_docmap_content
+# Import both the function and the configuration class
+from .docmap import generate_docmap_content, DocMapConfig
 
 def main():
     """Main function to orchestrate the markdown document generation process."""
@@ -45,7 +46,7 @@ def main():
     parser.add_argument(
         "--docs",
         action="store_true",
-        help="Generate documentation map instead of code map"
+        help="Generate documentation map instead of code map",
     )
     parser.add_argument(
         "--docs-dir",
@@ -87,9 +88,17 @@ def main():
     gitignore_spec = load_gitignore_specs(directory_path)
 
     if args.docs:
-        markdown_content = generate_docmap_content(
-            directory_path, gitignore_spec, args.include_ignored, source, base_name, args.docs_dir
+        # Create a DocMapConfig object with all our parameters
+        doc_config = DocMapConfig(
+            directory_path=directory_path,
+            gitignore_spec=gitignore_spec,
+            include_ignored=args.include_ignored,
+            source=source,
+            base_name=base_name,
+            doc_dir=args.docs_dir
         )
+        # Pass the config object to generate_docmap_content
+        markdown_content = generate_docmap_content(doc_config)
         output_file_path = manage_output_directory(base_name, args.input_path, DOCMAP_SUFFIX)
     else:
         markdown_content = generate_markdown_document(
