@@ -2,7 +2,7 @@
 
 ## Version History
 
-- 3.9.0 (2024-11-24):
+- 4.0.1 (2024-11-24):
   - feature: Add DocMap functionality for documentation mapping
     - Added new CLI options:
       - --docs flag to generate documentation maps
