@@ -2,6 +2,10 @@
 
 ## Version History
 
+- 4.1.0 (2024-11-26):
+  - feat: added better support for .adoc .mdx and .rst files
+  - [View Full Changelog](https://github.com/shaneholloman/codemapper/compare/v4.0.1...v4.1.0)
+
 - 4.0.1 (2024-11-24):
   - feature: Add DocMap functionality for documentation mapping
     - Added new CLI options:
