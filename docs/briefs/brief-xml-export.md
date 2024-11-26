@@ -14,10 +14,10 @@ This brief outlines the implementation plan for adding XML export capability to 
 - Optional flag `--xml-output=<filename>` to specify custom output filename
 - Usage examples:
 
-  ```bash
-  codemapper --xml repo-url           # Generate standard XML output
-  codemapper --xml --xml-output=custom.xml repo-url  # Custom filename
-  ```
+    ```bash
+    codemapper --xml repo-url           # Generate standard XML output
+    codemapper --xml --xml-output=custom.xml repo-url  # Custom filename
+    ```
 
 ### XML Content Scope
 
