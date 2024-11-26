@@ -17,6 +17,7 @@ from .config import (
     LARGE_FILE_EXTENSIONS,
 )
 
+
 # Move all functions from codemapper.py
 def should_exclude_directory(dir_name: str, include_ignored: bool = False) -> bool:
     """Determine if a directory should be excluded from processing."""
@@ -48,19 +49,17 @@ def load_gitignore_specs(base_path: str) -> pathspec.PathSpec:
 
 
 def collect_file_paths(
-    directory_path: str,
-    gitignore_spec: pathspec.PathSpec,
-    include_ignored: bool = False
+    directory_path: str, gitignore_spec: pathspec.PathSpec, include_ignored: bool = False
 ) -> List[str]:
     """Collect file paths, respecting .gitignore rules unless include_ignored is True."""
     file_paths = []
 
     for root, dirs, files in os.walk(directory_path):
         dirs[:] = [
-            d for d in dirs
+            d
+            for d in dirs
             if not should_exclude_directory(d, include_ignored)
-            and (include_ignored or not gitignore_spec.match_file(
-                os.path.join(root, d)))
+            and (include_ignored or not gitignore_spec.match_file(os.path.join(root, d)))
         ]
 
         for filename in files:
@@ -123,11 +122,10 @@ def generate_toc(file_paths: List[str], base_name: str) -> str:
 
 
 def generate_file_tree(
-    directory_path: str,
-    gitignore_spec: pathspec.PathSpec,
-    include_ignored: bool = False
+    directory_path: str, gitignore_spec: pathspec.PathSpec, include_ignored: bool = False
 ) -> str:
     """Generate an accurate file tree representation of the given directory."""
+
     def walk_directory(dir_path: str, prefix: str = "") -> List[str]:
         files = []
         contents = sorted(os.listdir(dir_path))
@@ -249,7 +247,7 @@ def generate_markdown_document(
     gitignore_spec: pathspec.PathSpec,
     include_ignored: bool = False,
     source: str = "",
-    base_name: str = ""
+    base_name: str = "",
 ) -> str:
     """Generate a markdown document from the directory structure."""
     md_content = f"# {base_name}\n\n"
@@ -294,7 +292,8 @@ def generate_markdown_document(
         full_path = os.path.join(directory_path, path)
 
         code_fence_lang = determine_code_fence(path)
-        fence = "````" if path.endswith(".md") else "```"
+        # Update to include all doc types
+        fence = "````" if path.endswith((".md", ".mdx", ".rst", ".adoc")) else "```"
         md_content += f"{fence}{code_fence_lang}\n"
         file_content = read_file_content(full_path)
         md_content += file_content + "\n"

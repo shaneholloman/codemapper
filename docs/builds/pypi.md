@@ -7,7 +7,7 @@ Instructions to prepare and publish the CodeMapper project to PyPI using `pyproj
 - [Publishing CodeMapper to PyPI](#publishing-codemapper-to-pypi)
   - [Table of Contents](#table-of-contents)
   - [Local Testing](#local-testing)
-  - [Testing from Source Directory](#testing-from-source-directory)
+[Testing from Source Directory](#testing-from-source-directory-linuxmac)
   - [Building the Package](#building-the-package)
   - [Troubleshooting](#troubleshooting)
 
@@ -37,7 +37,7 @@ To test the package locally before publishing to PyPI:
     codemapper /path/to/test/directory_or_GITHUB-REPO-URL
     ```
 
-## Testing from Source Directory
+## Testing from Source Directory (Linux/Mac)
 
 To test the `codemapper` directly from the source directory:
 
@@ -51,6 +51,30 @@ To test the `codemapper` directly from the source directory:
 
     ```sh
     set PYTHONPATH=src && python -m codemapper.main .
+    ```
+
+For Windows PowerShell, the syntax for setting environment variables is different.
+
+## Testing from Source Directory (Windows PowerShell)
+
+To test the `codemapper` directly from the source directory:
+
+1. Set the `PYTHONPATH` to the `src` directory and run the `codemapper` module:
+
+    ```powershell
+    $env:PYTHONPATH="src"; python -m codemapper.main <path_to_directory_or_github_url>
+    ```
+
+2. Example to run `codemapper` in the current directory:
+
+    ```powershell
+    $env:PYTHONPATH="src"; python -m codemapper.main .
+    ```
+
+    Or for a single line with a GitHub URL:
+
+    ```powershell
+    $env:PYTHONPATH="src"; python -m codemapper.main https://github.com/modelcontextprotocol/docs
     ```
 
 ## Building the Package

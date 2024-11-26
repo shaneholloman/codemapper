@@ -12,6 +12,7 @@ README.md files to create a complete documentation overview.
 
 import os
 import logging
+
 # Add dataclasses import for our new DocMapConfig
 from dataclasses import dataclass
 from typing import Optional
@@ -27,6 +28,15 @@ from .utils import (
 )
 
 logger = logging.getLogger(__name__)
+
+# Documentation type mapping
+doc_types = {
+    ".md": "markdown",
+    ".mdx": "markdown",
+    ".adoc": "asciidoc",
+    ".rst": "restructuredtext",
+}
+
 
 # This is our new configuration class
 # @dataclass is a decorator that automatically adds special methods to the class
@@ -47,12 +57,14 @@ class DocMapConfig:
         base_name (str): Base name for documentation, defaults to empty string
         doc_dir (Optional[str]): Custom documentation directory, defaults to None
     """
+
     directory_path: str
     gitignore_spec: pathspec.PathSpec
     include_ignored: bool = False
     source: str = ""
     base_name: str = ""
     doc_dir: Optional[str] = None
+
 
 def find_documentation_directory(base_path: str, custom_dir: Optional[str] = None) -> Optional[str]:
     """
@@ -78,6 +90,7 @@ def find_documentation_directory(base_path: str, custom_dir: Optional[str] = Non
     logger.info("No standard documentation directory found")
     return None
 
+
 def process_readme(base_path: str) -> Optional[str]:
     """
     Process the root README.md file.
@@ -95,6 +108,7 @@ def process_readme(base_path: str) -> Optional[str]:
 
     logger.info("No README.md file found")
     return None
+
 
 # Updated to use the new DocMapConfig class
 def generate_docmap_content(config: DocMapConfig) -> str:
@@ -123,41 +137,53 @@ def generate_docmap_content(config: DocMapConfig) -> str:
     # Process README first
     readme_content = process_readme(config.directory_path)
     if readme_content:
-        md_content.extend([
-            "## Project README\n",
-            "The following section contains the main project README content:\n",
-            "````markdown",
-            readme_content,
-            "````\n"
-        ])
+        md_content.extend(
+            [
+                "## Project README\n",
+                "The following section contains the main project README content:\n",
+                "````markdown",
+                readme_content,
+                "````\n",
+            ]
+        )
 
     # Find and process documentation directory
     doc_path = find_documentation_directory(config.directory_path, config.doc_dir)
     if doc_path:
         relative_doc_path = os.path.relpath(doc_path, config.directory_path)
-        md_content.extend([
-            f"## Documentation Directory: {relative_doc_path}\n",
-            "### Directory Structure\n",
-            "```tree"
-        ])
+        md_content.extend(
+            [
+                f"## Documentation Directory: {relative_doc_path}\n",
+                "### Directory Structure\n",
+                "```tree",
+            ]
+        )
 
         tree_content = generate_file_tree(doc_path, config.gitignore_spec, config.include_ignored)
         md_content.extend([tree_content, "```\n"])
 
-        # Collect and process documentation files
+        # Then in the function:
+        def get_fence_type(file_path: str) -> str:
+            """Get the fence type based on file extension."""
+            ext = os.path.splitext(file_path)[1].lower()
+            return doc_types.get(ext, "")
+
+        # Process documentation files
         file_paths = collect_file_paths(doc_path, config.gitignore_spec, config.include_ignored)
         if file_paths:
             md_content.append("### Documentation Contents\n")
             for path in file_paths:
                 full_path = os.path.join(doc_path, path)
                 content = read_file_content(full_path)
-                is_markdown = path.endswith('.md')
-                md_content.extend([
-                    f"#### {path}\n",
-                    "````markdown" if is_markdown else "```",
-                    content,
-                    "````\n" if is_markdown else "```\n"
-                ])
+                fence_type = get_fence_type(path)
+                md_content.extend(
+                    [
+                        f"#### {path}\n",
+                        f"````{fence_type}" if fence_type else "```",
+                        content,
+                        "````\n" if fence_type else "```\n",
+                    ]
+                )
 
     # If neither README nor doc directory found, include a note
     if not readme_content and not doc_path:
