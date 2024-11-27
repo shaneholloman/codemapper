@@ -33,6 +33,7 @@
 
 > [!IMPORTANT]
 > CodeMapper: Bridging Code Understanding for AI and Human Analysis
+>
 > Install: `pip install codemapper`
 
 CodeMapper is a powerful Python tool that transforms complex codebases into navigable, single-file Markdown artifacts, with a unique ability to bootstrap AI chat prompts for code analysis. Designed with both AI engineers and hobbyist developers in mind, it serves as a bridge between traditional code exploration and modern AI-assisted development workflows. Whether you're training large language models, conducting interactive AI-assisted code reviews, or simply trying to understand a new project, CodeMapper provides a unified, accessible view of your codebase that's optimized for both human readability and AI consumption.
@@ -90,15 +91,16 @@ This enables the AI to provide more accurate, contextual responses about your co
 - **Documentation Generation**: Train models on well-structured documentation patterns
 - **Code Understanding**: Feed entire codebases to LLMs for comprehensive analysis
 
-Example AI Chat Workflow:
+> [!TIP]
+> Example AI Chat Workflow:
 
 ```bash
 # Generate a codemap for your project
-codemapper /path/to/project
+codemapper /path/to/project_or_repo
 
 # The generated codemap can be directly used in AI chat prompts:
 "Here's my project structure and code, help me understand the dependency flow:
-[paste _codemap.md content]"
+[paste or add to you project knowledge *_codemap.md content]"
 ```
 
 ### For Hobbyists
@@ -142,11 +144,12 @@ CodeMapper generates two main types of outputs:
 
 ## Future Development
 
-CodeMapper is actively developing focused on:
+> [!NOTE]
+> CodeMapper welcomes help while actively focused on:
 
 [ToDos](docs/todo.md)
 
-- Expanded format support (JSON, YAML, reStructuredText)
+- Expanded format support (XML, JSON, YAML, RST)
 - Enhanced AI integration capabilities
 - Real-time code change tracking
 - Collaborative annotation features
