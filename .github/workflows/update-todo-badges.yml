@@ -21,11 +21,11 @@ jobs:
           sudo apt-get install -y powershell
 
       - name: Make script executable
-        run: chmod +x ./scripts/update-todo-badges.ps1
+        run: chmod +x scripts/update-todo-badges.ps1
 
       - name: Update TODO badges
         shell: pwsh
-        run: ./scripts/update-todo-badges.ps1
+        run: scripts/update-todo-badges.ps1
 
       - name: Commit changes
         run: |
