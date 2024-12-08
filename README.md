@@ -2,7 +2,7 @@
 
 [![Pylint](https://github.com/shaneholloman/codemapper/actions/workflows/pylint.yml/badge.svg)](https://github.com/shaneholloman/codemapper/actions/workflows/pylint.yml)
 [![PyTest](https://github.com/shaneholloman/codemapper/actions/workflows/pytest.yml/badge.svg)](https://github.com/shaneholloman/codemapper/actions/workflows/pytest.yml)
-[![TODO](https://img.shields.io/badge/✔%20RoadMap-45-blue)](docs/notes/todo.md)
+[![TODO](https://img.shields.io/badge/✔%20RoadMap-45-blue)](docs/todo.md)
 ![logo](codemapper-outlined.webp)
 
 <!-- TOC -->
