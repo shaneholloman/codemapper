@@ -1,4 +1,4 @@
-name: TODOs
+name: Update TODO Badges
 
 on:
   push:
@@ -15,10 +15,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install PowerShell
+      - name: Ensure PowerShell is installed
         run: |
           sudo apt-get update
           sudo apt-get install -y powershell
+
+      - name: Make script executable
+        run: chmod +x ./scripts/update-todo-badges.ps1
 
       - name: Update TODO badges
         shell: pwsh
