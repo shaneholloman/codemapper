@@ -26,6 +26,8 @@ tag is: [`core`](https://github.com/users/shaneholloman/projects/9/views/7)
 
 tag is: [`outputs`](https://github.com/users/shaneholloman/projects/9/views/7)
 
+- [ ] Default output dirs will be .docmaps and .codemaps
+- [ ] Consider adding an additional `llms.txt` to satisfy the new hype-train of making a `robots.txt` equivalent
 - [x] Generate `*_codemap.md` for file contents and directory structure
 - [x] Create separate `*_docmap.md` for documentation directories
 - [x] Add repository source information to output file header

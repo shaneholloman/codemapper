@@ -1,0 +1,33 @@
+name: TODOs
+
+on:
+  push:
+    paths:
+      - 'docs/todo.md'
+  workflow_dispatch:
+
+jobs:
+  update-badges:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install PowerShell
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y powershell
+
+      - name: Update TODO badges
+        shell: pwsh
+        run: ./scripts/update-todo-badges.ps1
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add README.md
+          git diff --quiet && git diff --staged --quiet || git commit -m "docs: update todo badges"
+          git push
