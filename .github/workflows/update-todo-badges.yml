@@ -20,6 +20,9 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y powershell
 
+      - name: List files for debugging
+        run: ls -R
+
       - name: Make script executable
         run: chmod +x scripts/update-todo-badges.ps1
 
