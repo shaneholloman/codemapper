@@ -12,16 +12,17 @@ README.md files to create a complete documentation overview.
 
 import os
 import logging
-from typing import Optional
+from typing import Optional, TYPE_CHECKING
 from dataclasses import dataclass
-import pathspec
-
 from .config import DOC_DIRECTORIES, BaseMapConfig
 from .utils import (
     read_file_content,
     generate_file_tree,
     collect_file_paths,
 )
+
+if TYPE_CHECKING:
+    from .config import pathspec
 
 logger = logging.getLogger(__name__)
 
@@ -46,26 +47,6 @@ class DocMapConfig(BaseMapConfig):
     """
 
     doc_dir: Optional[str] = None
-
-    def __init__(
-        self,
-        directory_path: str,
-        gitignore_spec: pathspec.PathSpec,
-        include_ignored: bool = False,
-        source: str = "",
-        base_name: str = "",
-        exclude_dirs: Optional[list[str]] = None,
-        doc_dir: Optional[str] = None,
-    ):
-        super().__init__(
-            directory_path=directory_path,
-            gitignore_spec=gitignore_spec,
-            include_ignored=include_ignored,
-            source=source,
-            base_name=base_name,
-            exclude_dirs=exclude_dirs,
-        )
-        self.doc_dir = doc_dir
 
 
 def find_documentation_directory(base_path: str, custom_dir: Optional[str] = None) -> Optional[str]:
