@@ -2,6 +2,9 @@
 
 ## Version History
 
+- 4.4.0 (2024-12-30 15:21:43)
+  - feat: implement BaseMapConfig for shared mapping configuration and refactor DocMapConfig and CodeMapConfig to inherit from it
+
 - 4.3.0 (2024-12-30 14:58:05)
   - feat: added a dataclass to handle the configuration options
 
