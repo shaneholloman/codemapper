@@ -6,8 +6,6 @@
 
 <img src="codemapper-logo.svg" width="150" alt="logo">
 
----
-
 <!-- TOC -->
 
 - [CodeMapper](#codemapper)
