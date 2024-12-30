@@ -4,7 +4,7 @@ import os
 import re
 import subprocess
 import mimetypes
-from typing import List, Tuple  # Add back Tuple, remove unused Optional
+from typing import List, Tuple, Optional  # Add Optional for optional parameters
 
 import chardet
 import pathspec
@@ -19,11 +19,29 @@ from .config import (
 
 
 # Move all functions from codemapper.py
-def should_exclude_directory(dir_name: str, include_ignored: bool = False) -> bool:
-    """Determine if a directory should be excluded from processing."""
+def should_exclude_directory(
+    dir_name: str, include_ignored: bool = False, exclude_dirs: Optional[List[str]] = None
+) -> bool:
+    """
+    Determine if a directory should be excluded from processing.
+
+    Args:
+        dir_name: Name of the directory to check
+        include_ignored: Whether to include git-ignored files
+        exclude_dirs: List of additional directories to exclude
+    """
+    # Default exclusions
+    default_exclusions = {".git", ".venv", ".conda", "node_modules"}
+
     if include_ignored:
-        return dir_name == ".git"
-    return dir_name in {".git", ".gitignore"}
+        return dir_name in default_exclusions
+
+    # Combine default exclusions with user-specified ones
+    exclusions = default_exclusions | {".gitignore"}
+    if exclude_dirs:
+        exclusions.update(exclude_dirs)
+
+    return dir_name in exclusions
 
 
 def determine_code_fence(file_path: str) -> str:
@@ -49,7 +67,10 @@ def load_gitignore_specs(base_path: str) -> pathspec.PathSpec:
 
 
 def collect_file_paths(
-    directory_path: str, gitignore_spec: pathspec.PathSpec, include_ignored: bool = False
+    directory_path: str,
+    gitignore_spec: pathspec.PathSpec,
+    include_ignored: bool = False,
+    exclude_dirs: Optional[List[str]] = None,
 ) -> List[str]:
     """Collect file paths, respecting .gitignore rules unless include_ignored is True."""
     file_paths = []
@@ -58,7 +79,7 @@ def collect_file_paths(
         dirs[:] = [
             d
             for d in dirs
-            if not should_exclude_directory(d, include_ignored)
+            if not should_exclude_directory(d, include_ignored, exclude_dirs)
             and (include_ignored or not gitignore_spec.match_file(os.path.join(root, d)))
         ]
 
@@ -122,7 +143,10 @@ def generate_toc(file_paths: List[str], base_name: str) -> str:
 
 
 def generate_file_tree(
-    directory_path: str, gitignore_spec: pathspec.PathSpec, include_ignored: bool = False
+    directory_path: str,
+    gitignore_spec: pathspec.PathSpec,
+    include_ignored: bool = False,
+    exclude_dirs: Optional[List[str]] = None,
 ) -> str:
     """Generate an accurate file tree representation of the given directory."""
 
@@ -133,7 +157,7 @@ def generate_file_tree(
             d
             for d in contents
             if os.path.isdir(os.path.join(dir_path, d))
-            and not should_exclude_directory(d, include_ignored)
+            and not should_exclude_directory(d, include_ignored, exclude_dirs)
         ]
         regular_files = [f for f in contents if os.path.isfile(os.path.join(dir_path, f))]
 
@@ -248,6 +272,7 @@ def generate_markdown_document(
     include_ignored: bool = False,
     source: str = "",
     base_name: str = "",
+    exclude_dirs: Optional[List[str]] = None,
 ) -> str:
     """Generate a markdown document from the directory structure."""
     md_content = f"# {base_name}\n\n"
@@ -265,7 +290,7 @@ def generate_markdown_document(
         "of the repository.\n\n"
     )
 
-    file_paths = collect_file_paths(directory_path, gitignore_spec, include_ignored)
+    file_paths = collect_file_paths(directory_path, gitignore_spec, include_ignored, exclude_dirs)
 
     # Generate TOC
     toc = generate_toc(file_paths, base_name)
@@ -277,7 +302,7 @@ def generate_markdown_document(
         "It's crucial for understanding the organization of the codebase.\n\n"
     )
     md_content += "```tree\n"
-    md_content += generate_file_tree(directory_path, gitignore_spec, include_ignored)
+    md_content += generate_file_tree(directory_path, gitignore_spec, include_ignored, exclude_dirs)
     md_content += "\n```\n\n"
 
     md_content += "## Repo File Contents\n\n"

@@ -19,8 +19,10 @@ from .utils import (
     manage_output_directory,
     capture_source,
 )
+
 # Import both the function and the configuration class
 from .docmap import generate_docmap_content, DocMapConfig
+
 
 def main():
     """Main function to orchestrate the markdown document generation process."""
@@ -51,6 +53,12 @@ def main():
     parser.add_argument(
         "--docs-dir",
         help="Specify custom documentation directory path",
+    )
+    parser.add_argument(
+        "--exclude",
+        action="append",
+        help="Exclude specified directory from output (can be used multiple times). "
+        "Note: .venv, .conda, and node_modules are excluded by default.",
     )
     args = parser.parse_args()
 
@@ -95,14 +103,20 @@ def main():
             include_ignored=args.include_ignored,
             source=source,
             base_name=base_name,
-            doc_dir=args.docs_dir
+            doc_dir=args.docs_dir,
+            exclude_dirs=args.exclude,
         )
         # Pass the config object to generate_docmap_content
         markdown_content = generate_docmap_content(doc_config)
         output_file_path = manage_output_directory(base_name, args.input_path, DOCMAP_SUFFIX)
     else:
         markdown_content = generate_markdown_document(
-            directory_path, gitignore_spec, args.include_ignored, source, base_name
+            directory_path,
+            gitignore_spec,
+            args.include_ignored,
+            source,
+            base_name,
+            args.exclude,
         )
         output_file_path = manage_output_directory(base_name, args.input_path, CODEMAP_SUFFIX)
 
@@ -110,6 +124,7 @@ def main():
         md_file.write(markdown_content)
 
     print(f"Markdown file has been created: {output_file_path}")
+
 
 if __name__ == "__main__":
     main()

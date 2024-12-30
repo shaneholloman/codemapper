@@ -15,7 +15,7 @@ import logging
 
 # Add dataclasses import for our new DocMapConfig
 from dataclasses import dataclass
-from typing import Optional
+from typing import Optional, List
 
 # Need pathspec for type hinting
 import pathspec
@@ -56,6 +56,7 @@ class DocMapConfig:
         source (str): Source information string, defaults to empty string
         base_name (str): Base name for documentation, defaults to empty string
         doc_dir (Optional[str]): Custom documentation directory, defaults to None
+        exclude_dirs (Optional[List[str]]): List of directories to exclude, defaults to None
     """
 
     directory_path: str
@@ -64,6 +65,7 @@ class DocMapConfig:
     source: str = ""
     base_name: str = ""
     doc_dir: Optional[str] = None
+    exclude_dirs: Optional[List[str]] = None
 
 
 def find_documentation_directory(base_path: str, custom_dir: Optional[str] = None) -> Optional[str]:
@@ -159,7 +161,9 @@ def generate_docmap_content(config: DocMapConfig) -> str:
             ]
         )
 
-        tree_content = generate_file_tree(doc_path, config.gitignore_spec, config.include_ignored)
+        tree_content = generate_file_tree(
+            doc_path, config.gitignore_spec, config.include_ignored, config.exclude_dirs
+        )
         md_content.extend([tree_content, "```\n"])
 
         # Then in the function:
@@ -169,7 +173,9 @@ def generate_docmap_content(config: DocMapConfig) -> str:
             return doc_types.get(ext, "")
 
         # Process documentation files
-        file_paths = collect_file_paths(doc_path, config.gitignore_spec, config.include_ignored)
+        file_paths = collect_file_paths(
+            doc_path, config.gitignore_spec, config.include_ignored, config.exclude_dirs
+        )
         if file_paths:
             md_content.append("### Documentation Contents\n")
             for path in file_paths:
