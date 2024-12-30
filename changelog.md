@@ -2,6 +2,11 @@
 
 ## Version History
 
+- 4.2.0 (2024-12-30 14:34:14)
+  - feat: added support to exclude a directory from the mapping `--exclude dirname`
+  - feat: always exclude .conda, .venv and node_modules directories
+  - feat: now uses a shallow clone for faster processing
+
 - 4.1.0 (2024-11-26):
   - feat: added better support for .adoc .mdx and .rst files
   - [View Full Changelog](https://github.com/shaneholloman/codemapper/compare/v4.0.1...v4.1.0)
