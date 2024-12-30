@@ -110,7 +110,7 @@ To test the `codemapper` directly from the source directory:
 
 ## Troubleshooting
 
-- **FileNotFoundError: [Errno 2] No such file or directory: 'README.md'**:
+- **FileNotFoundError: `[Errno 2]` No such file or directory: 'README.md'**:
   - Ensure `README.md` is in the same directory as `pyproject.toml`.
   - Check your current working directory.
 

@@ -335,11 +335,11 @@ def clone_github_repo(repo_url: str) -> str:
 
     if os.path.exists(repo_path):
         print(f"Repository '{repo_name}' already exists. Updating...")
-        subprocess.run(["git", "-C", repo_path, "pull"], check=True)
+        subprocess.run(["git", "-C", repo_path, "pull", "--depth", "1"], check=True)
         return repo_path
 
     print(f"Cloning repository '{repo_name}'...")
-    subprocess.run(["git", "clone", repo_url, repo_path], check=True)
+    subprocess.run(["git", "clone", "--depth", "1", repo_url, repo_path], check=True)
     return repo_path
 
 

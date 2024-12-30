@@ -6,6 +6,8 @@
 
 tag is: [`core`](https://github.com/users/shaneholloman/projects/9/views/7)
 
+- [x] The git pull needs to be a shallow clone, we dont want history!
+
 - [x] Implement direct repository URL analysis
 - [ ] Expand Git hosting service support (GitLab, Bitbucket)
 - [ ] Develop progress indicator for large repository processing
@@ -38,6 +40,7 @@ tag is: [`outputs`](https://github.com/users/shaneholloman/projects/9/views/7)
   - [ ] RST
   - [ ] AsciiDoc
 - [ ] Go to top of page link in markdown output next to each heading
+- [ ] Add and `--exclude` option for files and directories
 
 ## CodeMapper Service
 
