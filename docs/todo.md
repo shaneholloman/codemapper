@@ -7,7 +7,6 @@
 tag is: [`core`](https://github.com/users/shaneholloman/projects/9/views/7)
 
 - [x] The git pull needs to be a shallow clone, we dont want history!
-
 - [x] Implement direct repository URL analysis
 - [ ] Expand Git hosting service support (GitLab, Bitbucket)
 - [ ] Develop progress indicator for large repository processing
@@ -23,6 +22,7 @@ tag is: [`core`](https://github.com/users/shaneholloman/projects/9/views/7)
   - [ ] Output format default
   - [ ] api keys for AI integration
   - [ ] Ai services to use
+  - [x] Always shallow clone
 
 ## File Outputs
 
@@ -40,7 +40,7 @@ tag is: [`outputs`](https://github.com/users/shaneholloman/projects/9/views/7)
   - [ ] RST
   - [ ] AsciiDoc
 - [ ] Go to top of page link in markdown output next to each heading
-- [ ] Add and `--exclude` option for files and directories
+- [x] Add and `--exclude` option for files and directories
 
 ## CodeMapper Service
 
@@ -77,7 +77,7 @@ tag is: [`ux`](https://github.com/users/shaneholloman/projects/9/views/7)
   - [ ] Detect your OS
   - [ ] Give advise on how to install git based on OS
 - [ ] Develop comprehensive help command and menu
-- [ ] Add builtin aliases for codemapper [cm, map] can be additionally defined in config
+- [ ] Add builtin aliases for codemapper [cm, codemap, map] can be additionally defined in config
 - [ ] Enhance Table of Contents generation
   - [ ] Consider using `md_toc` library for robustness
 - [ ] Implement a warning and alt method for huge repository processing
@@ -88,5 +88,5 @@ tag is: [`ux`](https://github.com/users/shaneholloman/projects/9/views/7)
 tag is: [`dev`](https://github.com/users/shaneholloman/projects/9/views/7)
 
 - [x] Implement CI for linting
-- [ ] Implement CI for automated testing
+- [x] Implement CI for automated testing
 - [ ] Implement CI for PyPI package deployment

@@ -59,6 +59,11 @@ CodeMapper is a powerful Python tool that transforms complex codebases into navi
   - Direct GitHub repository URL support
   - Handles large repositories efficiently
   - Smart binary file detection
+  - We always shallow clone for speed!
+
+- **Customization Options**:
+  - Exclude and Include dir options for fine-grained control
+  - Always excludes .venv, .conda and node_modules directories
 
 - **Documentation Focus**:
   - Dedicated DocMap generation for documentation-heavy projects
