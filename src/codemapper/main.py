@@ -18,6 +18,7 @@ from .utils import (
     clone_github_repo,
     manage_output_directory,
     capture_source,
+    CodeMapConfig,
 )
 
 # Import both the function and the configuration class
@@ -108,17 +109,28 @@ def main():
         )
         # Pass the config object to generate_docmap_content
         markdown_content = generate_docmap_content(doc_config)
-        output_file_path = manage_output_directory(base_name, args.input_path, DOCMAP_SUFFIX)
-    else:
-        markdown_content = generate_markdown_document(
-            directory_path,
-            gitignore_spec,
-            args.include_ignored,
-            source,
-            base_name,
-            args.exclude,
+        output_file_path = manage_output_directory(
+            base_name=base_name,
+            input_path=args.input_path,
+            suffix=DOCMAP_SUFFIX,
         )
-        output_file_path = manage_output_directory(base_name, args.input_path, CODEMAP_SUFFIX)
+    else:
+        # Create a CodeMapConfig object with all our parameters
+        code_config = CodeMapConfig(
+            directory_path=directory_path,
+            gitignore_spec=gitignore_spec,
+            include_ignored=args.include_ignored,
+            source=source,
+            base_name=base_name,
+            exclude_dirs=args.exclude,
+        )
+        # Pass the config object to generate_markdown_document
+        markdown_content = generate_markdown_document(code_config)
+        output_file_path = manage_output_directory(
+            base_name=base_name,
+            input_path=args.input_path,
+            suffix=CODEMAP_SUFFIX,
+        )
 
     with open(output_file_path, "w", encoding="utf-8") as md_file:
         md_file.write(markdown_content)

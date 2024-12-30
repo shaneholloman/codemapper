@@ -4,7 +4,8 @@ import os
 import re
 import subprocess
 import mimetypes
-from typing import List, Tuple, Optional  # Add Optional for optional parameters
+from typing import List, Tuple, Optional
+from dataclasses import dataclass
 
 import chardet
 import pathspec
@@ -18,7 +19,31 @@ from .config import (
 )
 
 
-# Move all functions from codemapper.py
+@dataclass
+class CodeMapConfig:
+    """Configuration class for code mapping generation.
+
+    This class holds all the parameters needed for generating a code map.
+    Using a class like this helps us organize related data and makes the code
+    easier to maintain.
+
+    Attributes:
+        directory_path (str): The path to the directory being mapped
+        gitignore_spec (pathspec.PathSpec): Gitignore specifications to follow
+        include_ignored (bool): Whether to include ignored files, defaults to False
+        source (str): Source information string, defaults to empty string
+        base_name (str): Base name for documentation, defaults to empty string
+        exclude_dirs (Optional[List[str]]): List of directories to exclude, defaults to None
+    """
+
+    directory_path: str
+    gitignore_spec: pathspec.PathSpec
+    include_ignored: bool = False
+    source: str = ""
+    base_name: str = ""
+    exclude_dirs: Optional[List[str]] = None
+
+
 def should_exclude_directory(
     dir_name: str, include_ignored: bool = False, exclude_dirs: Optional[List[str]] = None
 ) -> bool:
@@ -266,17 +291,18 @@ def capture_source(input_path: str) -> str:
     return f"GitHub repository: <{input_path}>"
 
 
-def generate_markdown_document(
-    directory_path: str,
-    gitignore_spec: pathspec.PathSpec,
-    include_ignored: bool = False,
-    source: str = "",
-    base_name: str = "",
-    exclude_dirs: Optional[List[str]] = None,
-) -> str:
-    """Generate a markdown document from the directory structure."""
-    md_content = f"# {base_name}\n\n"
-    md_content += f"> CodeMap Source: {source}\n\n"
+def generate_markdown_document(config: CodeMapConfig) -> str:
+    """
+    Generate a markdown document from the directory structure.
+
+    Args:
+        config (CodeMapConfig): Configuration object containing all parameters
+
+    Returns:
+        str: Generated markdown content for code mapping
+    """
+    md_content = f"# {config.base_name}\n\n"
+    md_content += f"> CodeMap Source: {config.source}\n\n"
     md_content += (
         "This markdown document provides a comprehensive overview of the "
         "directory structure and file contents. It aims to give viewers "
@@ -290,10 +316,12 @@ def generate_markdown_document(
         "of the repository.\n\n"
     )
 
-    file_paths = collect_file_paths(directory_path, gitignore_spec, include_ignored, exclude_dirs)
+    file_paths = collect_file_paths(
+        config.directory_path, config.gitignore_spec, config.include_ignored, config.exclude_dirs
+    )
 
     # Generate TOC
-    toc = generate_toc(file_paths, base_name)
+    toc = generate_toc(file_paths, config.base_name)
     md_content += toc + "\n\n"
 
     md_content += "## Repo File Tree\n\n"
@@ -302,7 +330,9 @@ def generate_markdown_document(
         "It's crucial for understanding the organization of the codebase.\n\n"
     )
     md_content += "```tree\n"
-    md_content += generate_file_tree(directory_path, gitignore_spec, include_ignored, exclude_dirs)
+    md_content += generate_file_tree(
+        config.directory_path, config.gitignore_spec, config.include_ignored, config.exclude_dirs
+    )
     md_content += "\n```\n\n"
 
     md_content += "## Repo File Contents\n\n"
@@ -314,7 +344,7 @@ def generate_markdown_document(
     # Generate code blocks for each file
     for i, path in enumerate(file_paths):
         md_content += f"### {path}\n\n"
-        full_path = os.path.join(directory_path, path)
+        full_path = os.path.join(config.directory_path, path)
 
         code_fence_lang = determine_code_fence(path)
         # Update to include all doc types
