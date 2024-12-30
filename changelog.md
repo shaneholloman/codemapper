@@ -2,6 +2,9 @@
 
 ## Version History
 
+- 4.3.0 (2024-12-30 14:58:05)
+  - feat: added a dataclass to handle the configuration options
+
 - 4.2.0 (2024-12-30 14:34:14)
   - feat: added support to exclude a directory from the mapping `--exclude dirname`
   - feat: always exclude .conda, .venv and node_modules directories
