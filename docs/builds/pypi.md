@@ -105,7 +105,7 @@ To test the `codemapper` directly from the source directory:
 4. Update the package:
 
     ```sh
-    pip install --upgrade codemapper
+    pip install --upgrade codemapper --force
     ```
 
 ## Troubleshooting
