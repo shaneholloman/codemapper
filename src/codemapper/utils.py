@@ -10,38 +10,22 @@ from dataclasses import dataclass
 import chardet
 import pathspec
 
-from .config import CODEMAP_SUFFIX  # At top level import
-
 from .config import (
+    CODEMAP_SUFFIX,
     ARCHIVE_EXTENSIONS,
     CODE_FENCE_MAP,
     LARGE_FILE_EXTENSIONS,
+    BaseMapConfig,
 )
 
 
 @dataclass
-class CodeMapConfig:
+class CodeMapConfig(BaseMapConfig):
     """Configuration class for code mapping generation.
 
-    This class holds all the parameters needed for generating a code map.
-    Using a class like this helps us organize related data and makes the code
-    easier to maintain.
-
-    Attributes:
-        directory_path (str): The path to the directory being mapped
-        gitignore_spec (pathspec.PathSpec): Gitignore specifications to follow
-        include_ignored (bool): Whether to include ignored files, defaults to False
-        source (str): Source information string, defaults to empty string
-        base_name (str): Base name for documentation, defaults to empty string
-        exclude_dirs (Optional[List[str]]): List of directories to exclude, defaults to None
+    Inherits from BaseMapConfig to provide configuration for code mapping.
+    See BaseMapConfig for documentation of inherited attributes.
     """
-
-    directory_path: str
-    gitignore_spec: pathspec.PathSpec
-    include_ignored: bool = False
-    source: str = ""
-    base_name: str = ""
-    exclude_dirs: Optional[List[str]] = None
 
 
 def should_exclude_directory(

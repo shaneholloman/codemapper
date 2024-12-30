@@ -12,15 +12,11 @@ README.md files to create a complete documentation overview.
 
 import os
 import logging
-
-# Add dataclasses import for our new DocMapConfig
+from typing import Optional
 from dataclasses import dataclass
-from typing import Optional, List
-
-# Need pathspec for type hinting
 import pathspec
 
-from .config import DOC_DIRECTORIES
+from .config import DOC_DIRECTORIES, BaseMapConfig
 from .utils import (
     read_file_content,
     generate_file_tree,
@@ -38,34 +34,38 @@ doc_types = {
 }
 
 
-# This is our new configuration class
-# @dataclass is a decorator that automatically adds special methods to the class
-# This makes it easier to create and use classes that are mainly used to hold data
 @dataclass
-class DocMapConfig:
+class DocMapConfig(BaseMapConfig):
     """Configuration class for document mapping generation.
 
-    This class holds all the parameters needed for generating a documentation map.
-    Using a class like this helps us organize related data and makes the code
-    easier to maintain.
+    Inherits from BaseMapConfig to provide configuration for documentation mapping.
+    See BaseMapConfig for documentation of inherited attributes.
 
-    Attributes:
-        directory_path (str): The path to the directory being mapped
-        gitignore_spec (pathspec.PathSpec): Gitignore specifications to follow
-        include_ignored (bool): Whether to include ignored files, defaults to False
-        source (str): Source information string, defaults to empty string
-        base_name (str): Base name for documentation, defaults to empty string
+    Additional Attributes:
         doc_dir (Optional[str]): Custom documentation directory, defaults to None
-        exclude_dirs (Optional[List[str]]): List of directories to exclude, defaults to None
     """
 
-    directory_path: str
-    gitignore_spec: pathspec.PathSpec
-    include_ignored: bool = False
-    source: str = ""
-    base_name: str = ""
     doc_dir: Optional[str] = None
-    exclude_dirs: Optional[List[str]] = None
+
+    def __init__(
+        self,
+        directory_path: str,
+        gitignore_spec: pathspec.PathSpec,
+        include_ignored: bool = False,
+        source: str = "",
+        base_name: str = "",
+        exclude_dirs: Optional[list[str]] = None,
+        doc_dir: Optional[str] = None,
+    ):
+        super().__init__(
+            directory_path=directory_path,
+            gitignore_spec=gitignore_spec,
+            include_ignored=include_ignored,
+            source=source,
+            base_name=base_name,
+            exclude_dirs=exclude_dirs,
+        )
+        self.doc_dir = doc_dir
 
 
 def find_documentation_directory(base_path: str, custom_dir: Optional[str] = None) -> Optional[str]:
@@ -112,7 +112,6 @@ def process_readme(base_path: str) -> Optional[str]:
     return None
 
 
-# Updated to use the new DocMapConfig class
 def generate_docmap_content(config: DocMapConfig) -> str:
     """
     Generate documentation mapping markdown content.
@@ -166,7 +165,6 @@ def generate_docmap_content(config: DocMapConfig) -> str:
         )
         md_content.extend([tree_content, "```\n"])
 
-        # Then in the function:
         def get_fence_type(file_path: str) -> str:
             """Get the fence type based on file extension."""
             ext = os.path.splitext(file_path)[1].lower()

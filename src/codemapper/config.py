@@ -1,5 +1,9 @@
 """Configuration and constants for CodeMapper."""
 
+from dataclasses import dataclass
+from typing import Optional, List
+import pathspec
+
 # Standard documentation directory names to check
 DOC_DIRECTORIES = {
     "docs",
@@ -10,6 +14,31 @@ DOC_DIRECTORIES = {
 # Output file suffixes
 CODEMAP_SUFFIX = "_codemap.md"
 DOCMAP_SUFFIX = "_docmap.md"
+
+
+@dataclass
+class BaseMapConfig:
+    """Base configuration class for mapping generation.
+
+    This class holds the common parameters needed for generating maps.
+    It serves as a base class for specific mapping configurations.
+
+    Attributes:
+        directory_path (str): The path to the directory being mapped
+        gitignore_spec (pathspec.PathSpec): Gitignore specifications to follow
+        include_ignored (bool): Whether to include ignored files, defaults to False
+        source (str): Source information string, defaults to empty string
+        base_name (str): Base name for documentation, defaults to empty string
+        exclude_dirs (Optional[List[str]]): List of directories to exclude, defaults to None
+    """
+
+    directory_path: str
+    gitignore_spec: pathspec.PathSpec
+    include_ignored: bool = False
+    source: str = ""
+    base_name: str = ""
+    exclude_dirs: Optional[List[str]] = None
+
 
 ARCHIVE_EXTENSIONS = {
     ".zip",
