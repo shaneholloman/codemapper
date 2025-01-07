@@ -1,5 +1,6 @@
 # CodeMapper
 
+![Total Downloads](https://static.pepy.tech/badge/codemapper)
 [![Pylint](https://github.com/shaneholloman/codemapper/actions/workflows/pylint.yml/badge.svg)](https://github.com/shaneholloman/codemapper/actions/workflows/pylint.yml)
 [![PyTest](https://github.com/shaneholloman/codemapper/actions/workflows/pytest.yml/badge.svg)](https://github.com/shaneholloman/codemapper/actions/workflows/pytest.yml)
 [![TODO](https://img.shields.io/badge/✔%20Todo-44-purple)](docs/todo.md)
