@@ -36,7 +36,7 @@
 > [!IMPORTANT]
 > CodeMapper: Bridging Code Understanding for AI and Human Analysis
 >
-> Install: `pip install codemapper`
+> Install: `uv tool install codemapper` to your system. This will add a binary to your path. Zero conflicts with other tools. Of course you may use the traditional `pip install codemapper` as well.
 
 CodeMapper is a powerful Python tool that transforms complex codebases into navigable, single-file Markdown artifacts, with a unique ability to bootstrap AI chat prompts for code analysis. Designed with both AI engineers and hobbyist developers in mind, it serves as a bridge between traditional code exploration and modern AI-assisted development workflows. Whether you're training large language models, conducting interactive AI-assisted code reviews, or simply trying to understand a new project, CodeMapper provides a unified, accessible view of your codebase that's optimized for both human readability and AI consumption.
 
@@ -182,13 +182,18 @@ CodeMapper generates two main types of outputs:
 ## Installation Options
 
 ```bash
-# For basic installation
+# For basic traditional installation
 pip install codemapper
+
+# Preferred installation
+uv tool install codemapper
 
 # For development installation
 git clone https://github.com/shaneholloman/codemapper
 cd codemapper
-pip install -e .
+uv venv
+uv sync
+uv pip install -e .
 ```
 
 ## Contributing
