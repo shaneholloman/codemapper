@@ -172,3 +172,8 @@ cython_debug/
 
 # Grit
 .grit/
+
+
+# macOS
+.DS_Store
+.AppleDouble
