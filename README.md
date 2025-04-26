@@ -40,6 +40,99 @@
 
 CodeMapper is a powerful Python tool that transforms complex codebases into navigable, single-file Markdown artifacts, with a unique ability to bootstrap AI chat prompts for code analysis. Designed with both AI engineers and hobbyist developers in mind, it serves as a bridge between traditional code exploration and modern AI-assisted development workflows. Whether you're training large language models, conducting interactive AI-assisted code reviews, or simply trying to understand a new project, CodeMapper provides a unified, accessible view of your codebase that's optimized for both human readability and AI consumption.
 
+```mermaid
+flowchart TB
+    %% Styles
+    classDef core fill:#3498db,stroke:#2980b9,color:white
+    classDef input fill:#2ecc71,stroke:#27ae60,color:white
+    classDef output fill:#e67e22,stroke:#d35400,color:white
+    classDef ai fill:#9b59b6,stroke:#8e44ad,color:white
+    classDef util fill:#95a5a6,stroke:#7f8c8d,color:white
+    classDef config fill:#f1c40f,stroke:#f39c12,color:black
+    classDef test fill:#e74c3c,stroke:#c0392b,color:white
+    classDef docs fill:#1abc9c,stroke:#16a085,color:white
+    classDef wip fill:#34495e,stroke:#2c3e50,color:white
+
+    %% Input Layer
+    subgraph InputSources
+        FS["Local File System"]:::input
+        GH["GitHub Repository"]:::input
+        CF["Configuration Files"]:::input
+    end
+
+    %% Core Processing
+    subgraph CoreEngine
+        MAIN["Main Entry Point"]:::core
+        DOC["Documentation Processor"]:::core
+        CONF["Configuration Handler"]:::core
+        UTIL["Utility Functions"]:::core
+    end
+
+    %% Processing Layer
+    subgraph ProcessingLayers
+        FTA["File Tree Analysis"]:::core
+        CP["Content Processing"]:::core
+        DE["Documentation Extraction"]:::core
+        SH["Syntax Highlighting"]:::core
+        GI["Git Integration"]:::core
+    end
+
+    %% Output Layer
+    subgraph OutputGenerators
+        CG["CodeMap Generator"]:::output
+        DG["DocMap Generator"]:::output
+        AI["AI Chat Integration"]:::ai
+    end
+
+    %% Support Systems
+    subgraph SupportSystems
+        CICD["CI/CD Pipeline"]:::util
+        TEST["Testing Framework"]:::test
+        DOCS["Documentation System"]:::docs
+        WIP["Work in Progress Features"]:::wip
+    end
+
+    %% Configuration
+    subgraph ConfigSystem
+        PC["Project Config"]:::config
+        DEP["Dependencies"]:::config
+        GC["Git Config"]:::config
+    end
+
+    %% Relationships
+    InputSources --> CoreEngine
+    CoreEngine --> ProcessingLayers
+    ProcessingLayers --> OutputGenerators
+    CoreEngine -.-> SupportSystems
+    ConfigSystem --> CoreEngine
+
+    %% Click Events
+    click MAIN "https://github.com/shaneholloman/codemapper/blob/main/src/codemapper/main.py"
+    click DOC "https://github.com/shaneholloman/codemapper/blob/main/src/codemapper/docmap.py"
+    click CONF "https://github.com/shaneholloman/codemapper/blob/main/src/codemapper/config.py"
+    click UTIL "https://github.com/shaneholloman/codemapper/blob/main/src/codemapper/utils.py"
+    click CICD "https://github.com/shaneholloman/codemapper/tree/main/.github/workflows"
+    click TEST "https://github.com/shaneholloman/codemapper/tree/main/tests"
+    click DOCS "https://github.com/shaneholloman/codemapper/tree/main/docs"
+    click WIP "https://github.com/shaneholloman/codemapper/tree/main/wip"
+    click PC "https://github.com/shaneholloman/codemapper/blob/main/pyproject.toml"
+    click DEP "https://github.com/shaneholloman/codemapper/blob/main/requirements.txt"
+    click GC "https://github.com/shaneholloman/codemapper/blob/main/.gitignore"
+
+    %% Legend
+    subgraph Legend
+        L1["Core Components"]:::core
+        L2["Input Handlers"]:::input
+        L3["Output Generators"]:::output
+        L4["AI Integration"]:::ai
+        L5["Utility Functions"]:::util
+        L6["Configuration"]:::config
+        L7["Testing"]:::test
+        L8["Documentation"]:::docs
+        L9["Work in Progress"]:::wip
+    end
+```
+
 ## Key Features
 
 - **Unified Code Visualization**: Automatically generates a comprehensive Markdown representation of your entire codebase, including:
