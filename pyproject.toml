@@ -24,7 +24,7 @@ indent-style = "space"
 
 [project]
 name = "codemapper"
-version = "4.7.0"
+version = "4.8.0"
 description = "A tool to generate comprehensive Markdown artifacts of directory structures and file contents"
 readme = "README.md"
 requires-python = ">=3.12"

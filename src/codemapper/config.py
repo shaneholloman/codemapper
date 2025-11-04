@@ -23,18 +23,14 @@ PREFIX_STYLES = {
 
 
 def load_user_config() -> dict:
-    """Load user configuration from ~/.config/codemapper/config.toml."""
+    """Load user configuration from ~/.codemapper/codemapper.toml."""
     import tomllib
 
-    config_locations = [
-        Path.home() / ".config" / "codemapper" / "config.toml",
-        Path.home() / ".codemapper.toml",
-    ]
+    config_path = Path.home() / ".codemapper" / "codemapper.toml"
 
-    for config_path in config_locations:
-        if config_path.exists():
-            with open(config_path, "rb") as f:
-                return tomllib.load(f)
+    if config_path.exists():
+        with open(config_path, "rb") as f:
+            return tomllib.load(f)
 
     return {}
 
@@ -46,7 +42,7 @@ def get_output_directory(
     """
     Determine the output directory based on CLI args, config, and defaults.
 
-    Precedence: CLI flag > Config file > Default (.codemaps in CWD)
+    Precedence: CLI flag > Config output_dir > Config prefix_style > Default (~/.codemapper/)
 
     Args:
         cli_output_dir: Output directory from CLI --output-dir flag
@@ -59,17 +55,18 @@ def get_output_directory(
     if cli_output_dir:
         return os.path.expanduser(cli_output_dir)
 
-    # Check config file
+    # Check config file for system-level output_dir
     if config and "output_dir" in config:
         return os.path.expanduser(config["output_dir"])
 
-    # Default: use prefix_style from config or default to "dot"
-    prefix_style = "dot"
+    # Check config file for prefix_style (project-level)
     if config and "prefix_style" in config:
         prefix_style = config.get("prefix_style", "dot")
+        directory_name = PREFIX_STYLES.get(prefix_style, PREFIX_STYLES["dot"])
+        return os.path.join(".", directory_name)
 
-    directory_name = PREFIX_STYLES.get(prefix_style, PREFIX_STYLES["dot"])
-    return os.path.join(".", directory_name)
+    # Default: .codemaps/ in current directory (project-level)
+    return os.path.join(".", ".codemaps")
 
 
 ARCHIVE_EXTENSIONS = {

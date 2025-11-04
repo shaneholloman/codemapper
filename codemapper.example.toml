@@ -1,0 +1,37 @@
+# CodeMapper Configuration Example
+# Rename this file to: codemapper.toml
+# Place at: ~/.codemapper/codemapper.toml
+
+# ============================================================================
+# OUTPUT DIRECTORY CONFIGURATION
+# ============================================================================
+
+# OPTION 1: System-Level Management (Centralized Collection)
+# All codemaps from all projects go to ONE central location
+# Uncomment and set your preferred directory:
+# output_dir = "~/.codemapper"
+# output_dir = "~/Documents/all-my-codemaps"
+# output_dir = "/path/to/centralized/location"
+
+# OPTION 2: Project-Level Management (Local to Each Project)
+# Creates a directory where you run the codemapper command
+# Only used when output_dir is NOT set
+# Uncomment ONE of the following:
+
+# prefix_style = "dot"        # Creates .codemaps/ (hidden, default behavior)
+# prefix_style = "underscore" # Creates _codemaps/ (visible)
+# prefix_style = "dash"       # Creates -codemaps/ (visible)
+
+# ============================================================================
+# DEFAULTS (when no config file exists)
+# ============================================================================
+# - Creates .codemaps/ in current directory (project-level)
+# - You can override with --output-dir CLI flag
+
+# ============================================================================
+# PRECEDENCE
+# ============================================================================
+# 1. CLI --output-dir flag (highest priority)
+# 2. Config output_dir (system-level)
+# 3. Config prefix_style (project-level)
+# 4. Default: .codemaps/ in current directory
