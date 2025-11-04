@@ -23,42 +23,76 @@ from .writers.manage_output import manage_output_directory
 def main():
     """Main function to orchestrate the markdown document generation process."""
     parser = argparse.ArgumentParser(
-        description="Generate markdown document from directory structure or GitHub repository."
+        prog="codemapper",
+        description=(
+            "Generate comprehensive Markdown codemaps from local directories or GitHub repositories.\n\n"
+            "CodeMapper creates single-file Markdown documents containing:\n"
+            "  - Complete directory tree structure\n"
+            "  - All file contents with syntax highlighting\n"
+            "  - Git metadata (branch, commit, remote)\n\n"
+            "Output: project.codemap.md or project.docmap.md\n"
+            "Default location: .codemaps/ in current directory\n"
+            "Config file: ~/.codemapper/codemapper.toml (optional)"
+        ),
+        epilog=(
+            "Examples:\n"
+            "  codemapper /path/to/project\n"
+            "  codemapper https://github.com/user/repo\n"
+            "  codemapper --docs /path/to/project\n"
+            "  codemapper --output-dir ~/all-codemaps /path/to/project\n"
+            "  codemapper --exclude=tests --exclude=docs /path/to/project\n\n"
+            "Configuration:\n"
+            "  Create ~/.codemapper/codemapper.toml to set defaults:\n"
+            '    output_dir = "~/.codemapper"  # Centralized collection\n'
+            '    prefix_style = "underscore"    # Use _codemaps/ instead of .codemaps/\n\n'
+            "Precedence: CLI flags > Config file > Defaults\n\n"
+            "For more info: https://github.com/shaneholloman/codemapper"
+        ),
+        formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument(
         "input_path",
         nargs="?",
-        help="Path to the directory to process or GitHub repository URL",
+        metavar="PATH_OR_URL",
+        help="Local directory path or GitHub repository URL to process",
     )
     parser.add_argument(
         "--include-ignored",
         action="store_true",
-        help="Include files normally ignored by .gitignore",
+        help="Include files normally ignored by .gitignore (default: respect .gitignore)",
     )
     parser.add_argument(
         "--version",
         action="version",
         version=f"CodeMapper version {__version__}",
-        help="Show the version number and exit",
     )
     parser.add_argument(
         "--docs",
         action="store_true",
-        help="Generate documentation map instead of code map",
+        help="Generate documentation map (README + docs/) instead of full codemap",
     )
     parser.add_argument(
         "--docs-dir",
-        help="Specify custom documentation directory path",
+        metavar="DIR",
+        help="Custom documentation directory to scan (default: docs/, wiki/, documentation/)",
     )
     parser.add_argument(
         "--exclude",
         action="append",
-        help="Exclude specified directory from output (can be used multiple times). "
-        "Note: .venv, .conda, and node_modules are excluded by default.",
+        metavar="DIR",
+        help=(
+            "Exclude directory from output (repeatable). Always excluded: .git, .venv, .conda, node_modules, cache dirs"
+        ),
     )
     parser.add_argument(
         "--output-dir",
-        help="Specify custom output directory for generated files. Overrides config file setting.",
+        metavar="DIR",
+        help=(
+            "Output directory for generated files. "
+            "Overrides config file. "
+            "Supports ~ expansion. "
+            "Default: .codemaps/ in current directory"
+        ),
     )
     args = parser.parse_args()
 

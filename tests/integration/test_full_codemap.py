@@ -16,7 +16,7 @@ def test_cli_version():
 
     assert result.returncode == 0
     assert "CodeMapper version" in result.stdout
-    assert "4.8.0" in result.stdout
+    assert "4.8.1" in result.stdout
 
 
 def test_cli_help():
