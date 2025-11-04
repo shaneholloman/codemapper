@@ -12,8 +12,8 @@ DOC_DIRECTORIES = {
 }
 
 # Output file suffixes
-CODEMAP_SUFFIX = "_codemap.md"
-DOCMAP_SUFFIX = "_docmap.md"
+CODEMAP_SUFFIX = ".codemap.md"
+DOCMAP_SUFFIX = ".docmap.md"
 
 
 @dataclass

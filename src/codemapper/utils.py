@@ -493,7 +493,7 @@ def manage_output_directory(base_name: str, input_path: str, suffix: str = CODEM
     Returns:
         str: Path to the output file
     """
-    output_dir = os.path.join(".", "_codemaps")
+    output_dir = os.path.join(".", ".codemaps")
     os.makedirs(output_dir, exist_ok=True)
 
     # If input_path is a relative path, use its basename

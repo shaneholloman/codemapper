@@ -116,7 +116,7 @@ codemapper --include-ignored /path/to/project
 3. **Gitignore Loading** (utils.py:69): Parse .gitignore rules with pathspec library
 4. **Configuration Creation**: Build `CodeMapConfig` or `DocMapConfig` dataclass
 5. **Content Generation**: Call appropriate generation function
-6. **Output Management**: Write to `_codemaps/` directory
+6. **Output Management**: Write to `.codemaps/` directory
 
 ### Output Structure
 
@@ -210,8 +210,9 @@ Tests use pytest with tempfile for isolated test environments. Key test areas:
 
 ## Important Notes
 
-- GitHub cloning is ALWAYS shallow (--depth 1) for performance (src/codemapper/utils.py:381)
-- Output directory is always `_codemaps/` in current working directory
+- GitHub cloning is ALWAYS shallow (--depth 1) for performance
+- Output directory is always `.codemaps/` in current working directory
+- Output files use dot notation: `project.codemap.md`, `project.docmap.md`
 - README.md is prioritized first in TOC and file listings
 - Binary/large files are acknowledged but contents not displayed
 - Tool supports Python 3.10, 3.11, 3.12

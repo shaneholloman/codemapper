@@ -228,15 +228,15 @@ codemapper https://github.com/username/repo
 
 ## Example Output
 
-CodeMapper generates two main types of outputs:
+CodeMapper generates two main types of outputs in the `.codemaps/` directory:
 
-1. **CodeMap** (`project_codemap.md`):
+1. **CodeMap** (`project.codemap.md`):
    - Complete directory tree
    - File contents with syntax highlighting
    - Smart handling of binary and large files
    - Navigation-optimized structure
 
-2. **DocMap** (`project_docmap.md`):
+2. **DocMap** (`project.docmap.md`):
    - Documentation-focused view
    - README files
    - Documentation directory contents
