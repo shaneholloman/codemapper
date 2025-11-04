@@ -52,12 +52,15 @@ By default, CodeMapper creates `.codemaps/` in your current directory:
 
 ## Configuration
 
+> [!IMPORTANT]
+> Without setting codemapper defaults, it will make `.codemaps/` in the current directory. Which is a sane default for projects.
+
 ### Optional Configuration
 
 Copy `codemapper.example.toml` to `~/.codemapper/codemapper.toml` for optional configuration:
 
 ```toml
-# Centralized collection: All codemaps go to one directory
+# Or, centralized collection: All codemaps can go to one directory
 output_dir = "~/.codemapper"
 
 # OR custom prefix: Change directory name in current location
