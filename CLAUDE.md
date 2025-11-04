@@ -215,7 +215,7 @@ Tests use pytest with tempfile for isolated test environments. Key test areas:
 - Output files use dot notation: `project.codemap.md`, `project.docmap.md`
 - README.md is prioritized first in TOC and file listings
 - Binary/large files are acknowledged but contents not displayed
-- Tool supports Python 3.10, 3.11, 3.12
+- Tool requires Python 3.12 or newer
 
 ## Project Structure Highlights
 

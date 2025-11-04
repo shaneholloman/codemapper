@@ -1,10 +1,7 @@
 """Configuration and constants for CodeMapper."""
 
 import os
-from dataclasses import dataclass
 from pathlib import Path
-
-import pathspec
 
 # Standard documentation directory names to check
 DOC_DIRECTORIES = {
@@ -27,6 +24,8 @@ PREFIX_STYLES = {
 
 def load_user_config() -> dict:
     """Load user configuration from ~/.config/codemapper/config.toml."""
+    import tomllib
+
     config_locations = [
         Path.home() / ".config" / "codemapper" / "config.toml",
         Path.home() / ".codemapper.toml",
@@ -34,15 +33,6 @@ def load_user_config() -> dict:
 
     for config_path in config_locations:
         if config_path.exists():
-            try:
-                import tomllib
-            except ImportError:
-                try:
-                    import tomli as tomllib
-                except ImportError:
-                    # If no TOML parser available, return empty config
-                    return {}
-
             with open(config_path, "rb") as f:
                 return tomllib.load(f)
 
@@ -82,30 +72,6 @@ def get_output_directory(
     return os.path.join(".", directory_name)
 
 
-@dataclass
-class BaseMapConfig:
-    """Base configuration class for mapping generation.
-
-    This class holds the common parameters needed for generating maps.
-    It serves as a base class for specific mapping configurations.
-
-    Attributes:
-        directory_path (str): The path to the directory being mapped
-        gitignore_spec (pathspec.PathSpec): Gitignore specifications to follow
-        include_ignored (bool): Whether to include ignored files, defaults to False
-        source (str): Source information string, defaults to empty string
-        base_name (str): Base name for documentation, defaults to empty string
-        exclude_dirs (Optional[List[str]]): List of directories to exclude, defaults to None
-    """
-
-    directory_path: str
-    gitignore_spec: pathspec.PathSpec
-    include_ignored: bool = False
-    source: str = ""
-    base_name: str = ""
-    exclude_dirs: list[str] | None = None
-
-
 ARCHIVE_EXTENSIONS = {
     ".zip",
     ".tar",
@@ -135,6 +101,20 @@ SYSTEM_FILES = {
     "thumbs.db",
     "ehthumbs.db",
     "._.DS_Store",
+}
+
+# Lock files to always exclude (auto-generated, not useful for context)
+LOCK_FILES = {
+    "uv.lock",
+    "package-lock.json",
+    "yarn.lock",
+    "pnpm-lock.yaml",
+    "Cargo.lock",
+    "Gemfile.lock",
+    "composer.lock",
+    "poetry.lock",
+    "Pipfile.lock",
+    "bun.lockb",
 }
 
 CODE_FENCE_MAP = {

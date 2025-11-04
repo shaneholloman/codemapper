@@ -10,19 +10,14 @@ import subprocess
 import sys
 
 from . import __version__
+from .builders.build_codemap import generate_markdown_document
+from .builders.build_docmap import generate_docmap_content
 from .config import CODEMAP_SUFFIX, DOCMAP_SUFFIX, get_output_directory, load_user_config
-
-# Import both the function and the configuration class
-from .docmap import DocMapConfig, generate_docmap_content
-from .utils import (
-    CodeMapConfig,
-    capture_source,
-    clone_github_repo,
-    detect_input_type,
-    generate_markdown_document,
-    load_gitignore_specs,
-    manage_output_directory,
-)
+from .processors.process_dir import capture_source, detect_input_type
+from .processors.process_git import clone_github_repo
+from .readers.scan_paths import load_gitignore_specs
+from .types import CodeMapConfig, DocMapConfig
+from .writers.manage_output import manage_output_directory
 
 
 def main():

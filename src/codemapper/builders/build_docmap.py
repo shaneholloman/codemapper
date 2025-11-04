@@ -1,29 +1,13 @@
-"""
-Documentation Mapping Module for CodeMapper.
-
-This module provides functionality to generate comprehensive documentation maps
-from repositories, focusing on README files and documentation directories. It works
-in conjunction with the main CodeMapper functionality but specifically targets
-documentation content.
-
-The module supports scanning for common documentation directories and processing
-README.md files to create a complete documentation overview.
-"""
+"""Docmap document assembly for CodeMapper."""
 
 import logging
 import os
-from dataclasses import dataclass
-from typing import TYPE_CHECKING
 
-from .config import DOC_DIRECTORIES, BaseMapConfig
-from .utils import (
-    collect_file_paths,
-    generate_file_tree,
-    read_file_content,
-)
-
-if TYPE_CHECKING:
-    pass
+from ..config import DOC_DIRECTORIES
+from ..readers.read_files import read_file_content
+from ..readers.scan_paths import collect_file_paths
+from ..types import DocMapConfig
+from .build_markdown import generate_file_tree
 
 logger = logging.getLogger(__name__)
 
@@ -36,30 +20,16 @@ doc_types = {
 }
 
 
-@dataclass
-class DocMapConfig(BaseMapConfig):
-    """Configuration class for document mapping generation.
-
-    Inherits from BaseMapConfig to provide configuration for documentation mapping.
-    See BaseMapConfig for documentation of inherited attributes.
-
-    Additional Attributes:
-        doc_dir (Optional[str]): Custom documentation directory, defaults to None
-    """
-
-    doc_dir: str | None = None
-
-
 def find_documentation_directory(base_path: str, custom_dir: str | None = None) -> str | None:
     """
     Find the documentation directory in the given base path.
 
     Args:
         base_path (str): Base directory path to search in
-        custom_dir (Optional[str]): Custom documentation directory path if specified
+        custom_dir (str | None): Custom documentation directory path if specified
 
     Returns:
-        Optional[str]: Path to documentation directory if found, None otherwise
+        str | None: Path to documentation directory if found, None otherwise
     """
     if custom_dir:
         custom_path = os.path.join(base_path, custom_dir)
@@ -83,7 +53,7 @@ def process_readme(base_path: str) -> str | None:
         base_path (str): Base directory path containing the README
 
     Returns:
-        Optional[str]: Content of README.md if found, None otherwise
+        str | None: Content of README.md if found, None otherwise
     """
     readme_path = os.path.join(base_path, "README.md")
     if os.path.isfile(readme_path):
