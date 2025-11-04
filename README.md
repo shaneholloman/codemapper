@@ -1,6 +1,6 @@
 # CodeMapper
 
-Converts codebases into single-file Markdown documents for language model context and code analysis.
+> Converts codebases/docs into single-file Markdown documents for language model context and code analysis.
 
 ## What It Does
 
