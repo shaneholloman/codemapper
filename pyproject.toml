@@ -1,28 +1,30 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["uv_build"]
+build-backend = "uv_build"
 
-[tool.black]
-line-length = 100
-target-version = ['py310', 'py311']
-include = '\.pyi?$'
-extend-exclude = '''
-/(
-  # directories
-  \.eggs
-  | \.git
-  | \.hg
-  | \.mypy_cache
-  | \.tox
-  | \.venv
-  | build
-  | dist
-)/
-'''
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "N",   # pep8-naming
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+]
+ignore = []
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
 
 [project]
 name = "codemapper"
-version = "4.4.0"
+version = "4.5.0"
 description = "A tool to generate comprehensive Markdown artifacts of directory structures and file contents"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -49,3 +51,10 @@ dependencies = [
 
 [project.scripts]
 codemapper = "codemapper.main:main"
+
+[project.optional-dependencies]
+dev = [
+  "ruff",
+  "ty",
+  "pytest",
+]

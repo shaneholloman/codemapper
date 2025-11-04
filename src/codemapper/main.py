@@ -11,18 +11,18 @@ import sys
 
 from . import __version__
 from .config import CODEMAP_SUFFIX, DOCMAP_SUFFIX
-from .utils import (
-    load_gitignore_specs,
-    generate_markdown_document,
-    detect_input_type,
-    clone_github_repo,
-    manage_output_directory,
-    capture_source,
-    CodeMapConfig,
-)
 
 # Import both the function and the configuration class
-from .docmap import generate_docmap_content, DocMapConfig
+from .docmap import DocMapConfig, generate_docmap_content
+from .utils import (
+    CodeMapConfig,
+    capture_source,
+    clone_github_repo,
+    detect_input_type,
+    generate_markdown_document,
+    load_gitignore_specs,
+    manage_output_directory,
+)
 
 
 def main():
@@ -73,8 +73,6 @@ def main():
         print(f"Error: {e}")
         sys.exit(1)
 
-    source = capture_source(args.input_path)
-
     if input_type == "github":
         try:
             directory_path = clone_github_repo(path)
@@ -87,9 +85,10 @@ def main():
     else:
         directory_path = path
 
-    if not os.path.isabs(args.input_path) and not args.input_path.startswith(
-        ("http://", "https://")
-    ):
+    # Capture source with git info after we have directory_path
+    source = capture_source(args.input_path, directory_path)
+
+    if not os.path.isabs(args.input_path) and not args.input_path.startswith(("http://", "https://")):
         base_name = os.path.basename(os.path.abspath(args.input_path))
     else:
         base_name = os.path.basename(directory_path)

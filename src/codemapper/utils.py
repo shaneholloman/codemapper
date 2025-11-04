@@ -1,20 +1,21 @@
 """Utility functions for CodeMapper."""
 
+import mimetypes
 import os
 import re
 import subprocess
-import mimetypes
-from typing import List, Tuple, Optional
 from dataclasses import dataclass
 
 import chardet
 import pathspec
 
 from .config import (
-    CODEMAP_SUFFIX,
     ARCHIVE_EXTENSIONS,
     CODE_FENCE_MAP,
+    CODEMAP_SUFFIX,
     LARGE_FILE_EXTENSIONS,
+    MAX_FILE_SIZE_CHARS,
+    SYSTEM_FILES,
     BaseMapConfig,
 )
 
@@ -29,7 +30,7 @@ class CodeMapConfig(BaseMapConfig):
 
 
 def should_exclude_directory(
-    dir_name: str, include_ignored: bool = False, exclude_dirs: Optional[List[str]] = None
+    dir_name: str, include_ignored: bool = False, exclude_dirs: list[str] | None = None
 ) -> bool:
     """
     Determine if a directory should be excluded from processing.
@@ -39,14 +40,27 @@ def should_exclude_directory(
         include_ignored: Whether to include git-ignored files
         exclude_dirs: List of additional directories to exclude
     """
-    # Default exclusions
-    default_exclusions = {".git", ".venv", ".conda", "node_modules"}
+    # Default exclusions - always exclude these
+    always_exclude = {".git", ".venv", ".conda", "node_modules"}
+
+    # Cache and build directories - exclude unless specifically included
+    cache_exclusions = {
+        ".ruff_cache",
+        ".pytest_cache",
+        ".mypy_cache",
+        ".tox",
+        "__pycache__",
+        ".cache",
+        "dist",
+        "build",
+        "*.egg-info",
+    }
 
     if include_ignored:
-        return dir_name in default_exclusions
+        return dir_name in always_exclude
 
-    # Combine default exclusions with user-specified ones
-    exclusions = default_exclusions | {".gitignore"}
+    # Combine all exclusions with user-specified ones
+    exclusions = always_exclude | cache_exclusions
     if exclude_dirs:
         exclusions.update(exclude_dirs)
 
@@ -70,7 +84,7 @@ def load_gitignore_specs(base_path: str) -> pathspec.PathSpec:
     """Load .gitignore specifications from the given base path."""
     gitignore_path = os.path.join(base_path, ".gitignore")
     if os.path.isfile(gitignore_path):
-        with open(gitignore_path, "r", encoding="utf-8") as file:
+        with open(gitignore_path, encoding="utf-8") as file:
             return pathspec.PathSpec.from_lines("gitwildmatch", file)
     return pathspec.PathSpec.from_lines("gitwildmatch", [])
 
@@ -79,8 +93,8 @@ def collect_file_paths(
     directory_path: str,
     gitignore_spec: pathspec.PathSpec,
     include_ignored: bool = False,
-    exclude_dirs: Optional[List[str]] = None,
-) -> List[str]:
+    exclude_dirs: list[str] | None = None,
+) -> list[str]:
     """Collect file paths, respecting .gitignore rules unless include_ignored is True."""
     file_paths = []
 
@@ -93,6 +107,10 @@ def collect_file_paths(
         ]
 
         for filename in files:
+            # Skip system files
+            if filename in SYSTEM_FILES:
+                continue
+            # Skip archive files
             _, ext = os.path.splitext(filename)
             if ext.lower() in ARCHIVE_EXTENSIONS:
                 continue
@@ -106,44 +124,28 @@ def collect_file_paths(
     return file_paths
 
 
-def generate_toc(file_paths: List[str], base_name: str) -> str:
+def generate_toc(file_paths: list[str], base_name: str) -> str:
     """Generate a table of contents based on heading levels."""
     toc = ["<!-- TOC -->", ""]
     toc.append(f"- [{base_name}](#{base_name.lower().replace(' ', '-')})")
-    toc.append("  - [Document Table of Contents](#document-table-of-contents)")
-    toc.append("  - [Repo File Tree](#repo-file-tree)")
-    toc.append("  - [Repo File Contents](#repo-file-contents)")
+    toc.append("    - [Document Table of Contents](#document-table-of-contents)")
+    toc.append("    - [Repo File Tree](#repo-file-tree)")
+    toc.append("    - [Repo File Contents](#repo-file-contents)")
 
     # Sort file paths, placing README.md first and .gitignore second
-    sorted_paths = sorted(
-        file_paths, key=lambda x: (x != "README.md", x != ".gitignore", x.lower())
-    )
+    sorted_paths = sorted(file_paths, key=lambda x: (x != "README.md", x != ".gitignore", x.lower()))
 
     for path in sorted_paths:
         # Normalize path separators to forward slashes
         normalized_path = path.replace(os.sep, "/")
 
-        # Handle __init__.py files specially
-        if normalized_path.endswith("__init__.py"):
-            link = (
-                normalized_path.lower()
-                .replace("__init__.py", "init.py")
-                .replace(".", "")
-                .replace("/", "")
-            )
-            heading = normalized_path.replace("__init__.py", "init.py")
-        else:
-            # Create the link by removing dots and slashes, but keep underscores
-            link = normalized_path.lower().replace(".", "").replace("/", "")
+        # Create the link by removing dots and slashes, keep underscores exactly as-is
+        link = normalized_path.lower().replace(".", "").replace("/", "")
 
-            # Replace double underscores with a single underscore in the link
-            while "__" in link:
-                link = link.replace("__", "_")
+        # Wrap the path in backticks for the heading display (no need to escape underscores)
+        heading = f"`{normalized_path}`"
 
-            # Escape underscores in the heading
-            heading = normalized_path.replace("_", "\\_")
-
-        toc.append(f"    - [{heading}](#{link})")
+        toc.append(f"        - [{heading}](#{link})")
 
     toc.append("")
     toc.append("<!-- /TOC -->")
@@ -155,11 +157,11 @@ def generate_file_tree(
     directory_path: str,
     gitignore_spec: pathspec.PathSpec,
     include_ignored: bool = False,
-    exclude_dirs: Optional[List[str]] = None,
+    exclude_dirs: list[str] | None = None,
 ) -> str:
     """Generate an accurate file tree representation of the given directory."""
 
-    def walk_directory(dir_path: str, prefix: str = "") -> List[str]:
+    def walk_directory(dir_path: str, prefix: str = "") -> list[str]:
         files = []
         contents = sorted(os.listdir(dir_path))
         dirs = [
@@ -168,7 +170,7 @@ def generate_file_tree(
             if os.path.isdir(os.path.join(dir_path, d))
             and not should_exclude_directory(d, include_ignored, exclude_dirs)
         ]
-        regular_files = [f for f in contents if os.path.isfile(os.path.join(dir_path, f))]
+        regular_files = [f for f in contents if os.path.isfile(os.path.join(dir_path, f)) and f not in SYSTEM_FILES]
 
         for idx, name in enumerate(dirs + regular_files):
             full_path = os.path.join(dir_path, name)
@@ -181,9 +183,7 @@ def generate_file_tree(
             current_prefix = "└── " if is_last else "├── "
 
             if os.path.isdir(full_path):
-                files.append(
-                    f"{prefix}{current_prefix}{name}/"
-                )  # Add trailing slash for directories
+                files.append(f"{prefix}{current_prefix}{name}/")  # Add trailing slash for directories
                 extension = "    " if is_last else "│   "
                 files.extend(walk_directory(full_path, prefix + extension))
             else:
@@ -221,10 +221,13 @@ def is_large_file(file_path: str) -> bool:
             "text/",
             "application/json",
             "application/javascript",
+            "application/typescript",
             "application/xml",
             "application/x-httpd-php",
             "application/x-sh",
             "application/x-csh",
+            "application/x-yaml",
+            "application/toml",
         ]
         return not any(mime_type.startswith(text_type) for text_type in text_mime_types)
 
@@ -244,6 +247,17 @@ def read_file_content(file_path: str) -> str:
     if is_large_file(file_path):
         return f"[Large or binary file detected. {get_file_info(file_path)}]"
 
+    # Check file size before reading to avoid context bloat
+    file_size = os.path.getsize(file_path)
+    if file_size > MAX_FILE_SIZE_CHARS:
+        chars_formatted = f"{file_size:,}"
+        tokens_estimate = file_size // 4  # Rough estimate: 1 token ≈ 4 chars
+        return (
+            f"[File too large for context inclusion. "
+            f"Size: {chars_formatted} characters (~{tokens_estimate:,} tokens). "
+            f"Maximum size: {MAX_FILE_SIZE_CHARS:,} characters.]"
+        )
+
     try:
         with open(file_path, "rb") as file:
             raw_data = file.read(1024)  # Read only the first 1024 bytes for detection
@@ -255,24 +269,109 @@ def read_file_content(file_path: str) -> str:
         for encoding in encodings_to_try:
             if encoding:
                 try:
-                    with open(file_path, "r", encoding=encoding) as file:
-                        return file.read().rstrip()
+                    with open(file_path, encoding=encoding) as file:
+                        content = file.read().rstrip()
+                        # Double-check after reading in case file grew or encoding inflated size
+                        if len(content) > MAX_FILE_SIZE_CHARS:
+                            chars_formatted = f"{len(content):,}"
+                            tokens_estimate = len(content) // 4
+                            return (
+                                f"[File too large for context inclusion. "
+                                f"Size: {chars_formatted} characters (~{tokens_estimate:,} tokens). "
+                                f"Maximum size: {MAX_FILE_SIZE_CHARS:,} characters.]"
+                            )
+                        return content
                 except UnicodeDecodeError:
                     continue
 
-        return (
-            f"[Error: Unable to decode file with detected encoding "
-            f"({detected_encoding}), UTF-8, or Latin-1]"
-        )
-    except IOError as e:
+        return f"[Error: Unable to decode file with detected encoding ({detected_encoding}), UTF-8, or Latin-1]"
+    except OSError as e:
         return f"[Error reading file: {str(e)}]"
 
 
-def capture_source(input_path: str) -> str:
-    """Capture the source of the pulled repo."""
+def get_git_info(directory_path: str) -> dict[str, str]:
+    """Extract git metadata from a directory if it's a git repository."""
+    git_info = {}
+
+    try:
+        # Check if it's a git repository
+        subprocess.run(
+            ["git", "-C", directory_path, "rev-parse", "--git-dir"],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+
+        # Get current branch
+        branch_result = subprocess.run(
+            ["git", "-C", directory_path, "rev-parse", "--abbrev-ref", "HEAD"],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+        git_info["branch"] = branch_result.stdout.strip()
+
+        # Get commit hash
+        hash_result = subprocess.run(
+            ["git", "-C", directory_path, "rev-parse", "HEAD"],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+        git_info["commit"] = hash_result.stdout.strip()[:8]  # Short hash
+
+        # Get commit date
+        date_result = subprocess.run(
+            ["git", "-C", directory_path, "log", "-1", "--format=%ci"],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+        git_info["date"] = date_result.stdout.strip()
+
+        # Get remote URL if available
+        remote_result = subprocess.run(
+            ["git", "-C", directory_path, "remote", "get-url", "origin"],
+            capture_output=True,
+            text=True,
+        )
+        if remote_result.returncode == 0:
+            git_info["remote"] = remote_result.stdout.strip()
+
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        # Not a git repo or git not available
+        pass
+
+    return git_info
+
+
+def capture_source(input_path: str, directory_path: str | None = None) -> str:
+    """Capture the source of the pulled repo with git metadata."""
+    source_lines = []
+
     if os.path.isdir(input_path):
-        return f"Local directory: `{os.path.abspath(input_path)}`"
-    return f"GitHub repository: <{input_path}>"
+        source_lines.append(f"Local directory: `{os.path.abspath(input_path)}`")
+    else:
+        source_lines.append(f"GitHub repository: <{input_path}>")
+
+    # Add git information if available
+    git_dir = directory_path if directory_path else input_path
+    if os.path.isdir(git_dir):
+        git_info = get_git_info(git_dir)
+        if git_info:
+            source_lines.append("")
+            source_lines.append("**Git Information:**")
+            source_lines.append("")
+            if "branch" in git_info:
+                source_lines.append(f"- Branch: `{git_info['branch']}`")
+            if "commit" in git_info:
+                source_lines.append(f"- Commit: `{git_info['commit']}`")
+            if "date" in git_info:
+                source_lines.append(f"- Date: {git_info['date']}")
+            if "remote" in git_info:
+                source_lines.append(f"- Remote: <{git_info['remote']}>")
+
+    return "\n".join(source_lines)
 
 
 def generate_markdown_document(config: CodeMapConfig) -> str:
@@ -327,7 +426,7 @@ def generate_markdown_document(config: CodeMapConfig) -> str:
 
     # Generate code blocks for each file
     for i, path in enumerate(file_paths):
-        md_content += f"### {path}\n\n"
+        md_content += f"### `{path}`\n\n"
         full_path = os.path.join(config.directory_path, path)
 
         code_fence_lang = determine_code_fence(path)
@@ -350,7 +449,7 @@ def generate_markdown_document(config: CodeMapConfig) -> str:
     return md_content
 
 
-def detect_input_type(input_path: str) -> Tuple[str, str]:
+def detect_input_type(input_path: str) -> tuple[str, str]:
     """Detect whether the input is a local directory or a GitHub URL."""
     # Check if it's a valid local directory
     if os.path.isdir(input_path):

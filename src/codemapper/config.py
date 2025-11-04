@@ -1,7 +1,7 @@
 """Configuration and constants for CodeMapper."""
 
 from dataclasses import dataclass
-from typing import Optional, List
+
 import pathspec
 
 # Standard documentation directory names to check
@@ -37,7 +37,7 @@ class BaseMapConfig:
     include_ignored: bool = False
     source: str = ""
     base_name: str = ""
-    exclude_dirs: Optional[List[str]] = None
+    exclude_dirs: list[str] | None = None
 
 
 ARCHIVE_EXTENSIONS = {
@@ -54,11 +54,30 @@ ARCHIVE_EXTENSIONS = {
     ".tar.bz2",
 }
 
+# System and temporary files to always exclude
+SYSTEM_FILES = {
+    ".DS_Store",
+    "Thumbs.db",
+    "desktop.ini",
+    ".localized",
+    ".Spotlight-V100",
+    ".Trashes",
+    ".fseventsd",
+    ".TemporaryItems",
+    ".DocumentRevisions-V100",
+    ".VolumeIcon.icns",
+    "thumbs.db",
+    "ehthumbs.db",
+    "._.DS_Store",
+}
+
 CODE_FENCE_MAP = {
     ".adoc": "asciidoc",
+    ".astro": "astro",
     ".bat": "batch",
     ".c": "c",
     ".cfg": "ini",
+    ".clj": "clojure",
     ".conf": "ini",
     ".cpp": "cpp",
     ".cs": "csharp",
@@ -66,24 +85,34 @@ CODE_FENCE_MAP = {
     ".csv": "csv",
     ".dart": "dart",
     ".dockerfile": "dockerfile",
+    ".elixir": "elixir",
+    ".elm": "elm",
+    ".ex": "elixir",
+    ".exs": "elixir",
     ".go": "go",
+    ".graphql": "graphql",
     ".groovy": "groovy",
     ".h": "cpp",
     ".hbs": "handlebars",
     ".hcl": "hcl",
     ".hpp": "cpp",
+    ".htm": "html",
     ".html": "html",
     ".ini": "ini",
     ".j2": "jinja2",
     ".java": "java",
     ".js": "javascript",
     ".json": "json",
+    ".json5": "json5",
+    ".jsonc": "jsonc",
     ".jsx": "jsx",
     ".kt": "kotlin",
+    ".lock": "text",
     ".lua": "lua",
     ".log": "log",
     ".md": "markdown",
     ".mdx": "markdown",
+    ".mjs": "javascript",
     ".php": "php",
     ".pl": "perl",
     ".pkl": "pickle",
@@ -93,11 +122,15 @@ CODE_FENCE_MAP = {
     ".r": "r",
     ".rb": "ruby",
     ".rs": "rust",
+    ".sass": "sass",
     ".scala": "scala",
+    ".scss": "scss",
     ".sh": "bash",
     ".sql": "sql",
+    ".svelte": "svelte",
     ".swift": "swift",
     ".tf": "hcl",
+    ".toml": "toml",
     ".ts": "typescript",
     ".tsx": "tsx",
     ".txt": "text",
@@ -105,13 +138,27 @@ CODE_FENCE_MAP = {
     ".xml": "xml",
     ".yaml": "yml",
     ".yml": "yml",
+    ".zig": "zig",
     ".gitignore": "ini",
+    ".dockerignore": "ini",
+    ".env": "bash",
+    ".env.example": "bash",
+    ".prettierrc": "json",
+    ".eslintrc": "json",
     "requirements.txt": "ini",
     "requirements.yml": "yml",
     "Dockerfile": "dockerfile",
     "Makefile": "makefile",
+    "Cargo.toml": "toml",
+    "Cargo.lock": "toml",
+    "package.json": "json",
+    "package-lock.json": "json",
+    "tsconfig.json": "json",
     "": "txt",  # Default fallback
 }
+
+# Maximum file size in characters for content inclusion (~75k tokens = ~300k chars)
+MAX_FILE_SIZE_CHARS = 300000
 
 LARGE_FILE_EXTENSIONS = {
     # Database files
@@ -124,6 +171,17 @@ LARGE_FILE_EXTENSIONS = {
     ".sql",
     ".psql",
     ".dmp",
+    # Log and temp files
+    ".log",
+    ".logs",
+    ".tmp",
+    ".temp",
+    ".cache",
+    ".bak",
+    ".backup",
+    ".old",
+    ".swp",
+    ".swo",
     # Image files
     ".jpg",
     ".jpeg",

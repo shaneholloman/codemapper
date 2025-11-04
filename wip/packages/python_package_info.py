@@ -3,13 +3,13 @@ This module provides functions to retrieve and categorize information
 about installed Python packages.
 """
 
+import importlib.metadata
 import json
 from collections import defaultdict
-import importlib.metadata
-from typing import Dict, Any
+from typing import Any
 
 
-def get_package_info() -> Dict[str, Dict[str, Any]]:
+def get_package_info() -> dict[str, dict[str, Any]]:
     """
     Retrieves information about all installed packages using importlib.metadata.
 
@@ -42,7 +42,7 @@ def get_package_info() -> Dict[str, Dict[str, Any]]:
     return package_info
 
 
-def categorize_packages(package_info: Dict[str, Dict[str, Any]]) -> Dict[str, list]:
+def categorize_packages(package_info: dict[str, dict[str, Any]]) -> dict[str, list]:
     """
     Categorizes packages based on their category information.
 

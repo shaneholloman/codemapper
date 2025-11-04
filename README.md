@@ -36,7 +36,7 @@
 > [!IMPORTANT]
 > CodeMapper: Bridging Code Understanding for AI and Human Analysis
 >
-> Install: `uv tool install codemapper` to your system. This will add a binary to your path. Zero conflicts with other tools. Of course you may use the traditional `pip install codemapper` as well.
+> Install: `uv tool install codemapper` to your system. This will add a binary to your path. Zero conflicts with other tools.
 
 CodeMapper is a powerful Python tool that transforms complex codebases into navigable, single-file Markdown artifacts, with a unique ability to bootstrap AI chat prompts for code analysis. Designed with both AI engineers and hobbyist developers in mind, it serves as a bridge between traditional code exploration and modern AI-assisted development workflows. Whether you're training large language models, conducting interactive AI-assisted code reviews, or simply trying to understand a new project, CodeMapper provides a unified, accessible view of your codebase that's optimized for both human readability and AI consumption.
 
@@ -116,7 +116,7 @@ flowchart TB
     click DOCS "https://github.com/shaneholloman/codemapper/tree/main/docs"
     click WIP "https://github.com/shaneholloman/codemapper/tree/main/wip"
     click PC "https://github.com/shaneholloman/codemapper/blob/main/pyproject.toml"
-    click DEP "https://github.com/shaneholloman/codemapper/blob/main/requirements.txt"
+    click DEP "https://github.com/shaneholloman/codemapper/blob/main/pyproject.toml"
     click GC "https://github.com/shaneholloman/codemapper/blob/main/.gitignore"
 
     %% Legend
@@ -200,7 +200,7 @@ codemapper /path/to/project_or_repo
 
 # The generated codemap can be directly used in AI chat prompts:
 "Here's my project structure and code, help me understand the dependency flow:
-[paste or add to you project knowledge *_codemap.md content]"
+[paste or add to your project knowledge *_codemap.md content]"
 ```
 
 ### For Hobbyists
@@ -213,8 +213,8 @@ codemapper /path/to/project_or_repo
 ## Getting Started
 
 ```bash
-# Install from PyPI
-pip install codemapper
+# Install as a tool
+uv tool install codemapper
 
 # Basic usage
 codemapper /path/to/project
@@ -275,9 +275,6 @@ CodeMapper generates two main types of outputs:
 ## Installation Options
 
 ```bash
-# For basic traditional installation
-pip install codemapper
-
 # Preferred installation
 uv tool install codemapper
 
@@ -286,7 +283,6 @@ git clone https://github.com/shaneholloman/codemapper
 cd codemapper
 uv venv
 uv sync
-uv pip install -e .
 ```
 
 ## Contributing

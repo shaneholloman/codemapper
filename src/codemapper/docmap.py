@@ -10,19 +10,20 @@ The module supports scanning for common documentation directories and processing
 README.md files to create a complete documentation overview.
 """
 
-import os
 import logging
-from typing import Optional, TYPE_CHECKING
+import os
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
+
 from .config import DOC_DIRECTORIES, BaseMapConfig
 from .utils import (
-    read_file_content,
-    generate_file_tree,
     collect_file_paths,
+    generate_file_tree,
+    read_file_content,
 )
 
 if TYPE_CHECKING:
-    from .config import pathspec
+    pass
 
 logger = logging.getLogger(__name__)
 
@@ -46,10 +47,10 @@ class DocMapConfig(BaseMapConfig):
         doc_dir (Optional[str]): Custom documentation directory, defaults to None
     """
 
-    doc_dir: Optional[str] = None
+    doc_dir: str | None = None
 
 
-def find_documentation_directory(base_path: str, custom_dir: Optional[str] = None) -> Optional[str]:
+def find_documentation_directory(base_path: str, custom_dir: str | None = None) -> str | None:
     """
     Find the documentation directory in the given base path.
 
@@ -74,7 +75,7 @@ def find_documentation_directory(base_path: str, custom_dir: Optional[str] = Non
     return None
 
 
-def process_readme(base_path: str) -> Optional[str]:
+def process_readme(base_path: str) -> str | None:
     """
     Process the root README.md file.
 
@@ -141,9 +142,7 @@ def generate_docmap_content(config: DocMapConfig) -> str:
             ]
         )
 
-        tree_content = generate_file_tree(
-            doc_path, config.gitignore_spec, config.include_ignored, config.exclude_dirs
-        )
+        tree_content = generate_file_tree(doc_path, config.gitignore_spec, config.include_ignored, config.exclude_dirs)
         md_content.extend([tree_content, "```\n"])
 
         def get_fence_type(file_path: str) -> str:
@@ -152,9 +151,7 @@ def generate_docmap_content(config: DocMapConfig) -> str:
             return doc_types.get(ext, "")
 
         # Process documentation files
-        file_paths = collect_file_paths(
-            doc_path, config.gitignore_spec, config.include_ignored, config.exclude_dirs
-        )
+        file_paths = collect_file_paths(doc_path, config.gitignore_spec, config.include_ignored, config.exclude_dirs)
         if file_paths:
             md_content.append("### Documentation Contents\n")
             for path in file_paths:
@@ -172,9 +169,7 @@ def generate_docmap_content(config: DocMapConfig) -> str:
 
     # If neither README nor doc directory found, include a note
     if not readme_content and not doc_path:
-        md_content.append(
-            "> Note: No README.md or standard documentation directory found in this repository.\n"
-        )
+        md_content.append("> Note: No README.md or standard documentation directory found in this repository.\n")
 
     md_content.append(
         "> This concludes the documentation mapping. Please review thoroughly for a "

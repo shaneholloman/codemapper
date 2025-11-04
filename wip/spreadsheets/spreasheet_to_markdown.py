@@ -31,14 +31,16 @@ Version: 1.5
 
 import csv
 import sys
-from typing import List, Iterable, Any, Callable, Union
-import openpyxl
-import xlrd
-import pandas as pd
+from collections.abc import Callable, Iterable
+from typing import Any
+
 import ezodf
+import openpyxl
+import pandas as pd
+import xlrd
 
 
-def format_markdown_table(table_lines: List[str]) -> str:
+def format_markdown_table(table_lines: list[str]) -> str:
     """
     Format a Markdown table for improved readability in raw form.
 
@@ -49,13 +51,11 @@ def format_markdown_table(table_lines: List[str]) -> str:
         str: A formatted Markdown table with aligned columns.
     """
     rows = [line.strip().split("|")[1:-1] for line in table_lines]
-    col_widths = [max(len(cell.strip()) for cell in col) for col in zip(*rows)]
+    col_widths = [max(len(cell.strip()) for cell in col) for col in zip(*rows, strict=False)]
 
     formatted_rows = []
     for i, row in enumerate(rows):
-        formatted_cells = [
-            " " + cell.strip().ljust(col_widths[j]) + " " for j, cell in enumerate(row)
-        ]
+        formatted_cells = [" " + cell.strip().ljust(col_widths[j]) + " " for j, cell in enumerate(row)]
         formatted_row = "|" + "|".join(formatted_cells) + "|"
         formatted_rows.append(formatted_row)
 
@@ -66,7 +66,7 @@ def format_markdown_table(table_lines: List[str]) -> str:
     return "\n".join(formatted_rows)
 
 
-def reader_to_markdown(reader: Iterable[Union[List[Any], tuple]]) -> str:
+def reader_to_markdown(reader: Iterable[list[Any] | tuple]) -> str:
     """
     Convert an iterable of rows to a formatted Markdown table.
 
@@ -99,7 +99,7 @@ def csv_tsv_to_markdown(file_path: str, delimiter: str = ",") -> str:
     Returns:
         str: A formatted Markdown table.
     """
-    with open(file_path, "r", newline="", encoding="utf-8") as file:
+    with open(file_path, newline="", encoding="utf-8") as file:
         reader = csv.reader(file, delimiter=delimiter)
         return reader_to_markdown(reader)
 
@@ -205,15 +205,7 @@ def main():
             file.write(markdown_content)
 
         print(f"Conversion complete. Formatted Markdown table saved to {output_file}")
-    except (
-        IOError,
-        ValueError,
-        KeyError,
-        IndexError,
-        csv.Error,
-        xlrd.XLRDError,
-        pd.errors.EmptyDataError,
-    ) as e:
+    except (OSError, ValueError, KeyError, IndexError, csv.Error, xlrd.XLRDError, pd.errors.EmptyDataError) as e:
         print(f"An error occurred during conversion: {str(e)}")
         sys.exit(1)
 
