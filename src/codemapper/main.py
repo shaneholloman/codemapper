@@ -10,7 +10,7 @@ import subprocess
 import sys
 
 from . import __version__
-from .config import CODEMAP_SUFFIX, DOCMAP_SUFFIX
+from .config import CODEMAP_SUFFIX, DOCMAP_SUFFIX, get_output_directory, load_user_config
 
 # Import both the function and the configuration class
 from .docmap import DocMapConfig, generate_docmap_content
@@ -61,7 +61,14 @@ def main():
         help="Exclude specified directory from output (can be used multiple times). "
         "Note: .venv, .conda, and node_modules are excluded by default.",
     )
+    parser.add_argument(
+        "--output-dir",
+        help="Specify custom output directory for generated files. Overrides config file setting.",
+    )
     args = parser.parse_args()
+
+    # Load user configuration
+    user_config = load_user_config()
 
     if not args.input_path:
         parser.print_help()
@@ -95,6 +102,9 @@ def main():
 
     gitignore_spec = load_gitignore_specs(directory_path)
 
+    # Determine output directory based on CLI, config, and defaults
+    output_dir = get_output_directory(args.output_dir, user_config)
+
     if args.docs:
         # Create a DocMapConfig object with all our parameters
         doc_config = DocMapConfig(
@@ -112,6 +122,7 @@ def main():
             base_name=base_name,
             input_path=args.input_path,
             suffix=DOCMAP_SUFFIX,
+            output_dir=output_dir,
         )
     else:
         # Create a CodeMapConfig object with all our parameters
@@ -129,6 +140,7 @@ def main():
             base_name=base_name,
             input_path=args.input_path,
             suffix=CODEMAP_SUFFIX,
+            output_dir=output_dir,
         )
 
     with open(output_file_path, "w", encoding="utf-8") as md_file:

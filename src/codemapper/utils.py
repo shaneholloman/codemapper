@@ -481,7 +481,12 @@ def clone_github_repo(repo_url: str) -> str:
     return repo_path
 
 
-def manage_output_directory(base_name: str, input_path: str, suffix: str = CODEMAP_SUFFIX) -> str:
+def manage_output_directory(
+    base_name: str,
+    input_path: str,
+    suffix: str = CODEMAP_SUFFIX,
+    output_dir: str | None = None,
+) -> str:
     """
     Manage the output directory for the markdown output.
 
@@ -489,11 +494,17 @@ def manage_output_directory(base_name: str, input_path: str, suffix: str = CODEM
         base_name (str): Base name for the output file
         input_path (str): Original input path (used for relative path handling)
         suffix (str): Suffix for the output file. Defaults to CODEMAP_SUFFIX.
+        output_dir (str): Output directory path. Defaults to None (use .codemaps in CWD).
 
     Returns:
         str: Path to the output file
     """
-    output_dir = os.path.join(".", ".codemaps")
+    # Use provided output_dir or default to .codemaps in current directory
+    if output_dir is None:
+        output_dir = os.path.join(".", ".codemaps")
+
+    # Expand user home directory if present
+    output_dir = os.path.expanduser(output_dir)
     os.makedirs(output_dir, exist_ok=True)
 
     # If input_path is a relative path, use its basename

@@ -1,6 +1,8 @@
 """Configuration and constants for CodeMapper."""
 
+import os
 from dataclasses import dataclass
+from pathlib import Path
 
 import pathspec
 
@@ -14,6 +16,70 @@ DOC_DIRECTORIES = {
 # Output file suffixes
 CODEMAP_SUFFIX = ".codemap.md"
 DOCMAP_SUFFIX = ".docmap.md"
+
+# Default prefix styles
+PREFIX_STYLES = {
+    "dot": ".codemaps",
+    "underscore": "_codemaps",
+    "dash": "-codemaps",
+}
+
+
+def load_user_config() -> dict:
+    """Load user configuration from ~/.config/codemapper/config.toml."""
+    config_locations = [
+        Path.home() / ".config" / "codemapper" / "config.toml",
+        Path.home() / ".codemapper.toml",
+    ]
+
+    for config_path in config_locations:
+        if config_path.exists():
+            try:
+                import tomllib
+            except ImportError:
+                try:
+                    import tomli as tomllib
+                except ImportError:
+                    # If no TOML parser available, return empty config
+                    return {}
+
+            with open(config_path, "rb") as f:
+                return tomllib.load(f)
+
+    return {}
+
+
+def get_output_directory(
+    cli_output_dir: str | None = None,
+    config: dict | None = None,
+) -> str:
+    """
+    Determine the output directory based on CLI args, config, and defaults.
+
+    Precedence: CLI flag > Config file > Default (.codemaps in CWD)
+
+    Args:
+        cli_output_dir: Output directory from CLI --output-dir flag
+        config: Loaded configuration dictionary
+
+    Returns:
+        str: The output directory path to use
+    """
+    # CLI flag has highest priority
+    if cli_output_dir:
+        return os.path.expanduser(cli_output_dir)
+
+    # Check config file
+    if config and "output_dir" in config:
+        return os.path.expanduser(config["output_dir"])
+
+    # Default: use prefix_style from config or default to "dot"
+    prefix_style = "dot"
+    if config and "prefix_style" in config:
+        prefix_style = config.get("prefix_style", "dot")
+
+    directory_name = PREFIX_STYLES.get(prefix_style, PREFIX_STYLES["dot"])
+    return os.path.join(".", directory_name)
 
 
 @dataclass
