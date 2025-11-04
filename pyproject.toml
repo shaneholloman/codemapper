@@ -24,7 +24,7 @@ indent-style = "space"
 
 [project]
 name = "codemapper"
-version = "4.6.0"
+version = "4.7.0"
 description = "A tool to generate comprehensive Markdown artifacts of directory structures and file contents"
 readme = "README.md"
 requires-python = ">=3.12"
@@ -56,4 +56,10 @@ dev = [
   "ruff",
   "ty",
   "pytest",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.2",
+    "pytest-cov>=7.0.0",
 ]
